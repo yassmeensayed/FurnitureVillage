@@ -266,7 +266,7 @@ html[xmlns] .slides {display: block;}
 .flexslider .slides {zoom: 1;}
 .carousel li {margin-right: 5px}
 /* Direction Nav */
-.flex-direction-nav {*height: 0;}
+.flex-direction-nav {height: 0;}
 .flex-direction-nav a {
 	width:91px;
 	height:120px; 
@@ -287,7 +287,7 @@ html[xmlns] .slides {display: block;}
 .flex-direction-nav .flex-disabled {opacity: .3!important; filter:alpha(opacity=30); cursor: default;}
 /* Control Nav */
 .flex-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center;}
-.flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
+.flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; display: inline;}
 .flex-control-paging li a {width:0px; height:0px; display: block; background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; box-shadow: inset 0 0 3px rgba(0,0,0,0.3);}
 .flex-control-paging li a:hover { background: #333; background: rgba(0,0,0,0.7); }
 .flex-control-paging li a.flex-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
@@ -388,9 +388,18 @@ p  {
 /*end 3 cols*/
 /*text*/
 .text-h{
+        margin-top: 5%;
 	margin-bottom:2%;
 	background:#ffffff;
 	border:1px solid rgba(213, 213, 213, 0.63);
+	padding:10px;
+	border-radius: 10px;
+}
+.PagePath{
+        margin-top: 5%;
+	margin-bottom:2%;
+	background:#ffffff;
+	/*border:1px solid rgba(213, 213, 213, 0.63);*/
 	padding:10px;
 	border-radius: 10px;
 }
@@ -470,6 +479,22 @@ p  {
 	margin-top: 2.4%;
 	float: right;
 }
+.add{
+	margin-top: 2.6%;
+	margin-top : 15px;
+	width:20%;
+	background: none;
+	float:right;
+	padding-left:20px;
+	padding-right:10px;
+}
+.remove{
+	margin-top: 2.6%;
+	margin-top : 15px;
+	width:20%;
+	background: none;
+	float:right;
+}
 button {
 	color:#555;
 	border: none;
@@ -489,6 +514,20 @@ button {
 	font-family: verdana;
 	text-transform:capitalize;
 }
+.button.add a,.button.remove a{
+	font-size:0.9em;
+	outline:none;
+	font-weight:normal;
+	padding:6px 18px;
+	background: #fff;
+	color: #fff;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-o-border-radius: 3px;
+	font-family: verdana;
+	text-transform:capitalize;
+}
+
 .btn a:hover{
 	background: #00bbff;
 }
@@ -580,7 +619,7 @@ button {
 }
 /*single page*/
 .single{
-	border-top: 1px solid rgb(238, 238, 238);
+	/*border-top: 1px solid rgb(238, 238, 238);*/
 	margin-top:3%;
 }
 .single:nth-child(1){

@@ -1,16 +1,10 @@
 <%-- 
-    Document   : Registration
-    Created on : Mar 19, 2014, 12:37:37 PM
+    Document   : Contact
+    Created on : Mar 20, 2014, 9:05:56 PM
     Author     : Yassmeen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -25,59 +19,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $(function() {
                 $('.grid-img a').lightBox();
             });
-            $(document).ready(
-            function(){
-                $("#signup").click(function(){
-                    fname=document.getElementById("fullname");
-                    email=document.getElementById("Email");
-                    address=document.getElementById("address");
-                    bday=document.getElementById("bday");
-                    username = document.getElementById("username");
-                    password = document.getElementById("password");
-                    confirmpassword = document.getElementById("confirmpassword");
-                    balance = document.getElementById("balance");
-                    interests= document.getElementById("interests");
-                    if(validateName()&&validateEmail()&&validateUsername()&&validatePassword()&&validateBalance()){
-				
-                    }
-                });
-                 function validateName(){
-                var namePattern=/^[a-zA-Z]/;
-                if(fname.value==null || fname.value.trim()==""||!namePattern.test(fname.value)){
-                    $(".error.required:eq(0)").css("display","inline");
-                    return false;
-                }
-                return true;
-            }
-            function validateEmail(){
-                atpos = email.value.indexOf("@");
-                dotpos = email.value.lastIndexOf(".");
-                if (atpos < 1 || ( dotpos - atpos < 2 )||email.value.trim()=="") 
-                {
-                    $(".error.required:eq(1)").css("display","inline");
-                    return false;
-                }
-		  
-                return( true );
-            }
-            function validateAddress(){
-                var namePattern=/^[a-zA-Z]/;
-                if(fname.value==null || fname.value.trim()==""||!namePattern.test(fname.value)){
-                    $(".error.required:eq(0)").css("display","inline");
-                    return false;
-                }
-                return true;
-            }
-            }
-        );
-           
-
-        
         </script>
     </head>
     <body>
         <div class="wrap"> 
-               <div class="header">
+            <div class="header">
                 <a href="index.jsp">
                     <div class="logo"></div>
                 </a>
@@ -89,12 +35,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </ul>
                 </div>
                 <div class="login">
-                    
                     E-mail: <input type="text"  name="email" id="email"/>
                     Password: <input type="password"  name="password" id ="password"/>
                     <input type="submit" value="Login" id="loginButton"/>
                     <span class="error required">Empty fields</span>
-                    
+
                 </div>
                 <div class="clear"></div>
             </div>
@@ -121,50 +66,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="content">
                 <div class="section group">				
+                    <div class="col span_1_of_3">
+                        <div class="contact_info">
+                            <h2>Find Us Here</h2>
+                            <div class="map">
+                                <iframe width="100%" height="175" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265&amp;output=embed"></iframe><br><small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265" style="color:#666;text-align:left;font-size:12px">View Larger Map</a></small>
+                            </div>
+                        </div>
+                        <div class="company_address">
+                            <h2>Company Information :</h2>
+                            <p>500 Lorem Ipsum Dolor Sit,</p>
+                            <p>22-56-2-9 Sit Amet, Lorem,</p>
+                            <p>USA</p>
+                            <p>Phone:(00) 222 666 444</p>
+                            <p>Fax: (000) 000 00 00 0</p>
+                            <p>Email: <span>info@mycompany.com</span></p>
+                            <p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
+                        </div>
+                    </div>				
                     <div class="col span_2_of_3">
                         <div class="contact-form">
-                            <h2>Register</h2>
-                            <div>
-                                <span><label>NAME</label></span>
-                                <span><input type="text" id="fullname" name="name"/></span><span class="error required">*</span>
-                            </div>
-                            <div>
-                                <span><label>E-MAIL</label></span>
-                                <span><input type="text" id="email" name="email" /></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>ADDRESS</label></span>
-                                <span><input type="text" id="address" name="address"/></span>
-                            </div>
-                            <div>
-                                <span><label>BIRTHDAY</label></span>
-                                <span><input type="text" id="bday" name="bday"/></span>
-                            </div>
-                            <div>
-                                <span><label>USERNAME</label></span>
-                                <span><input type="text" id="username" name="username"/></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>PASSWORD</label></span>
-                                <span><input type="password" id="password" name="password"/></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>CONFIRM PASSWORD</label></span>
-                                <span><input type="password" id="confirmpassword" name="confpassword"/><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>BALANCE</label></span>
-                                <span><input type="text" id="balance" name="balance" /></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>INTERESTS</label></span>
-                                <span><textarea id="interests" name="interests"> </textarea></span>
-                            </div>
-                            <div>
-                                <input type="submit" id="signup" value="Submit">
-                                <input type="reset" value="Clear">
-                            </div>
-
+                            <h2>Contact Us</h2>
+                            <form>
+                                <div>
+                                    <span><label>NAME</label></span>
+                                    <span><input type="text" value="" /></span>
+                                </div>
+                                <div>
+                                    <span><label>E-MAIL</label></span>
+                                    <span><input type="text" value="" /></span>
+                                </div>
+                                <div>
+                                    <span><label>MOBILE</label></span>
+                                    <span><input type="text" value="" /></span>
+                                </div>
+                                <div>
+                                    <span><label>SUBJECT</label></span>
+                                    <span><textarea> </textarea></span>
+                                </div>
+                                <div>
+                                    <span><input type="submit" value="Submit"></span>
+                                </div>
+                            </form>
                         </div>
                     </div>				
                 </div>						
@@ -208,6 +151,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div class="footer1">
+                <p class="w3-link">© All Rights Reserved | Designed by&nbsp; <a href="http://w3layouts.com/"> W3Layouts</a></p>
             </div>
         </div>
     </body>

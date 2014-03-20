@@ -50,13 +50,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <body>
         <div class="wrap"> 
             <div class="header">
-                <a href="index.html">
+                <a href="index.jsp">
                     <div class="logo"></div>
                 </a>
                 <div class="nav-right">
                     <ul class="nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Registration.jsp">Register</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -73,16 +72,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="menu-bg">
                 <ul class="menu">
-                    <li><a href="DiningRooms.html">Dining Rooms</a></li>
-                    <li><a href="LivingRooms.html">Living Rooms</a>
-                        <ul>
-                            <li><a href="Chairs.html" >Chairs</a></li>
-                            <li><a href="Sofas.html">Sofas</a></li>
-                            <li><a href="FirePlaces.html">Fire Places</a></li>
-                        </ul>
+                    <li><a href="DiningRooms.jsp">Dining Rooms</a></li>
+                    <li><a href="LivingRooms.jsp">Living Rooms</a>
+                        <!--<ul>
+                            <li><a href="Chairs.jsp" >Chairs</a></li>
+                            <li><a href="Sofas.jsp">Sofas</a></li>
+                            <li><a href="FirePlaces.jsp">Fire Places</a></li>
+                        </ul>-->
                     </li>
-                    <li><a href="BedRooms.html">Bed Rooms</a></li>
-                    <li><a href="Kitchens.html" >Kitchens</a></li>
+                    <li><a href="BedRooms.jsp">Bed Rooms</a></li>
+                    <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
                 <div class="search">
                     <form>
@@ -111,28 +110,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group">
                     <div class="col_1_of_3 span_1_of_4">
                         <div class="grid-imgs">
-                            <a href="DiningRooms.html"><img src="images/Dining Room/diningroomCategory.png" alt=""/></a> 
+                            <a href="DiningRooms.jsp"><img src="images/Dining Room/diningroomCategory.png" alt=""/></a> 
                         </div>
                         <h2>Dinig Rooms </h2>
                         <p>We have a variety of dining room designs.</p>
                     </div>
                     <div class="col_1_of_3 span_1_of_4">
                         <div class="grid-imgs">
-                            <a href="LivingRooms.html"><img src="images/Living Room/livingroomCategory.png" alt=""/></a> 
+                            <a href="LivingRooms.jsp"><img src="images/Living Room/livingroomCategory.png" alt=""/></a> 
                         </div>
                         <h2>Living Rooms </h2>
                         <p>We have a variety of living room designs. We also have different comfy chairs and sofas</p>
                     </div>
                     <div class="col_1_of_3 span_1_of_4">
                         <div class="grid-imgs">
-                            <a href="BedRooms.html"><img src="images/BedRoom/bedroomCategory.png" alt=""/></a> 
+                            <a href="BedRooms.jsp"><img src="images/BedRoom/bedroomCategory.png" alt=""/></a> 
                         </div>
                         <h2>Bed Rooms </h2>
                         <p>We have a variety of bed room designs.</p>
                     </div>
                     <div class="col_1_of_3 span_1_of_4" id="kitchen">
                         <div class="grid-imgs">
-                            <a href="Kichens.html"><img id="kitchen" src="images/Kitchens/kitchenCategory.png" alt=""/></a> 
+                            <a href="Kichens.jsp"><img id="kitchen" src="images/Kitchens/kitchenCategory.png" alt=""/></a> 
                         </div>
                         <h2>Kitchens </h2>
                         <p>We have a variety of kitchen designs.</p>
@@ -144,43 +143,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group">
                     <div class="col_1_of_5 span_1_of_5">
                         <div class="grid-img">
-                            <a href="details.html"><img src="images/Living Room/lamp.jpg" alt=""/></a> 
+                            <a href="details.jsp"><img src="images/Living Room/lamp.jpg" alt=""/></a> 
                         </div>
                         <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
                         <button class="left">$23.58</button>
-                        <div class="btn right"><a href="details.html">view</a></div>
+                        <div class="btn right"><a href="Details.jsp">view</a></div>
                     </div>
                     <div class="col_1_of_5 span_1_of_5">
                         <div class="grid-img">
-                            <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+                            <a href="Details.jsp"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
                         </div>
                         <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
                         <button class="left">$23.58</button>
-                        <div class="btn right"><a href="details.html">view</a></div>
+                        <div class="btn right"><a href="Details.jsp">view</a></div>
                     </div>
                     <div class="col_1_of_5 span_1_of_5">
                         <div class="grid-img">
-                            <a href="details.html"><img src="images/tables/table1.jpg" alt=""/></a> 
+                            <a href="Details.jsp"><img src="images/tables/table1.jpg" alt=""/></a> 
                         </div>
                         <p>Sed do eiusmod tempor incididunt ut laboreet dolore.</p>
                         <button class="left">$23.58</button>
-                        <div class="btn right"><a href="details.html">view</a></div>
+                        <div class="btn right"><a href="Details.jsp">view</a></div>
                     </div>
                     <div class="col_1_of_5 span_1_of_5">
                         <div class="grid-img">
-                            <a href="details.html"><img src="images/Chairs and sofa/shalta.jpg" alt=""/></a> 
+                            <a href="Details.jsp"><img src="images/Chairs and sofa/shalta.jpg" alt=""/></a> 
                         </div>
                         <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
                         <button class="left">$23.58</button>
-                        <div class="btn right"><a href="details.html">view</a></div>
+                        <div class="btn right"><a href="Details.jsp">view</a></div>
                     </div>
                     <div class="col_1_of_5 span_1_of_5">
                         <div class="grid-img">
-                            <a href="details.html"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
+                            <a href="Details.jsp"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
                         </div>
                         <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
                         <button class="left">$23.58</button>
-                        <div class="btn right"><a href="details.html">view</a></div>
+                        <div class="btn right"><a href="Details.jsp">view</a></div>
                     </div>
                 </div>
             </div>

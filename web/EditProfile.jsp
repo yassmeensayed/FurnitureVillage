@@ -1,16 +1,10 @@
 <%-- 
-    Document   : Registration
-    Created on : Mar 19, 2014, 12:37:37 PM
+    Document   : EditProfile
+    Created on : Mar 20, 2014, 6:32:09 PM
     Author     : Yassmeen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -25,59 +19,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $(function() {
                 $('.grid-img a').lightBox();
             });
-            $(document).ready(
-            function(){
-                $("#signup").click(function(){
-                    fname=document.getElementById("fullname");
-                    email=document.getElementById("Email");
-                    address=document.getElementById("address");
-                    bday=document.getElementById("bday");
-                    username = document.getElementById("username");
-                    password = document.getElementById("password");
-                    confirmpassword = document.getElementById("confirmpassword");
-                    balance = document.getElementById("balance");
-                    interests= document.getElementById("interests");
-                    if(validateName()&&validateEmail()&&validateUsername()&&validatePassword()&&validateBalance()){
-				
-                    }
-                });
-                 function validateName(){
-                var namePattern=/^[a-zA-Z]/;
-                if(fname.value==null || fname.value.trim()==""||!namePattern.test(fname.value)){
-                    $(".error.required:eq(0)").css("display","inline");
-                    return false;
-                }
-                return true;
-            }
-            function validateEmail(){
-                atpos = email.value.indexOf("@");
-                dotpos = email.value.lastIndexOf(".");
-                if (atpos < 1 || ( dotpos - atpos < 2 )||email.value.trim()=="") 
-                {
-                    $(".error.required:eq(1)").css("display","inline");
-                    return false;
-                }
-		  
-                return( true );
-            }
-            function validateAddress(){
-                var namePattern=/^[a-zA-Z]/;
-                if(fname.value==null || fname.value.trim()==""||!namePattern.test(fname.value)){
-                    $(".error.required:eq(0)").css("display","inline");
-                    return false;
-                }
-                return true;
-            }
-            }
-        );
-           
-
-        
         </script>
     </head>
     <body>
         <div class="wrap"> 
-               <div class="header">
+            <div class="header">
                 <a href="index.jsp">
                     <div class="logo"></div>
                 </a>
@@ -89,12 +35,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </ul>
                 </div>
                 <div class="login">
-                    
+
                     E-mail: <input type="text"  name="email" id="email"/>
                     Password: <input type="password"  name="password" id ="password"/>
                     <input type="submit" value="Login" id="loginButton"/>
                     <span class="error required">Empty fields</span>
-                    
+
                 </div>
                 <div class="clear"></div>
             </div>
@@ -123,48 +69,52 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group">				
                     <div class="col span_2_of_3">
                         <div class="contact-form">
-                            <h2>Register</h2>
-                            <div>
-                                <span><label>NAME</label></span>
-                                <span><input type="text" id="fullname" name="name"/></span><span class="error required">*</span>
-                            </div>
-                            <div>
-                                <span><label>E-MAIL</label></span>
-                                <span><input type="text" id="email" name="email" /></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>ADDRESS</label></span>
-                                <span><input type="text" id="address" name="address"/></span>
-                            </div>
-                            <div>
-                                <span><label>BIRTHDAY</label></span>
-                                <span><input type="text" id="bday" name="bday"/></span>
-                            </div>
-                            <div>
-                                <span><label>USERNAME</label></span>
-                                <span><input type="text" id="username" name="username"/></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>PASSWORD</label></span>
-                                <span><input type="password" id="password" name="password"/></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>CONFIRM PASSWORD</label></span>
-                                <span><input type="password" id="confirmpassword" name="confpassword"/><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>BALANCE</label></span>
-                                <span><input type="text" id="balance" name="balance" /></span><span class="error required" >*</span>
-                            </div>
-                            <div>
-                                <span><label>INTERESTS</label></span>
-                                <span><textarea id="interests" name="interests"> </textarea></span>
-                            </div>
-                            <div>
-                                <input type="submit" id="signup" value="Submit">
-                                <input type="reset" value="Clear">
-                            </div>
-
+                            <h2>Edit Profile</h2>
+                            <form action="" method="post">
+                                <div>
+                                    <span><label>NAME</label></span>
+                                    <span><input type="text" name="fname" value="Lubna Helaly"/></span>
+                                </div>
+                                <div>
+                                    <span><label>E-MAIL</label></span>
+                                    <span><input type="text" name="email" value="lubna.m.helaly@gmail.com" /></span>
+                                </div>
+                                <div>
+                                    <span><label>ADDRESS</label></span>
+                                    <span><input type="text" name="address" value="Heliopolis"/></span>
+                                </div>
+                                <div>
+                                    <span><label>BIRTHDAY</label></span>
+                                    <span><input type="text" name="bday" value="18/4/1990"/></span>
+                                </div>
+                                <div>
+                                    <span><label>USERNAME</label></span>
+                                    <span><input type="text" name="username" value="Lubna"/></span>
+                                </div>
+                                <div>
+                                    <span><label>OLD PASSWORD</label></span>
+                                    <span><input type="password" name="password"/></span>
+                                </div>
+                                <div>
+                                    <span><label>NEW PASSWORD</label></span>
+                                    <span><input type="password" name="confpassword"/></span>
+                                </div>
+                                <div>
+                                    <span><label>CONFIRM PASSWORD</label></span>
+                                    <span><input type="password" name="confpassword"/></span>
+                                </div>
+                                <div>
+                                    <span><label>BALANCE</label></span>
+                                    <span><input type="text" name="balance" value="100 EGP" /></span>
+                                </div>
+                                <div>
+                                    <span><label>INTERESTS</label></span>
+                                    <span><textarea name="interests"> Chrochet</textarea></span>
+                                </div>
+                                <div>
+                                    <span><input type="submit" value="Submit"></span>
+                                </div>
+                            </form>
                         </div>
                     </div>				
                 </div>						
