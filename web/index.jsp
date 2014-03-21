@@ -37,14 +37,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     }
                 });
                 $("#loginButton").click(function(){
-            if($("#email").val().trim()!=""||$("#password").val().trim()!=""){
+                    if($("#email").val().trim()!=""||$("#password").val().trim()!=""){
+                    }else{
+                        $(".error.required:eq(0)").css("display","block");    
+                    }
+                });
                 
-            }else{
-                $(".error.required:eq(0)").css("display","block");    
-            }
-        });
-        });
-        
+            });
+//            $(document).ready(function(){
+//                
+//            });
+
         </script>
     </head>
     <body>
@@ -61,12 +64,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </ul>
                 </div>
                 <div class="login">
-                    
+
                     E-mail: <input type="text"  name="email" id="email"/>
                     Password: <input type="password"  name="password" id ="password"/>
                     <input type="submit" value="Login" id="loginButton"/>
                     <span class="error required">Empty fields</span>
-                    
+
                 </div>
                 <div class="clear"></div>
             </div>
@@ -88,8 +91,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <option>Category</option>
                         <option>Price</option>
                     </select>
-                        <input type="text" value="">
-                        <input type="submit" id="searchButton" value="">
+                    <input type="text" id="startPrice"value="" style="width:50px"/>
+                    -
+                    <input type="text" id="endPrice" value="" style="width:50px"/>
+                    <input type="text" id="categoryName" value="">
+                    <input type="submit" id="searchButton" value="">
+
                 </div>
                 <div class="clear"></div>
             </div>
@@ -111,7 +118,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="content">
                 <div class="section group">
                     <div class="col_1_of_3 span_1_of_4">
-                        <div class="grid-imgs">
+                        <div class="grid-imgs" >
                             <a href="DiningRooms.jsp"><img src="images/Dining Room/diningroomCategory.png" alt=""/></a> 
                         </div>
                         <h2>Dinig Rooms </h2>
@@ -143,7 +150,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h2>feature products</h2>
                 </div>
                 <div class="section group">
-                    <div class="col_1_of_5 span_1_of_5">
+                    <div class="col_1_of_5 span_1_of_5" style="margin-left: 0px;">
                         <div class="grid-img">
                             <a href="details.jsp"><img src="images/Living Room/lamp.jpg" alt=""/></a> 
                         </div>
@@ -225,6 +232,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                 </div>
             </div>
-
+        </div>
     </body>
 </html>
