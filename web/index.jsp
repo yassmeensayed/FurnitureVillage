@@ -32,6 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 //            });
 
         </script>
+        <script src="js/searchbarScript.js"></script>
     </head>
     <body>
         <div class="wrap"> 
@@ -69,7 +70,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="BedRooms.jsp">Bed Rooms</a></li>
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
-                
+                 <div class="search">
+                    Search By:<select id="sortBy">
+                        <option>Category</option>
+                        <option>Price</option>
+                    </select>
+                    <span id="priceSearch" style="display: none;"><input type="text" id="startPrice"value="" style="width:50px"/>
+                    -
+                    <input type="text" id="endPrice" value="" style="width:50px"/>
+                    </span>
+                    <span id="categorySearch"><input type="text" id="categoryName" value=""></span>
+                    <input type="submit" id="searchButton" value="">
+
+                </div>
                 <div class="clear"></div>
             </div>
             <div class="flexslider">
