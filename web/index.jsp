@@ -84,10 +84,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
                 <div class="search">
-                    <form>
+                    Search By:<select name="sortBy">
+                        <option>Category</option>
+                        <option>Price</option>
+                    </select>
                         <input type="text" value="">
-                        <input type="submit" value="">
-                    </form>
+                        <input type="submit" id="searchButton" value="">
                 </div>
                 <div class="clear"></div>
             </div>
