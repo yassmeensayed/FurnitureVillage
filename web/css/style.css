@@ -426,7 +426,7 @@ p  {
 .col_1_of_5{
     display: block;
     float:left;
-    margin: 1% 0 1% 1.6%;
+    margin: 1% 0 1% 1%;
     background: #fff;
 }
 
@@ -522,7 +522,6 @@ button {
     outline:none;
     font-weight:normal;
     padding:6px 18px;
-    background: #fff;
     color: #fff;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1163,5 +1162,4 @@ p.sort{
 /*Yassmeen Styling*/
 .contact-button{
     margin-bottom: 2%;
-    float:right;
 }

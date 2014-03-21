@@ -56,12 +56,7 @@
                     <li><a href="BedRooms.jsp">Bed Rooms</a></li>
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
-                <div class="search">
-                    <form>
-                        <input type="text" value="">
-                        <input type="submit" value="">
-                    </form>
-                </div>
+                
                 <div class="clear"></div>
             </div>
             <div class="content">

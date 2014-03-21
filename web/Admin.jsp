@@ -19,19 +19,7 @@
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
 <!-- FlexSlider -->
 <script defer src="js/jquery.flexslider.js"></script>
-<script type="text/javascript">
-    $(function(){
-      SyntaxHighlighter.all();
-    });
-    $(window).load(function(){
-      $('.flexslider').flexslider({
-        animation: "slide",
-        start: function(slider){
-          $('body').removeClass('loading');
-        }
-      });
-    });
-</script>
+<script src="js/searchbarScript.js"></script>
 </head>
 <body>
 <div class="wrap"> 
@@ -69,12 +57,12 @@
                     <li><a href="BedRooms.jsp">Bed Rooms</a></li>
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
-                <div class="search">
+<!--                <div class="search">
                     <form>
                         <input type="text" value="">
                         <input type="submit" value="">
                     </form>
-                </div>
+                </div>-->
                 <div class="clear"></div>
             </div>
 <div class="content">

@@ -26,24 +26,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!-- FlexSlider -->
         <script defer src="js/jquery.flexslider.js"></script>
         <script type="text/javascript">
-            $(function(){
-                SyntaxHighlighter.all();
-            });
-            $(window).load(function(){
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    start: function(slider){
-                        $('body').removeClass('loading');
-                    }
-                });
-                $("#loginButton").click(function(){
-                    if($("#email").val().trim()!=""||$("#password").val().trim()!=""){
-                    }else{
-                        $(".error.required:eq(0)").css("display","block");    
-                    }
-                });
-                
-            });
+            
 //            $(document).ready(function(){
 //                
 //            });
@@ -86,18 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="BedRooms.jsp">Bed Rooms</a></li>
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
-                <div class="search">
-                    Search By:<select name="sortBy">
-                        <option>Category</option>
-                        <option>Price</option>
-                    </select>
-                    <input type="text" id="startPrice"value="" style="width:50px"/>
-                    -
-                    <input type="text" id="endPrice" value="" style="width:50px"/>
-                    <input type="text" id="categoryName" value="">
-                    <input type="submit" id="searchButton" value="">
-
-                </div>
+                
                 <div class="clear"></div>
             </div>
             <div class="flexslider">

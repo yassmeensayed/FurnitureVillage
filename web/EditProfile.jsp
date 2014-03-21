@@ -20,10 +20,11 @@
                 $('.grid-img a').lightBox();
             });
         </script>
+        <script src="js/searchbarScript.js"></script>
     </head>
     <body>
         <div class="wrap"> 
-            <div class="header">
+<div class="header">
                 <a href="index.jsp">
                     <div class="logo"></div>
                 </a>
@@ -31,7 +32,7 @@
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Registration.jsp">Register</a></li>
-                        <li><a href="Contact.jsp">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="login">
@@ -58,10 +59,16 @@
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
                 <div class="search">
-                    <form>
-                        <input type="text" value="">
-                        <input type="submit" value="">
-                    </form>
+                    Search By:<select id="sortBy">
+                        <option>Category</option>
+                        <option>Price</option>
+                    </select>
+                    <span id="priceSearch" style="display: none;"><input type="text" id="startPrice"value="" style="width:50px"/>
+                    -
+                    <input type="text" id="endPrice" value="" style="width:50px"/>
+                    </span>
+                    <span id="categorySearch"><input type="text" id="categoryName" value=""></span>
+                    <input type="submit" id="searchButton" value="">
                 </div>
                 <div class="clear"></div>
             </div>

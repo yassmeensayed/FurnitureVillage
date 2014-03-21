@@ -19,19 +19,7 @@
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
         <!-- FlexSlider -->
         <script defer src="js/jquery.flexslider.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                SyntaxHighlighter.all();
-            });
-            $(window).load(function(){
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    start: function(slider){
-                        $('body').removeClass('loading');
-                    }
-                });
-            });
-        </script>
+        <script src="js/searchbarScript.js"></script>
     </head>
     <body>
         <div class="wrap"> 
@@ -43,7 +31,7 @@
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Registration.jsp">Register</a></li>
-                        <li><a href="Contact.jsp">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="login">
@@ -70,10 +58,17 @@
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
                 <div class="search">
-                    <form>
-                        <input type="text" value="">
-                        <input type="submit" value="">
-                    </form>
+                    Search By:<select id="sortBy">
+                        <option>Category</option>
+                        <option>Price</option>
+                    </select>
+                    <span id="priceSearch" style="display: none;"><input type="text" id="startPrice"value="" style="width:50px"/>
+                    -
+                    <input type="text" id="endPrice" value="" style="width:50px"/>
+                    </span>
+                    <span id="categorySearch"><input type="text" id="categoryName" value=""></span>
+                    <input type="submit" id="searchButton" value="">
+
                 </div>
                 <div class="clear"></div>
             </div>
@@ -88,7 +83,7 @@
                     </div>
                     <button class="left">$23.58</button>
                     <div class="button add"><a href="details.html"><img src="images/Living Room/add.png" alt=""/></a></div>
-                    <div class="btn remove"><a href="details.html"><img src="images/Living Room/remove.png" alt=""/></a></div>
+                    <div class="button remove"><a href="details.html"><img src="images/Living Room/remove.png" alt=""/></a></div>
                 </div>
                 <div class="col_1_of_5 span_1_of_5">
                     <div class="button add"><a href="view.html"><img src="images/Living Room/view.png" alt=""/></a></div><br>
@@ -130,10 +125,13 @@
 
 
             </div>
-            <div class="contact-button">
+            <center>
+                <div class="contact-button">
                     <span class="btn"><a href="details.html">Buy</a></span>
-                </form>
-            </div>	
+                    </form>
+                </div>
+            </center>
+
             <div class="footer">
                 <div class="section group">
                     <div class="col_1_of_4 span_1_of_4">

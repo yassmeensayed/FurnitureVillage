@@ -20,10 +20,11 @@
                 $('.grid-img a').lightBox();
             });
         </script>
+
     </head>
     <body>
         <div class="wrap"> 
-   <div class="header">
+            <div class="header">
                 <a href="index.jsp">
                     <div class="logo"></div>
                 </a>
@@ -31,16 +32,16 @@
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Registration.jsp">Register</a></li>
-                        <li><a href="Contact.jsp">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="login">
-                    
+
                     E-mail: <input type="text"  name="email" id="email"/>
                     Password: <input type="password"  name="password" id ="password"/>
                     <input type="submit" value="Login" id="loginButton"/>
                     <span class="error required">Empty fields</span>
-                    
+
                 </div>
                 <div class="clear"></div>
             </div>
@@ -57,12 +58,7 @@
                     <li><a href="BedRooms.jsp">Bed Rooms</a></li>
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
-                <div class="search">
-                    <form>
-                        <input type="text" value="">
-                        <input type="submit" value="">
-                    </form>
-                </div>
+                
                 <div class="clear"></div>
             </div>
             <div class="content">

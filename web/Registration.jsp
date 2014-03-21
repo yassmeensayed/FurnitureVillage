@@ -156,42 +156,44 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
         </script>
+        
     </head>
     <body>
         <div class="wrap"> 
             <div class="header">
-                <a href="index.html">
+                <a href="index.jsp">
                     <div class="logo"></div>
                 </a>
                 <div class="nav-right">
                     <ul class="nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="Register.html">Register</a></li>
+                        <li class="active"><a href="index.jsp">Home</a></li>
+                        <li><a href="Registration.jsp">Register</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
+                </div>
+                <div class="login">
+
+                    E-mail: <input type="text"  name="email" id="email"/>
+                    Password: <input type="password"  name="password" id ="password"/>
+                    <input type="submit" value="Login" id="loginButton"/>
+                    <span class="error required">Empty fields</span>
+
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="menu-bg">
                 <ul class="menu">
-                    <li><a href="home-appliances.html">Dining Rooms</a></li>
-                    <li><a href="accessories.html">Living Rooms</a>
-                        <ul>
-                            <li><a href="accessories.html" >Chairs</a></li>
-                            <li><a href="accessories.html">Sofas</a></li>
-                            <li><a href="accessories.html">Fire Places</a></li>
-                        </ul>
+                    <li><a href="DiningRooms.jsp">Dining Rooms</a></li>
+                    <li><a href="LivingRooms.jsp">Living Rooms</a>
+                        <!--<ul>
+                            <li><a href="Chairs.jsp" >Chairs</a></li>
+                            <li><a href="Sofas.jsp">Sofas</a></li>
+                            <li><a href="FirePlaces.jsp">Fire Places</a></li>
+                        </ul>-->
                     </li>
-                    <li><a href="computing.html">Bed Rooms</a></li>
-                    <li><a href="accessories.html" >Kitchens</a></li>
+                    <li><a href="BedRooms.jsp">Bed Rooms</a></li>
+                    <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
-                <div class="search">
-                    <form>
-                        <input type="text" value="">
-                        <input type="submit" value="">
-                    </form>
-                </div>
                 <div class="clear"></div>
             </div>
             <div class="content">

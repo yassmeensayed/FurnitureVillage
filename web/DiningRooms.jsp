@@ -19,19 +19,7 @@
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
         <!-- FlexSlider -->
         <script defer src="js/jquery.flexslider.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                SyntaxHighlighter.all();
-            });
-            $(window).load(function(){
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    start: function(slider){
-                        $('body').removeClass('loading');
-                    }
-                });
-            });
-        </script>
+        <script src="js/searchbarScript.js"></script>
     </head>
     <body>
         <div class="wrap"> 
@@ -69,18 +57,25 @@
                     <li><a href="Kitchens.jsp" >Kitchens</a></li>
                 </ul> 
                 <div class="search">
-                    <form>
-                        <input type="text" value="">
-                        <input type="submit" value="">
-                    </form>
+                    Search By:<select id="sortBy">
+                        <option>Category</option>
+                        <option>Price</option>
+                    </select>
+                    <span id="priceSearch" style="display: none;"><input type="text" id="startPrice"value="" style="width:50px"/>
+                        -
+                        <input type="text" id="endPrice" value="" style="width:50px"/>
+                    </span>
+                    <span id="categorySearch"><input type="text" id="categoryName" value=""></span>
+                    <input type="submit" id="searchButton" value="">
+
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="text-h">
                 <h2>Dining Rooms</h2>
             </div>
-         
-             <div class="section group">
+
+            <div class="section group">
                 <div class="col_1_of_5 span_1_of_5">
                     <div class="grid-img">
                         <a href="Details.jsp"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
