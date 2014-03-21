@@ -25,91 +25,166 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $(function() {
                 $('.grid-img a').lightBox();
             });
+ 
             $(document).ready(
-            function(){
-                $("#signup").click(function(){
-                    fname=document.getElementById("fullname");
-                    email=document.getElementById("Email");
-                    address=document.getElementById("address");
-                    bday=document.getElementById("bday");
-                    username = document.getElementById("username");
-                    password = document.getElementById("password");
-                    confirmpassword = document.getElementById("confirmpassword");
-                    balance = document.getElementById("balance");
-                    interests= document.getElementById("interests");
-                    if(validateName()&&validateEmail()&&validateUsername()&&validatePassword()&&validateBalance()){
-				
-                    }
-                });
-                 function validateName(){
-                var namePattern=/^[a-zA-Z]/;
-                if(fname.value==null || fname.value.trim()==""||!namePattern.test(fname.value)){
-                    $(".error.required:eq(0)").css("display","inline");
-                    return false;
-                }
-                return true;
-            }
-            function validateEmail(){
-                atpos = email.value.indexOf("@");
-                dotpos = email.value.lastIndexOf(".");
-                if (atpos < 1 || ( dotpos - atpos < 2 )||email.value.trim()=="") 
-                {
-                    $(".error.required:eq(1)").css("display","inline");
-                    return false;
-                }
-		  
-                return( true );
-            }
-            function validateAddress(){
-                var namePattern=/^[a-zA-Z]/;
-                if(fname.value==null || fname.value.trim()==""||!namePattern.test(fname.value)){
-                    $(".error.required:eq(0)").css("display","inline");
-                    return false;
-                }
-                return true;
-            }
-            }
-        );
-           
+                    function() {
 
-        
+                        fname = document.getElementById("fullname");
+                        email = document.getElementById("Email");
+                        address = document.getElementById("address");
+                        bday = document.getElementById("bday");
+                        username = document.getElementById("username");
+                        password = document.getElementById("password");
+                        confirmpassword = document.getElementById("confirmpassword");
+                        balance = document.getElementById("balance");
+                        interestsy = document.getElementById("interests");
+
+                        $("#signup").click(function() {
+                            if (validateName() && validateEmail() && validateAddress() && validateBirthday() && validatePassword() && confirmPassword() && validateinterests()) {
+
+                            }
+                        });
+
+                        $("#fullname").focusout(function() {
+                            validateName()
+                        });
+
+                        $("#Email").focusout(function() {
+                            validateEmail()
+                        });
+
+                        $("#address").focusout(function() {
+                            validateAddress()
+                        });
+
+                        $("#bday").focusout(function() {
+                            validateBirthday()
+                        });
+
+                        $("#password").focusout(function() {
+                            validatePassword()
+                        });
+
+                        $("#confirmpassword").focusout(function() {
+                            confirmPassword()
+                        });
+
+                        $("#interests").focusout(function() {
+                            validateinterests()
+                        });
+                        
+                        function validateName() {
+                            var namePattern = /^[a-zA-Z]/;
+                            if (fname.value == null || fname.value.trim() == "" || !namePattern.test(fname.value)) {
+                                $(".error.required:eq(0)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(0)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function validateEmail() {
+                            atpos = email.value.indexOf("@");
+                            dotpos = email.value.lastIndexOf(".");
+                            if (atpos < 1 || (dotpos - atpos < 2) || email.value.trim() == "")
+                            {
+                                $(".error.required:eq(1)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(1)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function validateAddress() {
+                            var namePattern = /^[a-zA-Z]/;
+                            if (address.value == null || address.value.trim() == "" || !namePattern.test(address.value)) {
+                                $(".error.required:eq(2)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(2)").css("display", "none");
+                                return true;
+                            }
+                        }
+
+                        function validatePassword() {
+                            var passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%]).{6,20}$/;
+                            if (password.value == null || password.value.trim() == "" || !passwordPattern.test(password.value)) {
+                                $(".error.required:eq(5)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(5)").css("display", "none");
+                                return true;
+                            }
+                        }
+
+                        function validateBirthday()
+                        {
+                            //yyyy-mm-dd 
+                            var bdayPattern = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/;
+                            if (bday.value == null || bday.value.trim() == "" || !bdayPattern.test(bday.value)) {
+                                $(".error.required:eq(3)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(3)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function confirmPassword()
+                        {
+                            if (confirmpassword.value == null || confirmpassword.value.trim() == "" || !(confirmpassword.value === password.value)) {
+                                $(".error.required:eq(6)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(6)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function validateinterests()
+                        {
+                            var namePattern = /^[a-zA-Z]/;
+                            if (interestsy.value == null || interestsy.value.trim() == "" || !namePattern.test(interestsy.value)) {
+                                $(".error.required:eq(8)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(8)").css("display", "none");
+                                return true;
+                            }
+                        }
+                    }
+            );
+
+
+
         </script>
     </head>
     <body>
         <div class="wrap"> 
-               <div class="header">
-                <a href="index.jsp">
+            <div class="header">
+                <a href="index.html">
                     <div class="logo"></div>
                 </a>
                 <div class="nav-right">
                     <ul class="nav">
-                        <li class="active"><a href="index.jsp">Home</a></li>
-                        <li><a href="Registration.jsp">Register</a></li>
-                        <li><a href="Contact.jsp">Contact</a></li>
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="Register.html">Register</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
-                </div>
-                <div class="login">
-                    
-                    E-mail: <input type="text"  name="email" id="email"/>
-                    Password: <input type="password"  name="password" id ="password"/>
-                    <input type="submit" value="Login" id="loginButton"/>
-                    <span class="error required">Empty fields</span>
-                    
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="menu-bg">
                 <ul class="menu">
-                    <li><a href="DiningRooms.jsp">Dining Rooms</a></li>
-                    <li><a href="LivingRooms.jsp">Living Rooms</a>
-                        <!--<ul>
-                            <li><a href="Chairs.jsp" >Chairs</a></li>
-                            <li><a href="Sofas.jsp">Sofas</a></li>
-                            <li><a href="FirePlaces.jsp">Fire Places</a></li>
-                        </ul>-->
+                    <li><a href="home-appliances.html">Dining Rooms</a></li>
+                    <li><a href="accessories.html">Living Rooms</a>
+                        <ul>
+                            <li><a href="accessories.html" >Chairs</a></li>
+                            <li><a href="accessories.html">Sofas</a></li>
+                            <li><a href="accessories.html">Fire Places</a></li>
+                        </ul>
                     </li>
-                    <li><a href="BedRooms.jsp">Bed Rooms</a></li>
-                    <li><a href="Kitchens.jsp" >Kitchens</a></li>
+                    <li><a href="computing.html">Bed Rooms</a></li>
+                    <li><a href="accessories.html" >Kitchens</a></li>
                 </ul> 
                 <div class="search">
                     <form>
@@ -130,15 +205,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                             <div>
                                 <span><label>E-MAIL</label></span>
-                                <span><input type="text" id="email" name="email" /></span><span class="error required" >*</span>
+                                <span><input type="text" id="Email" name="email" /></span><span class="error required" >yourmail@abc.com*</span>
                             </div>
                             <div>
                                 <span><label>ADDRESS</label></span>
-                                <span><input type="text" id="address" name="address"/></span>
+                                <span><input type="text" id="address" name="address"/></span><span class="error required" >*</span>
                             </div>
                             <div>
                                 <span><label>BIRTHDAY</label></span>
-                                <span><input type="text" id="bday" name="bday"/></span>
+                                <span><input type="text" id="bday" name="bday"/></span><span class="error required" >yyyy-mm-dd*</span>
                             </div>
                             <div>
                                 <span><label>USERNAME</label></span>
@@ -146,7 +221,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                             <div>
                                 <span><label>PASSWORD</label></span>
-                                <span><input type="password" id="password" name="password"/></span><span class="error required" >*</span>
+                                <span><input type="password" id="password" name="password"/></span><span class="error required" >Password should contain capital and small letter,numbers, special character @#$% , and its size not less than 6*</span>
                             </div>
                             <div>
                                 <span><label>CONFIRM PASSWORD</label></span>
@@ -158,7 +233,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                             <div>
                                 <span><label>INTERESTS</label></span>
-                                <span><textarea id="interests" name="interests"> </textarea></span>
+                                <span><textarea id="interests" name="interests"> </textarea></span><span class="error required" >*</span>
                             </div>
                             <div>
                                 <input type="submit" id="signup" value="Submit">
