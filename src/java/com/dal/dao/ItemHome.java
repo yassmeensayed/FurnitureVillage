@@ -4,12 +4,15 @@ package com.dal.dao;
 // Generated Mar 20, 2014 6:42:12 PM by Hibernate Tools 3.4.0.CR1
 
 import com.dal.pojo.Item;
+import com.dal.pojo.OrderHistory;
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
 
 /**
@@ -21,22 +24,27 @@ public class ItemHome {
 
 	private static final Log log = LogFactory.getLog(ItemHome.class);
 
-	private final SessionFactory sessionFactory = getSessionFactory();
+	private Session session;
+       
+    public Session getSession() {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        session = sf.openSession();
+        session.getTransaction();
+        log.debug("Getting Session successful!");
+        return session;
+    }
 
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext().lookup("SessionFactory");
-		}
-		catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-		}
-	}
-
+    public ItemHome() {
+        this.session =  this.getSession();
+    }
+    
+    
 	public void persist(Item transientInstance) {
 		log.debug("persisting Item instance");
 		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
+                        session.beginTransaction();
+			session.persist(transientInstance);
+                        session.getTransaction().commit();
 			log.debug("persist successful");
 		}
 		catch (RuntimeException re) {
@@ -48,7 +56,9 @@ public class ItemHome {
 	public void attachDirty(Item instance) {
 		log.debug("attaching dirty Item instance");
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+                        session.beginTransaction();
+			session.saveOrUpdate(instance);
+                        session.getTransaction().commit();
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
@@ -57,22 +67,24 @@ public class ItemHome {
 		}
 	}
 
-	public void attachClean(Item instance) {
+	/*public void attachClean(Item instance) {
 		log.debug("attaching clean Item instance");
 		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			session.getSessionFactory().getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
 			log.error("attach failed", re);
 			throw re;
 		}
-	}
+	}*/
 
 	public void delete(Item persistentInstance) {
 		log.debug("deleting Item instance");
 		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
+                        session.beginTransaction();
+			session.delete(persistentInstance);
+                        session.getTransaction().commit();
 			log.debug("delete successful");
 		}
 		catch (RuntimeException re) {
@@ -84,7 +96,10 @@ public class ItemHome {
 	public Item merge(Item detachedInstance) {
 		log.debug("merging Item instance");
 		try {
-			Item result = (Item) sessionFactory.getCurrentSession().merge(detachedInstance);
+                        session.beginTransaction();
+			Item result = (Item)session.merge(detachedInstance);
+                        session.getTransaction().commit();                   
+			//Item result = (Item) session.getSessionFactory().getCurrentSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		}
@@ -97,7 +112,10 @@ public class ItemHome {
 	public Item findById(java.lang.Integer id) {
 		log.debug("getting Item instance with id: " + id);
 		try {
-			Item instance = (Item) sessionFactory.getCurrentSession().get("Item", id);
+                        session.beginTransaction();
+			Item instance = (Item)session.get(Item.class,id);
+                        //session.getTransaction().commit();  
+			//Item instance = (Item) session.getSessionFactory().getCurrentSession().get("Item", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			}
@@ -115,7 +133,8 @@ public class ItemHome {
 	public List findByExample(Item instance) {
 		log.debug("finding Item instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("Item").add(Example.create(instance))
+                    
+			List results = session.createCriteria(Item.class).add(Example.create(instance))
 					.list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;

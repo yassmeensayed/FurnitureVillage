@@ -9,7 +9,9 @@ import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
 
 /**
@@ -20,23 +22,27 @@ import org.hibernate.criterion.Example;
 public class AdminUserHome {
 
 	private static final Log log = LogFactory.getLog(AdminUserHome.class);
+	private Session session;
+       
+    public Session getSession() {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        session = sf.openSession();
+        session.getTransaction();
+        log.debug("Getting Session successful!");
+        return session;
+    }
 
-	private final SessionFactory sessionFactory = getSessionFactory();
-
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext().lookup("SessionFactory");
-		}
-		catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-		}
-	}
-
+    public AdminUserHome() {
+        this.session =  this.getSession();
+    }
+    
+    
 	public void persist(AdminUser transientInstance) {
 		log.debug("persisting AdminUser instance");
 		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
+                        session.beginTransaction();
+			session.persist(transientInstance);
+                        session.getTransaction().commit();
 			log.debug("persist successful");
 		}
 		catch (RuntimeException re) {
@@ -48,7 +54,9 @@ public class AdminUserHome {
 	public void attachDirty(AdminUser instance) {
 		log.debug("attaching dirty AdminUser instance");
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+                        session.beginTransaction();
+			session.saveOrUpdate(instance);
+                        session.getTransaction().commit();
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
@@ -57,22 +65,24 @@ public class AdminUserHome {
 		}
 	}
 
-	public void attachClean(AdminUser instance) {
+	/*public void attachClean(AdminUser instance) {
 		log.debug("attaching clean AdminUser instance");
 		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			session.getSessionFactory().getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
 			log.error("attach failed", re);
 			throw re;
 		}
-	}
+	}*/
 
 	public void delete(AdminUser persistentInstance) {
 		log.debug("deleting AdminUser instance");
 		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
+                        session.beginTransaction();
+			session.delete(persistentInstance);
+                        session.getTransaction().commit();
 			log.debug("delete successful");
 		}
 		catch (RuntimeException re) {
@@ -84,7 +94,10 @@ public class AdminUserHome {
 	public AdminUser merge(AdminUser detachedInstance) {
 		log.debug("merging AdminUser instance");
 		try {
-			AdminUser result = (AdminUser) sessionFactory.getCurrentSession().merge(detachedInstance);
+                        session.beginTransaction();
+			AdminUser result = (AdminUser)session.merge(detachedInstance);
+                        session.getTransaction().commit();                   
+			//AdminUser result = (AdminUser) session.getSessionFactory().getCurrentSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		}
@@ -97,7 +110,10 @@ public class AdminUserHome {
 	public AdminUser findById(java.lang.Integer id) {
 		log.debug("getting AdminUser instance with id: " + id);
 		try {
-			AdminUser instance = (AdminUser) sessionFactory.getCurrentSession().get("AdminUser", id);
+                        session.beginTransaction();
+			AdminUser instance = (AdminUser)session.get(AdminUser.class,id);
+                        //session.getTransaction().commit();  
+			//AdminUser instance = (AdminUser) session.getSessionFactory().getCurrentSession().get("AdminUser", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			}
@@ -115,7 +131,8 @@ public class AdminUserHome {
 	public List findByExample(AdminUser instance) {
 		log.debug("finding AdminUser instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("AdminUser").add(Example.create(instance))
+                    
+			List results = session.createCriteria(AdminUser.class).add(Example.create(instance))
 					.list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;

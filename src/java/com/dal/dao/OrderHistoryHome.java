@@ -5,12 +5,15 @@ package com.dal.dao;
 
 import com.dal.pojo.OrderHistoryId;
 import com.dal.pojo.OrderHistory;
+
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
 
 /**
@@ -22,22 +25,27 @@ public class OrderHistoryHome {
 
 	private static final Log log = LogFactory.getLog(OrderHistoryHome.class);
 
-	private final SessionFactory sessionFactory = getSessionFactory();
+        private Session session;
+       
+    public Session getSession() {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        session = sf.openSession();
+        session.getTransaction();
+        log.debug("Getting Session successful!");
+        return session;
+    }
 
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext().lookup("SessionFactory");
-		}
-		catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-		}
-	}
-
+    public OrderHistoryHome() {
+        this.session =  this.getSession();
+    }
+    
+    
 	public void persist(OrderHistory transientInstance) {
 		log.debug("persisting OrderHistory instance");
 		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
+                        session.beginTransaction();
+			session.persist(transientInstance);
+                        session.getTransaction().commit();
 			log.debug("persist successful");
 		}
 		catch (RuntimeException re) {
@@ -49,7 +57,9 @@ public class OrderHistoryHome {
 	public void attachDirty(OrderHistory instance) {
 		log.debug("attaching dirty OrderHistory instance");
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+                        session.beginTransaction();
+			session.saveOrUpdate(instance);
+                        session.getTransaction().commit();
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
@@ -58,22 +68,24 @@ public class OrderHistoryHome {
 		}
 	}
 
-	public void attachClean(OrderHistory instance) {
+	/*public void attachClean(OrderHistory instance) {
 		log.debug("attaching clean OrderHistory instance");
 		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			session.getSessionFactory().getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
 			log.error("attach failed", re);
 			throw re;
 		}
-	}
+	}*/
 
 	public void delete(OrderHistory persistentInstance) {
 		log.debug("deleting OrderHistory instance");
 		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
+                        session.beginTransaction();
+			session.delete(persistentInstance);
+                        session.getTransaction().commit();
 			log.debug("delete successful");
 		}
 		catch (RuntimeException re) {
@@ -85,7 +97,10 @@ public class OrderHistoryHome {
 	public OrderHistory merge(OrderHistory detachedInstance) {
 		log.debug("merging OrderHistory instance");
 		try {
-			OrderHistory result = (OrderHistory) sessionFactory.getCurrentSession().merge(detachedInstance);
+                        session.beginTransaction();
+			OrderHistory result = (OrderHistory)session.merge(detachedInstance);
+                        session.getTransaction().commit();                   
+			//OrderHistory result = (OrderHistory) session.getSessionFactory().getCurrentSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		}
@@ -95,10 +110,13 @@ public class OrderHistoryHome {
 		}
 	}
 
-	public OrderHistory findById(OrderHistoryId id) {
+	public OrderHistory findById(java.lang.Integer id) {
 		log.debug("getting OrderHistory instance with id: " + id);
 		try {
-			OrderHistory instance = (OrderHistory) sessionFactory.getCurrentSession().get("OrderHistory", id);
+                        session.beginTransaction();
+			OrderHistory instance = (OrderHistory)session.get(OrderHistory.class,id);
+                        //session.getTransaction().commit();  
+			//OrderHistory instance = (OrderHistory) session.getSessionFactory().getCurrentSession().get("OrderHistory", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			}
@@ -116,8 +134,9 @@ public class OrderHistoryHome {
 	public List findByExample(OrderHistory instance) {
 		log.debug("finding OrderHistory instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("OrderHistory")
-					.add(Example.create(instance)).list();
+                    
+			List results = session.createCriteria(OrderHistory.class).add(Example.create(instance))
+					.list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		}

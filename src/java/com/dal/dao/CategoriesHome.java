@@ -4,12 +4,15 @@ package com.dal.dao;
 // Generated Mar 20, 2014 6:42:12 PM by Hibernate Tools 3.4.0.CR1
 
 import com.dal.pojo.Categories;
+
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
 
 /**
@@ -21,22 +24,27 @@ public class CategoriesHome {
 
 	private static final Log log = LogFactory.getLog(CategoriesHome.class);
 
-	private final SessionFactory sessionFactory = getSessionFactory();
+	private Session session;
+       
+    public Session getSession() {
+        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        session = sf.openSession();
+        session.getTransaction();
+        log.debug("Getting Session successful!");
+        return session;
+    }
 
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext().lookup("SessionFactory");
-		}
-		catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException("Could not locate SessionFactory in JNDI");
-		}
-	}
-
+    public CategoriesHome() {
+        this.session =  this.getSession();
+    }
+    
+    
 	public void persist(Categories transientInstance) {
 		log.debug("persisting Categories instance");
 		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
+                        session.beginTransaction();
+			session.persist(transientInstance);
+                        session.getTransaction().commit();
 			log.debug("persist successful");
 		}
 		catch (RuntimeException re) {
@@ -48,7 +56,9 @@ public class CategoriesHome {
 	public void attachDirty(Categories instance) {
 		log.debug("attaching dirty Categories instance");
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
+                        session.beginTransaction();
+			session.saveOrUpdate(instance);
+                        session.getTransaction().commit();
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
@@ -57,22 +67,24 @@ public class CategoriesHome {
 		}
 	}
 
-	public void attachClean(Categories instance) {
+	/*public void attachClean(Categories instance) {
 		log.debug("attaching clean Categories instance");
 		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
+			session.getSessionFactory().getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
 		}
 		catch (RuntimeException re) {
 			log.error("attach failed", re);
 			throw re;
 		}
-	}
+	}*/
 
 	public void delete(Categories persistentInstance) {
 		log.debug("deleting Categories instance");
 		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
+                        session.beginTransaction();
+			session.delete(persistentInstance);
+                        session.getTransaction().commit();
 			log.debug("delete successful");
 		}
 		catch (RuntimeException re) {
@@ -84,7 +96,10 @@ public class CategoriesHome {
 	public Categories merge(Categories detachedInstance) {
 		log.debug("merging Categories instance");
 		try {
-			Categories result = (Categories) sessionFactory.getCurrentSession().merge(detachedInstance);
+                        session.beginTransaction();
+			Categories result = (Categories)session.merge(detachedInstance);
+                        session.getTransaction().commit();                   
+			//Categories result = (Categories) session.getSessionFactory().getCurrentSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		}
@@ -94,10 +109,13 @@ public class CategoriesHome {
 		}
 	}
 
-	public Categories findById(int id) {
+	public Categories findById(java.lang.Integer id) {
 		log.debug("getting Categories instance with id: " + id);
 		try {
-			Categories instance = (Categories) sessionFactory.getCurrentSession().get("Categories", id);
+                        session.beginTransaction();
+			Categories instance = (Categories)session.get(Categories.class,id);
+                        //session.getTransaction().commit();  
+			//Categories instance = (Categories) session.getSessionFactory().getCurrentSession().get("Categories", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			}
@@ -115,8 +133,9 @@ public class CategoriesHome {
 	public List findByExample(Categories instance) {
 		log.debug("finding Categories instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("Categories")
-					.add(Example.create(instance)).list();
+                    
+			List results = session.createCriteria(Categories.class).add(Example.create(instance))
+					.list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		}

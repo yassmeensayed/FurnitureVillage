@@ -7,7 +7,11 @@
 package com.servlets;
 
 import com.dal.dao.UserCredentialsHome;
+import com.dal.dao.UserHome;
+import com.dal.pojo.User;
 import com.dal.pojo.UserCredentials;
+import java.util.ArrayList;
+import java.util.Date;
 import org.hibernate.Session;
 
 /**
@@ -20,7 +24,21 @@ public class TestClass {
         
         //UserCredentials uc = new UserCredentials();
         
-        UserCredentialsHome uh = new UserCredentialsHome();
-        Session session = uh.getSession();
+        User user = new User();
+        user.setAddress("haram");
+        user.setJob("Mohamy");
+        user.setBirthdate(new Date("27/5/1988"));
+        user.setFname("mohamed22");
+        user.setLname("ahemd22");
+        user.setInterests("anything");
+      //  user.setId(4);
+        UserHome uh = new UserHome();
+        
+        //uh.merge(user);
+        
+        ArrayList<User> list = (ArrayList)uh.findByExample(user);
+        System.out.println(list.get(0).getAddress());
+        System.out.println(list.size());
+        System.out.println("Done!");
     }
 }
