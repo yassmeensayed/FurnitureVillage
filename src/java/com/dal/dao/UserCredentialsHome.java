@@ -22,8 +22,8 @@ import org.hibernate.criterion.Example;
  */
 public class UserCredentialsHome {
 
-	private Session session;
-
+	private Session session = getSession();
+       
     public Session getSession() {
         SessionFactory sf = new Configuration().configure().buildSessionFactory();
         session = sf.openSession();
