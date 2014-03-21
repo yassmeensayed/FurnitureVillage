@@ -79,131 +79,119 @@
             <div class="text-h">
                 <h2>Bed Rooms</h2>
             </div>
-            <div class="single">
+         <!--   <div class="single">
                 <div class="PagePath">
                     <p class="left"><a href="index.jsp">Home&nbsp;></a></p>
-                    <p class="right">There are 56 Products.</p>
+                    <p class="pageInfo">There are 56 Products.</p>
                     <div class="clear"></div>
                 </div>
+            </div>-->
+              <div class="section group">
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Chairs and sofa/shalta.jpg" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
+                <div class="col_1_of_5 span_1_of_5">
+                    <div class="grid-img">
+                        <a href="Details.jsp"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
+                    </div>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                    <button class="left">$23.58</button>
+                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                </div>
             </div>
-            <div class="section group">
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+            <div class="footer">
+                <div class="section group">
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>My Account</h2>
+                        <ul class="nav1">
+                            <li><a href="">Always free from repetition</a></li>
+                            <li><a href="">Morbi blandit turpis ewuhre</a></li>
+                            <li><a href="">Integer id ante nec elit mo</a></li>
+                            <li><a href="">Maecenas accumsan lorem sed</a></li>
+                        </ul>
                     </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>Information</h2>
+                        <ul class="nav1">
+                            <li><a href="">Always free from repetition</a></li>
+                            <li><a href="">Morbi blandit turpis ewuhre</a></li>
+                            <li><a href="">Integer id ante nec elit mo</a></li>
+                            <li><a href="">Maecenas accumsan lorem sed</a></li>
+                        </ul>
                     </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>Follow Us</h2>
+                        <ul class="nav">
+                            <li><a href=""><img src="images/facebook.png" title="facebook" alt=""/></a></li>
+                            <li><a href=""><img src="images/twitter.png" title="twitter" alt=""/></a></li>
+                            <li><a href=""><img src="images/rss.png" title="rss" alt=""/></a></li>
+                        </ul>
                     </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/shalta.jpg" alt=""/></a> 
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>Contact Us</h2>
+                        <ul class="nav">
+                            <li><a href=""> 500 Lorem Ipsum Dolor Sit,</a></li>
+                            <li><a href="">22-56-2-9 Sit Amet, Lorem,</a></li>
+                            <li><a href="">USA </a></li>
+                            <li><a href="">Phone:(00) 222 666 444 </a></li>
+                            <li><a href=""> Email: <span>info@mycompany.com</span></a></li>
+                        </ul>
                     </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
-                    </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
-                    </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
-                    </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
-                    </div>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                    <button class="left">$23.58</button>
-                    <div class="btn right"><a href="details.html">view</a></div>
-                </div>
-
-                <div class="contact-button">
-                    <form action="" method="post">
-                        <div>
-                            <span><input type="submit" value="Buy"></span>
-                            <span><input type="submit" value="Continue Shopping"></span>
-                            <span><input type="submit" value="Cancel"></span>
-                        </div>
-                    </form>
-                </div>	
-            </div>
-
-        </div>
-        <div class="footer">
-            <div class="section group">
-                <div class="col_1_of_4 span_1_of_4">
-                    <h2>My Account</h2>
-                    <ul class="nav1">
-                        <li><a href="">Always free from repetition</a></li>
-                        <li><a href="">Morbi blandit turpis ewuhre</a></li>
-                        <li><a href="">Integer id ante nec elit mo</a></li>
-                        <li><a href="">Maecenas accumsan lorem sed</a></li>
-                    </ul>
-                </div>
-                <div class="col_1_of_4 span_1_of_4">
-                    <h2>Information</h2>
-                    <ul class="nav1">
-                        <li><a href="">Always free from repetition</a></li>
-                        <li><a href="">Morbi blandit turpis ewuhre</a></li>
-                        <li><a href="">Integer id ante nec elit mo</a></li>
-                        <li><a href="">Maecenas accumsan lorem sed</a></li>
-                    </ul>
-                </div>
-                <div class="col_1_of_4 span_1_of_4">
-                    <h2>Follow Us</h2>
-                    <ul class="nav">
-                        <li><a href=""><img src="images/facebook.png" title="facebook" alt=""/></a></li>
-                        <li><a href=""><img src="images/twitter.png" title="twitter" alt=""/></a></li>
-                        <li><a href=""><img src="images/rss.png" title="rss" alt=""/></a></li>
-                    </ul>
-                </div>
-                <div class="col_1_of_4 span_1_of_4">
-                    <h2>Contact Us</h2>
-                    <ul class="nav">
-                        <li><a href=""> 500 Lorem Ipsum Dolor Sit,</a></li>
-                        <li><a href="">22-56-2-9 Sit Amet, Lorem,</a></li>
-                        <li><a href="">USA </a></li>
-                        <li><a href="">Phone:(00) 222 666 444 </a></li>
-                        <li><a href=""> Email: <span>info@mycompany.com</span></a></li>
-                    </ul>
                 </div>
             </div>
         </div>
-
     </body>
 </html>
