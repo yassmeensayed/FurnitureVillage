@@ -1,5 +1,5 @@
 package com.dal.pojo;
-// Generated Mar 21, 2014 1:41:05 PM by Hibernate Tools 3.6.0
+// Generated Mar 22, 2014 10:38:54 AM by Hibernate Tools 3.2.1.GA
 
 
 

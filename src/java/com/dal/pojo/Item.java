@@ -1,5 +1,5 @@
 package com.dal.pojo;
-// Generated Mar 21, 2014 1:41:05 PM by Hibernate Tools 3.6.0
+// Generated Mar 22, 2014 10:38:54 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -16,18 +16,14 @@ public class Item  implements java.io.Serializable {
      private String name;
      private Integer availableQuantity;
      private Double price;
-     private byte[] image;
+     private String image;
      private String description;
      private Set shoppingCarts = new HashSet(0);
 
     public Item() {
     }
 
-	
-    public Item(Categories categories) {
-        this.categories = categories;
-    }
-    public Item(Categories categories, String name, Integer availableQuantity, Double price, byte[] image, String description, Set shoppingCarts) {
+    public Item(Categories categories, String name, Integer availableQuantity, Double price, String image, String description, Set shoppingCarts) {
        this.categories = categories;
        this.name = name;
        this.availableQuantity = availableQuantity;
@@ -72,11 +68,11 @@ public class Item  implements java.io.Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public byte[] getImage() {
+    public String getImage() {
         return this.image;
     }
     
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
     public String getDescription() {

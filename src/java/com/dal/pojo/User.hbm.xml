@@ -1,18 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 21, 2014 1:41:05 PM by Hibernate Tools 3.6.0 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2014 10:38:56 AM by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="com.dal.pojo.User" table="user" catalog="ecommerce">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="fname" type="string">
-            <column name="fname" length="45" />
-        </property>
-        <property name="lname" type="string">
-            <column name="lname" length="45" />
+        <property name="fullName" type="string">
+            <column name="FullName" length="45" />
         </property>
         <property name="birthdate" type="date">
             <column name="birthdate" length="10" />
@@ -26,29 +23,35 @@
         <property name="interests" type="string">
             <column name="interests" length="45" />
         </property>
-        <set name="orderHistories" table="order_history" inverse="true" lazy="true" fetch="select">
+        <property name="email" type="string">
+            <column name="email" length="45" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" />
+        </property>
+        <property name="activeStatus" type="java.lang.Boolean">
+            <column name="Active_status" />
+        </property>
+        <property name="loginStatus" type="java.lang.Boolean">
+            <column name="Login_status" />
+        </property>
+        <set name="orderHistories" inverse="true">
             <key>
                 <column name="user_id" not-null="true" />
             </key>
             <one-to-many class="com.dal.pojo.OrderHistory" />
         </set>
-        <set name="shoppingCarts" table="shopping_cart" inverse="true" lazy="true" fetch="select">
+        <set name="shoppingCarts" inverse="true">
             <key>
                 <column name="user_id" not-null="true" />
             </key>
             <one-to-many class="com.dal.pojo.ShoppingCart" />
         </set>
-        <set name="adminUsers" table="admin_user" inverse="true" lazy="true" fetch="select">
+        <set name="adminUsers" inverse="true">
             <key>
                 <column name="user_id" not-null="true" />
             </key>
             <one-to-many class="com.dal.pojo.AdminUser" />
-        </set>
-        <set name="userCredentialses" table="user_credentials" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="user_id" not-null="true" />
-            </key>
-            <one-to-many class="com.dal.pojo.UserCredentials" />
         </set>
     </class>
 </hibernate-mapping>

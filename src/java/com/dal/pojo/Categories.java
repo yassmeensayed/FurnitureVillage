@@ -1,5 +1,5 @@
 package com.dal.pojo;
-// Generated Mar 21, 2014 1:41:05 PM by Hibernate Tools 3.6.0
+// Generated Mar 22, 2014 10:38:54 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -11,28 +11,23 @@ import java.util.Set;
 public class Categories  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String name;
      private Set items = new HashSet(0);
 
     public Categories() {
     }
 
-	
-    public Categories(int id) {
-        this.id = id;
-    }
-    public Categories(int id, String name, Set items) {
-       this.id = id;
+    public Categories(String name, Set items) {
        this.name = name;
        this.items = items;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getName() {

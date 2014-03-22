@@ -1,5 +1,5 @@
 package com.dal.pojo;
-// Generated Mar 21, 2014 1:41:05 PM by Hibernate Tools 3.6.0
+// Generated Mar 22, 2014 10:38:54 AM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -13,31 +13,35 @@ public class User  implements java.io.Serializable {
 
 
      private Integer id;
-     private String fname;
-     private String lname;
+     private String fullName;
      private Date birthdate;
      private String job;
      private String address;
      private String interests;
+     private String email;
+     private String password;
+     private Boolean activeStatus;
+     private Boolean loginStatus;
      private Set orderHistories = new HashSet(0);
      private Set shoppingCarts = new HashSet(0);
      private Set adminUsers = new HashSet(0);
-     private Set userCredentialses = new HashSet(0);
 
     public User() {
     }
 
-    public User(String fname, String lname, Date birthdate, String job, String address, String interests, Set orderHistories, Set shoppingCarts, Set adminUsers, Set userCredentialses) {
-       this.fname = fname;
-       this.lname = lname;
+    public User(String fullName, Date birthdate, String job, String address, String interests, String email, String password, Boolean activeStatus, Boolean loginStatus, Set orderHistories, Set shoppingCarts, Set adminUsers) {
+       this.fullName = fullName;
        this.birthdate = birthdate;
        this.job = job;
        this.address = address;
        this.interests = interests;
+       this.email = email;
+       this.password = password;
+       this.activeStatus = activeStatus;
+       this.loginStatus = loginStatus;
        this.orderHistories = orderHistories;
        this.shoppingCarts = shoppingCarts;
        this.adminUsers = adminUsers;
-       this.userCredentialses = userCredentialses;
     }
    
     public Integer getId() {
@@ -47,19 +51,12 @@ public class User  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getFname() {
-        return this.fname;
+    public String getFullName() {
+        return this.fullName;
     }
     
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-    public String getLname() {
-        return this.lname;
-    }
-    
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
     public Date getBirthdate() {
         return this.birthdate;
@@ -89,6 +86,34 @@ public class User  implements java.io.Serializable {
     public void setInterests(String interests) {
         this.interests = interests;
     }
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getPassword() {
+        return this.password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public Boolean getActiveStatus() {
+        return this.activeStatus;
+    }
+    
+    public void setActiveStatus(Boolean activeStatus) {
+        this.activeStatus = activeStatus;
+    }
+    public Boolean getLoginStatus() {
+        return this.loginStatus;
+    }
+    
+    public void setLoginStatus(Boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
     public Set getOrderHistories() {
         return this.orderHistories;
     }
@@ -109,13 +134,6 @@ public class User  implements java.io.Serializable {
     
     public void setAdminUsers(Set adminUsers) {
         this.adminUsers = adminUsers;
-    }
-    public Set getUserCredentialses() {
-        return this.userCredentialses;
-    }
-    
-    public void setUserCredentialses(Set userCredentialses) {
-        this.userCredentialses = userCredentialses;
     }
 
 

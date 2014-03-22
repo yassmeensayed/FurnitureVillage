@@ -2,11 +2,10 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="ecommerce"/>
-  <table-filter match-name="categories"/>
-  <table-filter match-name="admin_user"/>
-  <table-filter match-name="shopping_cart"/>
-  <table-filter match-name="user"/>
   <table-filter match-name="order_history"/>
+  <table-filter match-name="user"/>
   <table-filter match-name="item"/>
-  <table-filter match-name="user_credentials"/>
+  <table-filter match-name="shopping_cart"/>
+  <table-filter match-name="admin_user"/>
+  <table-filter match-name="categories"/>
 </hibernate-reverse-engineering>
