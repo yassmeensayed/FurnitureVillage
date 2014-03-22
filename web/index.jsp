@@ -42,13 +42,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </a>
                 <div class="nav-right">
                     <ul class="nav">
+                        <li><a href="Admin.html">Admin Panel</a></li>
                         <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Registration.jsp">Register</a></li>
                         <li><a href="contact.html">Contact</a></li>
+
                     </ul>
                 </div>
                 <div class="login">
-
+                    
                     E-mail: <input type="text"  name="email" id="email"/>
                     Password: <input type="password"  name="password" id ="password"/>
                     <input type="submit" value="Login" id="loginButton"/>

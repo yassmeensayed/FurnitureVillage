@@ -19,7 +19,7 @@ import org.hibernate.Session;
 public class TestClass {
     public static void main(String[] args) {
         
-        User user = new User();
+       /* User user = new User();
         user.setEmail("yassmeen@gmail.com");
         user.setActiveStatus(Boolean.TRUE);
         user.setAddress("maadi");
@@ -27,12 +27,14 @@ public class TestClass {
         user.setFullName("Kareem Moustafa");
         user.setPassword("123");
         user.setLoginStatus(Boolean.FALSE);
-        user.setJob("doc");
+        user.setJob("doc");*/
         
         UserHome uh = new UserHome();
-        uh.persist(user);
+        //uh.persist(user);
         
-        User user2 = uh.findById(user.getId());
+        User user2 = uh.findById(15);
+        user2.setBalance(new Integer(1000));
+        uh.merge(user2);
         System.out.println(user2.getId() + " " + user2.getFullName());
         System.out.println("Done!");
     }

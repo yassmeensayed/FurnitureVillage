@@ -13,6 +13,7 @@ public class User  implements java.io.Serializable {
 
 
      private Integer id;
+     private Integer balance;
      private String fullName;
      private Date birthdate;
      private String job;
@@ -43,7 +44,16 @@ public class User  implements java.io.Serializable {
        this.shoppingCarts = shoppingCarts;
        this.adminUsers = adminUsers;
     }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
    
+    
     public Integer getId() {
         return this.id;
     }

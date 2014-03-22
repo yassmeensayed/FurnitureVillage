@@ -12,8 +12,15 @@ $(window).load(function(){
             $('body').removeClass('loading');
         }
     });
+    function updateLoginArea(responseTxt,statusTxt,xhr){
+        if(statusTxt=="success"){
+            $(".error.required:eq(0)").css("display","block");
+            $(".error.required:eq(0)").html(responseTxt)();
+        }
+    }
     $("#loginButton").click(function(){
         if($("#email").val().trim()!=""||$("#password").val().trim()!=""){
+            $.post("Login?data="+new Date().getTime(), {email:$("#email").val(),pass:$("#password").val()}, updateLoginArea);
         }else{
             $(".error.required:eq(0)").css("display","block");    
         }

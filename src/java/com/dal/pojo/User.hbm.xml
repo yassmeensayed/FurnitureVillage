@@ -29,6 +29,9 @@
         <property name="password" type="string">
             <column name="password" length="45" />
         </property>
+        <property name="balance" type="integer">
+            <column name="balance" length="1000" />
+        </property>
         <property name="activeStatus" type="java.lang.Boolean">
             <column name="Active_status" />
         </property>
