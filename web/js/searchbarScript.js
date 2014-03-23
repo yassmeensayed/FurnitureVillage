@@ -11,7 +11,7 @@ $(window).load(function(){
         start: function(slider){
             $('body').removeClass('loading');
         }
-    });
+    }); 
     function updateLoginArea(responseTxt,statusTxt,xhr){
         if(statusTxt=="success"){
             $(".error.required:eq(0)").css("display","block");
