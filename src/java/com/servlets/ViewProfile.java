@@ -8,6 +8,7 @@ import com.dal.dao.UserHome;
 import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,7 +55,7 @@ public class ViewProfile extends HttpServlet {
         Integer id = new Integer(15);
         User u = uh.findById(id);
         request.setAttribute("user", u);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date="+new Date().getTime());
         rd.forward(request, response);
 
     }
