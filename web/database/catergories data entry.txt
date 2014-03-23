@@ -1,0 +1,8 @@
+INSERT INTO `ecommerce`.`categories` (`id`, `name`) VALUES (3, 'BedRooms');
+
+INSERT INTO `ecommerce`.`categories` (`id`, `name`) VALUES (2, 'DiningRooms');
+
+INSERT INTO `ecommerce`.`categories` (`id`, `name`) VALUES (1, 'Kitchens');
+
+INSERT INTO `ecommerce`.`categories` (`id`, `name`) VALUES (4, 'LivingRooms');
+
