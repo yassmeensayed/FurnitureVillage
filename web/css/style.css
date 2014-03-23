@@ -330,7 +330,10 @@ html[xmlns] .slides {display: block;}
     width: 29.2%;
     padding:1.5%; 
 }
-
+.categoryItemName{
+    height: 7em;
+    
+}
 #kitchen{
 
 }

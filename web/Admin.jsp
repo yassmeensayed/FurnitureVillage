@@ -46,16 +46,16 @@
             </div>
             <div class="menu-bg">
                 <ul class="menu">
-                    <li><a href="DiningRooms.jsp">Dining Rooms</a></li>
-                    <li><a href="LivingRooms.jsp">Living Rooms</a>
+                    <li><a href="LoadCategoryItems?category=DiningRooms">Dining Rooms</a></li>
+                    <li><a href="LoadCategoryItems?category=LivingRooms">Living Rooms</a>
                         <!--<ul>
                             <li><a href="Chairs.jsp" >Chairs</a></li>
                             <li><a href="Sofas.jsp">Sofas</a></li>
                             <li><a href="FirePlaces.jsp">Fire Places</a></li>
                         </ul>-->
                     </li>
-                    <li><a href="BedRooms.jsp">Bed Rooms</a></li>
-                    <li><a href="Kitchens.jsp" >Kitchens</a></li>
+                    <li><a href="LoadCategoryItems?category=BedRooms">Bed Rooms</a></li>
+                    <li><a href="LoadCategoryItems?category=Kitchens" >Kitchens</a></li>
                 </ul> 
 <!--                <div class="search">
                     <form>

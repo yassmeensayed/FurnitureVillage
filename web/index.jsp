@@ -61,16 +61,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="menu-bg">
                 <ul class="menu">
-                    <li><a href="DiningRooms.jsp">Dining Rooms</a></li>
-                    <li><a href="LivingRooms.jsp">Living Rooms</a>
+                    <li><a href="LoadCategoryItems?category=DiningRooms">Dining Rooms</a></li>
+                    <li><a href="LoadCategoryItems?category=LivingRooms">Living Rooms</a>
                         <!--<ul>
                             <li><a href="Chairs.jsp" >Chairs</a></li>
                             <li><a href="Sofas.jsp">Sofas</a></li>
                             <li><a href="FirePlaces.jsp">Fire Places</a></li>
                         </ul>-->
                     </li>
-                    <li><a href="BedRooms.jsp">Bed Rooms</a></li>
-                    <li><a href="Kitchens.jsp" >Kitchens</a></li>
+                    <li><a href="LoadCategoryItems?category=BedRooms">Bed Rooms</a></li>
+                    <li><a href="LoadCategoryItems?category=Kitchens" >Kitchens</a></li>
                 </ul> 
                  <div class="search">
                     Search By:<select id="sortBy">
@@ -91,13 +91,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="flex-viewport" style="overflow: hidden; position: relative;">
                     <ul class="slides" style="width: 100%; -webkit-transition: 0.6s; transition: 0.6s; -webkit-transform: translate3d(-5032px, 0, 0);">
                         <li class="clone" style="width: 100%; float: left; display: block;">
-                            <img src="images/Living Room/classic  sofa.jpg" alt=""/>
+                            <img src="images/LivingRooms/classic  sofa.jpg" alt=""/>
                         </li>
                         <li style="width: 100%; float: left; display: block;" class="">
-                            <img src="images/BedRoom/sliderimg2.jpg" alt=""/>
+                            <img src="images/BedRooms/sliderimg2.jpg" alt=""/>
                         </li>
                         <li class="" style="width:100%; float: left; display: block;">
-                            <img src="images/Dining Room/dining.jpg" alt=""/>
+                            <img src="images/DiningRooms/dining.jpg" alt=""/>
                         </li>
                     </ul>
                 </div>
@@ -106,28 +106,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group">
                     <div class="col_1_of_3 span_1_of_4">
                         <div class="grid-imgs" >
-                            <a href="DiningRooms.jsp"><img src="images/Dining Room/diningroomCategory.png" alt=""/></a> 
+                            <a href="LoadCategoryItems?category=DiningRooms"><img src="images/DiningRooms/diningroomCategory.png" alt=""/></a> 
                         </div>
                         <h2>Dinig Rooms </h2>
                         <p>We have a variety of dining room designs.</p>
                     </div>
                     <div class="col_1_of_3 span_1_of_4">
                         <div class="grid-imgs">
-                            <a href="LivingRooms.jsp"><img src="images/Living Room/livingroomCategory.png" alt=""/></a> 
+                            <a href="LoadCategoryItems?category=LivingRooms"><img src="images/LivingRooms/livingroomCategory.png" alt=""/></a> 
                         </div>
                         <h2>Living Rooms </h2>
                         <p>We have a variety of living room designs. We also have different comfy chairs and sofas</p>
                     </div>
                     <div class="col_1_of_3 span_1_of_4">
                         <div class="grid-imgs">
-                            <a href="BedRooms.jsp"><img src="images/BedRoom/bedroomCategory.png" alt=""/></a> 
+                            <a href="LoadCategoryItems?category=BedRooms"><img src="images/BedRooms/bedroomCategory.png" alt=""/></a> 
                         </div>
                         <h2>Bed Rooms </h2>
                         <p>We have a variety of bed room designs.</p>
                     </div>
                     <div class="col_1_of_3 span_1_of_4" id="kitchen">
                         <div class="grid-imgs">
-                            <a href="Kichens.jsp"><img id="kitchen" src="images/Kitchens/kitchenCategory.png" alt=""/></a> 
+                            <a href="LoadCategoryItems?category=Kichens"><img id="kitchen" src="images/Kitchens/kitchenCategory.png" alt=""/></a> 
                         </div>
                         <h2>Kitchens </h2>
                         <p>We have a variety of kitchen designs.</p>
@@ -139,7 +139,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group">
                     <div class="col_1_of_5 span_1_of_5" style="margin-left: 0px;">
                         <div class="grid-img">
-                            <a href="details.jsp"><img src="images/Living Room/lamp.jpg" alt=""/></a> 
+                            <a href="details.jsp"><img src="images/LivingRooms/lamp.jpg" alt=""/></a> 
                         </div>
                         <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
                         <button class="left">$23.58</button>
@@ -171,7 +171,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <div class="col_1_of_5 span_1_of_5">
                         <div class="grid-img">
-                            <a href="Details.jsp"><img src="images/Dining Room/American-Furniture.jpg" width="160px" alt=""/></a> 
+                            <a href="Details.jsp"><img src="images/DiningRooms/American-Furniture.jpg" width="160px" alt=""/></a> 
                         </div>
                         <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
                         <button class="left">$23.58</button>

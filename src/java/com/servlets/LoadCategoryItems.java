@@ -4,12 +4,20 @@
  */
 package com.servlets;
 
+import com.dal.dao.CategoriesHome;
+import com.dal.dao.ItemHome;
+import com.dal.pojo.Categories;
+import com.dal.pojo.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,23 +35,35 @@ public class LoadCategoryItems extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoadCategoryItems</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoadCategoryItems at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String category = request.getParameter("category");
+        ItemHome itemHome = new ItemHome();
+        Item sampleItem = new Item();
+        ArrayList<Item> allItems = (ArrayList<Item>) itemHome.findByExample(sampleItem);
+        ArrayList<String> imagePaths = new ArrayList<String>();
+        ArrayList<Item> categoryItems = new ArrayList<Item>();
+        for (int i = 0; i < allItems.size(); i++) {
+            if (allItems.get(i).getCategories().getName().equals(category)) {
+                imagePaths.add("images/"+category+"/"+allItems.get(i).getImage());
+                categoryItems.add(allItems.get(i));
+            }
         }
+        request.setAttribute("imagePaths", imagePaths);
+        request.setAttribute("categoryItems", categoryItems);
+        request.setAttribute("category", category);
+        if (category.equals("BedRooms")) {
+            request.setAttribute("pageName", "Bed Room");
+        } else if (category.equals("LivingRooms")) {
+            request.setAttribute("pageName", "Living Rooms");
+        } else if (category.equals("DiningRooms")) {
+            request.setAttribute("pageName", "Dining Rooms");
+        } else if (category.equals("Kitchens")) {
+            request.setAttribute("pageName", "Kitchens");
+        }
+        
+        ServletContext context = getServletContext();
+        RequestDispatcher dispatcher = context.getRequestDispatcher("/CategoryGallery.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
