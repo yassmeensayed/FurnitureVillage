@@ -15,16 +15,146 @@
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen" />	
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
+        <script src="js/AjaxEditProfile.js"></script>
         <script type="text/javascript">
             $(function() {
                 $('.grid-img a').lightBox();
             });
+
+            $(document).ready(
+                    function() {
+                        fname = document.getElementById("fname");
+                        email = document.getElementById("email");
+                        address = document.getElementById("address");
+                        bday = document.getElementById("bday");
+                        password = document.getElementById("newpassword");
+                        confirmpassword = document.getElementById("confpassword");
+                        balance = document.getElementById("balance");
+                        interestsy = document.getElementById("interests");
+
+                        $("#fname").focusout(function() {
+                            validateName()
+                        });
+
+                        $("#email").focusout(function() {
+                            validateEmail()
+                        });
+
+                        $("#address").focusout(function() {
+                            validateAddress()
+                        });
+
+                        $("#bday").focusout(function() {
+                            validateBirthday()
+                        });
+
+                        $("#newpassword").focusout(function() {
+                            validatePassword()
+                        });
+
+                        $("#confpassword").focusout(function() {
+                            confirmPassword()
+                        });
+
+                        $("#interests").focusout(function() {
+                            validateinterests()
+                        });
+
+                        function validateName() {
+                            var namePattern = /^[a-zA-Z]/;
+                            if (fname.value == null || fname.value.trim() == "" || !namePattern.test(fname.value)) {
+                                $(".error.required:eq(0)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(0)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function validateEmail() {
+                            atpos = email.value.indexOf("@");
+                            dotpos = email.value.lastIndexOf(".");
+                            if (atpos < 1 || (dotpos - atpos < 2) || email.value.trim() == "")
+                            {
+                                $(".error.required:eq(1)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(1)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function validateAddress() {
+                            var namePattern = /^[a-zA-Z]/;
+                            if (address.value == null || address.value.trim() == "" || !namePattern.test(address.value)) {
+                                $(".error.required:eq(2)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(2)").css("display", "none");
+                                return true;
+                            }
+                        }
+
+                        function validatePassword() {
+                            var passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%]).{6,20}$/;
+                            if (password.value == null || password.value.trim() == "" || !passwordPattern.test(password.value)) {
+                                $(".error.required:eq(5)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(5)").css("display", "none");
+                                return true;
+                            }
+                        }
+
+                        function validateBirthday()
+                        {
+                            //yyyy-mm-dd 
+                            var bdayPattern = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/;
+                            if (bday.value == null || bday.value.trim() == "" || !bdayPattern.test(bday.value)) {
+                                $(".error.required:eq(3)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(3)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function confirmPassword()
+                        {
+                            if (confirmpassword.value == null || confirmpassword.value.trim() == "" || !(confirmpassword.value === password.value)) {
+                                $(".error.required:eq(6)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(6)").css("display", "none");
+                                return true;
+                            }
+                        }
+                        function validateinterests()
+                        {
+                            var namePattern = /^[a-zA-Z]/;
+                            if (interestsy.value == null || interestsy.value.trim() == "" || !namePattern.test(interestsy.value)) {
+                                $(".error.required:eq(8)").css("display", "inline");
+                                return false;
+                            } else {
+                                $(".error.required:eq(8)").css("display", "none");
+                                return true;
+                            }
+                        }
+
+                        if (validateName() && validateEmail() && validateAddress() && validateBirthday() && validatePassword() && confirmPassword() && validateinterests()) {
+                            // $("btn_submit").removeAttr("disabled");
+                            //  document.getElementById("btn_submit").removeAttribute("disabled");
+                            //document.getElementById("btn_submit").removeAttribute("disabled"); 
+                            //document.getElementById("btn_submit").disabled = false;
+                        } else {
+                          //   document.getElementById("btn_submit").setAttribute("disabled","disabled");
+                          //document.getElementById("btn_submit").disabled = true;
+                        }
+                    }
+            );
+
         </script>
-        <script src="js/searchbarScript.js"></script>
     </head>
     <body>
         <div class="wrap"> 
-<div class="header">
+            <div class="header">
                 <a href="index.jsp">
                     <div class="logo"></div>
                 </a>
@@ -34,14 +164,6 @@
                         <li><a href="Registration.jsp">Register</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
-                </div>
-                <div class="login">
-
-                    E-mail: <input type="text"  name="email" id="email"/>
-                    Password: <input type="password"  name="password" id ="password"/>
-                    <input type="submit" value="Login" id="loginButton"/>
-                    <span class="error required">Empty fields</span>
-
                 </div>
                 <div class="clear"></div>
             </div>
@@ -64,8 +186,8 @@
                         <option>Price</option>
                     </select>
                     <span id="priceSearch" style="display: none;"><input type="text" id="startPrice"value="" style="width:50px"/>
-                    -
-                    <input type="text" id="endPrice" value="" style="width:50px"/>
+                        -
+                        <input type="text" id="endPrice" value="" style="width:50px"/>
                     </span>
                     <span id="categorySearch"><input type="text" id="categoryName" value=""></span>
                     <input type="submit" id="searchButton" value="">
@@ -77,46 +199,45 @@
                     <div class="col span_2_of_3">
                         <div class="contact-form">
                             <h2>Edit Profile</h2>
-                                <div>
-                                    <span><label>NAME</label></span>
-                                    <span><input type="text" name="fname"  id="fname" value="${user.fullName}"></span>
-                                </div>
-                                <div>
-                                    <span><label>E-MAIL</label></span>
-                                    <span><input type="text" name="email" id="email" value="${user.email}"></span>
-                                </div>
-                                <div>
-                                    <span><label>ADDRESS</label></span>
-                                    <span><input type="text" name="address" id="address" value="${user.address}"></span>
-                                </div>
-                                <div>
-                                    <span><label>BIRTHDAY</label></span>
-                                    <span><input type="text" name="bday" id="bday" value="${user.birthdate}"></span>
-                                </div>
-                                <div>
-                                    <span><label>OLD PASSWORD</label></span>
-                                    <span><input type="password" name="password" id="password"/></span>
-                                </div>
-                                <div>
-                                    <span><label>NEW PASSWORD</label></span>
-                                    <span><input type="password" name="newpassword" id="newpassword"/></span>
-                                </div>
-                                <div>
-                                    <span><label>CONFIRM PASSWORD</label></span>
-                                    <span><input type="password" name="confpassword" id="confpassword"/></span>
-                                </div>
-                                <div>
-                                    <span><label>BALANCE</label></span>
-                                    <span><input type="text" name="balance" id="balance" value="${user.interests}"></span>
-                                </div>
-                                <div>
-                                    <span><label>INTERESTS</label></span>
-                                    <span><textarea name="interests" id="interests" >${user.interests}</textarea></span>
-                                </div>
-                                <div>
-                                    <span><input type="submit" name="btn_submit" value="Submit"></span>
-                                </div>
-                            </form>
+                            <div>
+                                <span><label>NAME</label></span>
+                                <span><input type="text" name="fname"  id="fname" value="${user.fullName}"></span><span class="error required" >*</span>
+                            </div>
+                            <div>
+                                <span><label>E-MAIL</label></span>
+                                <span><input type="text" name="email" id="email" value="${user.email}"></span><span class="error required" >yourmail@abc.com*</span>
+                            </div>
+                            <div>
+                                <span><label>ADDRESS</label></span>
+                                <span><input type="text" name="address" id="address" value="${user.address}"></span><span class="error required" >*</span>
+                            </div>
+                            <div>
+                                <span><label>BIRTHDAY</label></span>
+                                <span><input type="text" name="bday" id="bday" value="${user.birthdate}"></span><span class="error required" >yyyy-mm-dd*</span>
+                            </div>
+                            <div>
+                                <span><label>OLD PASSWORD</label></span>
+                                <span><input type="password" name="password" id="password"/></span><span class="error required" >*</span>
+                            </div>
+                            <div>
+                                <span><label>NEW PASSWORD</label></span>
+                                <span><input type="password" name="newpassword" id="newpassword"/></span><span class="error required" >Password should contain capital and small letter,numbers, special character @#$% , and its size not less than 6*</span>
+                            </div>
+                            <div>
+                                <span><label>CONFIRM PASSWORD</label></span>
+                                <span><input type="password" name="confpassword" id="confpassword"/></span><span class="error required" >*</span>
+                            </div>
+                            <div>
+                                <span><label>BALANCE</label></span>
+                                <span><input type="text" name="balance" id="balance" value="${user.balance}"></span><span class="error required" >*</span>
+                            </div>
+                            <div>
+                                <span><label>INTERESTS</label></span>
+                                <span><textarea name="interests" id="interests" >${user.interests}</textarea></span><span class="error required" >*</span>
+                            </div>
+                            <div>
+                                <span><input type="submit"  id="btn_submit" value="Submit" ></span>
+                            </div>
                         </div>
                     </div>				
                 </div>						

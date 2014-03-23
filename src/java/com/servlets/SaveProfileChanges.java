@@ -8,7 +8,11 @@ import com.dal.dao.UserHome;
 import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +55,7 @@ public class SaveProfileChanges extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         UserHome uh = new UserHome();
         Integer id = new Integer(15);
         User u = uh.findById(id);
@@ -72,8 +76,30 @@ public class SaveProfileChanges extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
+        try {
+            UserHome uh = new UserHome();
+            Integer id = new Integer(15);
+            User u = uh.findById(id);
+
+            String bdate = request.getParameter("bday");
+            System.out.println("DATE " + bdate);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = formatter.parse(bdate);
+            u.setAddress(request.getParameter("address"));
+            u.setBalance(Integer.parseInt(request.getParameter("balance")));
+            u.setFullName(request.getParameter("uName"));
+            u.setEmail(request.getParameter("mail"));
+            u.setBirthdate(date);
+            u.setPassword(request.getParameter("newpassword"));
+            u.setInterests(request.getParameter("interests"));
+            uh.persist(u);
+            request.getParameter("oldpassword");
+            System.out.println("POST REACHED " + request.getParameter("uName"));
+        } catch (ParseException ex) {
+            Logger.getLogger(SaveProfileChanges.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }
 
     /**

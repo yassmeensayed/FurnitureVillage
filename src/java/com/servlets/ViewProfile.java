@@ -53,10 +53,6 @@ public class ViewProfile extends HttpServlet {
         UserHome uh = new UserHome();
         Integer id = new Integer(15);
         User u = uh.findById(id);
-//        User u = new User();
-//        u.setFullName("Lubna");
-//        u.setEmail("lubnahelaly@gmail.com");
-//        u.setAddress("dandy");
         request.setAttribute("user", u);
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp");
         rd.forward(request, response);

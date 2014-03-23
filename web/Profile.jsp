@@ -66,7 +66,7 @@
             <div class="content">
                 <div class="section group">				
                     <div class="col span_2_of_3">
-                        <div class="contact-form">
+                              <div class="contact-form">
                                 <div>
                                     <span><h2><c:out value="${user.fullName}"></c:out></h2></span>
                                 </div>
@@ -162,7 +162,9 @@
                                     <tr>
                                         <td>
                                             <div>
+                                                <form method="GET" action="SaveProfileChanges">
                                                 <span><input type="submit" value="Edit"></span>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
