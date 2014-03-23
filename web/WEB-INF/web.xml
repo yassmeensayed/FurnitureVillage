@@ -41,12 +41,8 @@
         <servlet-class>com.servlets.CheckOut</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchByPrice</servlet-name>
-        <servlet-class>com.servlets.SearchByPrice</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SearchByCategory</servlet-name>
-        <servlet-class>com.servlets.SearchByCategory</servlet-class>
+        <servlet-class>com.servlets.Search</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddNewProduct</servlet-name>
@@ -115,10 +111,6 @@
     <servlet-mapping>
         <servlet-name>CheckOut</servlet-name>
         <url-pattern>/CheckOut</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchByPrice</servlet-name>
-        <url-pattern>/SearchByPrice</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchByCategory</servlet-name>

@@ -90,11 +90,11 @@
                   
                 <div class="col_1_of_5 span_1_of_5">
                     <div class="grid-img">
-                        <a href="Details.jsp"><img src=<c:out value="images/${requestScope.category}/${imagepath.getImage()}"/> alt="" width="168px" height="164px"/></a> 
+                        <a href="ViewItem?itemId=${imagepath.getItemId()}"><img src=<c:out value="images/${requestScope.category}/${imagepath.getImage()}"/> alt="" width="168px" height="164px"/></a> 
                     </div>
                         <p class="categoryItemName"><c:out value="${imagepath.getName()}"/></p>
                     <button class="left"><c:out value="$${imagepath.getPrice()}"/></button>
-                    <div class="btn right"><a href="Details.jsp">view</a></div>
+                    <div class="btn right"><a href="ViewItem?itemId=${imagepath.getItemId()}">view</a></div>
                 </div>
               </c:forEach>
             </div>

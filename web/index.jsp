@@ -54,6 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     E-mail: <input type="text"  name="email" id="email"/>
                     Password: <input type="password"  name="password" id ="password"/>
                     <input type="submit" value="Login" id="loginButton"/>
+                    <label id="loginLabel" ></label>
                     <span class="error required">Empty fields</span>
 
                 </div>

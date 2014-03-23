@@ -77,49 +77,49 @@
             </div>
             <div class="section group">
                 <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/Living Room/view.png" alt=""/></a></div><br>
+                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
                     <div class="grid-img">
                         <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
                     </div>
                     <button class="left">$23.58</button>
-                    <div class="button add"><a href="details.html"><img src="images/Living Room/add.png" alt=""/></a></div>
-                    <div class="button remove"><a href="details.html"><img src="images/Living Room/remove.png" alt=""/></a></div>
+                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                    <div class="button remove"><a href="details.html"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
                 </div>
                 <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/Living Room/view.png" alt=""/></a></div><br>
+                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
                     <div class="grid-img">
                         <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
                     </div>
                     <button class="left">$23.58</button>
-                    <div class="button add"><a href="details.html"><img src="images/Living Room/add.png" alt=""/></a></div>
-                    <div class="button remove"><a href="details.html"><img src="images/Living Room/remove.png" alt=""/></a></div>
+                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                    <div class="button remove"><a href="details.html"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
                 </div>
                 <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/Living Room/view.png" alt=""/></a></div><br>
+                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
                     <div class="grid-img">
                         <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
                     </div>
                     <button class="left">$23.58</button>
-                    <div class="button add"><a href="details.html"><img src="images/Living Room/add.png" alt=""/></a></div>
-                    <div class="button remove"><a href="details.html"><img src="images/Living Room/remove.png" alt=""/></a></div>
+                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                    <div class="button remove"><a href="details.html"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
                 </div>
                 <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/Living Room/view.png" alt=""/></a></div><br>
+                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
                     <div class="grid-img">
                         <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
                     </div>
                     <button class="left">$23.58</button>
-                    <div class="button add"><a href="details.html"><img src="images/Living Room/add.png" alt=""/></a></div>
-                    <div class="button remove"><a href="details.html"><img src="images/Living Room/remove.png" alt=""/></a></div>
+                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                    <div class="button remove"><a href="details.html"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
                 </div>
                 <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/Living Room/view.png" alt=""/></a></div><br>
+                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
                     <div class="grid-img">
                         <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
                     </div>
                     <button class="left">$23.58</button>
-                    <div class="button add"><a href="details.html"><img src="images/Living Room/add.png" alt=""/></a></div>
-                    <div class="button remove"><a href="details.html"><img src="images/Living Room/remove.png" alt=""/></a></div>
+                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                    <div class="button remove"><a href="details.html"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
                 </div>
 
 
