@@ -159,4 +159,22 @@ public class UserHome {
 			throw re;
 		}
 	}
+        public boolean isUser(String email) {
+		log.debug("finding User instance by example");
+		try {
+                    
+			Criteria reUser = session.createCriteria(User.class).add(Restrictions.eq("email", new String(email)));
+			List u = reUser.list(); 
+                        if(u.size() >= 1){
+                            
+                            log.debug("find by example successful");
+                            return true;
+                        }
+			return false;
+		}
+		catch (RuntimeException re) {
+			log.error("find by example failed", re);
+			throw re;
+		}
+	}
 }

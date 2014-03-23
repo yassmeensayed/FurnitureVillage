@@ -6,6 +6,7 @@
 
 package com.servlets;
 
+import com.dal.dao.AdminUserHome;
 import com.dal.dao.ItemHome;
 import com.dal.dao.UserHome;
 import com.dal.pojo.Categories;
@@ -39,7 +40,10 @@ public class TestClass {
         //ArrayList<User> user2 = (ArrayList<User>)uh.findByEmail("yassmeen@gmail.com");
         
         User user =  uh.findById(new Integer(21));
-        System.out.println(user.getEmail());
+        
+        AdminUserHome ah = new AdminUserHome();
+        
+        System.out.println(ah.isAdminUser(user));
         //System.out.println(user2.get(0).getId() + " " + user2.get(0).getFullName());
         
         /*ItemHome ih = new ItemHome();

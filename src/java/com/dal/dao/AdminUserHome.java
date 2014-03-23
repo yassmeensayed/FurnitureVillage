@@ -4,15 +4,18 @@ package com.dal.dao;
 // Generated Mar 20, 2014 6:42:12 PM by Hibernate Tools 3.4.0.CR1
 
 import com.dal.pojo.AdminUser;
+import com.dal.pojo.User;
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Home object for domain model class AdminUser.
@@ -136,6 +139,24 @@ public class AdminUserHome {
 					.list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
+		}
+		catch (RuntimeException re) {
+			log.error("find by example failed", re);
+			throw re;
+		}
+	}
+         public boolean isAdminUser(User user) {
+		log.debug("finding AdminUser instance ");
+		try {
+                    
+			Criteria reUser = session.createCriteria(AdminUser.class).add(Restrictions.eq("user", user));
+			List u = reUser.list(); 
+                        if(u.size() >= 1){
+                            
+                            log.debug("find by User successful");
+                            return true;
+                        }
+			return false;
 		}
 		catch (RuntimeException re) {
 			log.error("find by example failed", re);
