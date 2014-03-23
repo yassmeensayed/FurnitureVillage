@@ -36,16 +36,17 @@ public class TestClass {
         UserHome uh = new UserHome();
         //uh.persist(user);
         
-        ArrayList<User> user2 = (ArrayList<User>)uh.findByEmail("yassmeen@gmail.com");
+        //ArrayList<User> user2 = (ArrayList<User>)uh.findByEmail("yassmeen@gmail.com");
         
-
-        System.out.println(user2.get(0).getId() + " " + user2.get(0).getFullName());
+        User user =  uh.findById(new Integer(21));
+        System.out.println(user.getEmail());
+        //System.out.println(user2.get(0).getId() + " " + user2.get(0).getFullName());
         
-        ItemHome ih = new ItemHome();
+        /*ItemHome ih = new ItemHome();
         Categories cat = new Categories();
         cat.setId(1);
         ArrayList<Item> item = (ArrayList<Item>)ih.findByCategory(cat);
-        System.out.println(item.get(0).getPrice() + " " + item.get(0).getName());
+        System.out.println(item.get(0).getPrice() + " " + item.get(0).getName());*/
 
         System.out.println("Done!");
     }
