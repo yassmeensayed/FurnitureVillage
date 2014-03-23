@@ -9,6 +9,8 @@
 <html>
     <head>
         <title>The Free Extro-Electronics Website Template | Contact :: w3layouts</title>
+        
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -65,10 +67,8 @@
                 <div class="section group">				
                     <div class="col span_2_of_3">
                         <div class="contact-form">
-
-                            <form action="EditProfile.html" method="post">
                                 <div>
-                                    <span><h2>Lubna Helaly</h2></span>
+                                    <span><h2><c:out value="${user.fullName}"></c:out></h2></span>
                                 </div>
 
                                 <table>
@@ -76,19 +76,6 @@
                                         <td>
                                             <div>
                                                 <span><h4>Contact Information</h4></span>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <div>
-                                                <span><label>Username: </label></span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <span><label>Lubna Helaly</label>  </span>
                                             </div>
                                         </td>
                                     </tr>
@@ -100,7 +87,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <span><label>Lubna</label> </span>
+                                                <span><label><c:out value="${user.fullName}"></c:out></label> </span>
                                             </div>
                                         </td>
                                     </tr>
@@ -112,7 +99,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <span> <label>lubna.m.helaly@gmail.com</label></span>
+                                                <span> <label><c:out value="${user.email}"></c:out></label></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -132,7 +119,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <span>  <label>Heliopolis</label></span>
+                                                <span><label><c:out value="${user.address}"></c:out></label></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -144,7 +131,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <span><label>18/4/1990</label></span>
+                                                <span><label><c:out value="${user.birthdate}"></c:out></label></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -156,7 +143,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <span><label>100 EGP</label></span>
+                                                <span><label><c:out value="${user.balance}"></c:out></label></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -168,7 +155,7 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <span><label>Chrochet</label></span>
+                                                <span><label><c:out value="${user.interests}"></c:out></label></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -180,7 +167,6 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </form>
                         </div>
                     </div>				
                 </div>						

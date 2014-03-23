@@ -4,8 +4,11 @@
  */
 package com.servlets;
 
+import com.dal.dao.UserHome;
+import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,21 +32,7 @@ public class ViewProfile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewProfile</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewProfile at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,6 +49,18 @@ public class ViewProfile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        UserHome uh = new UserHome();
+        Integer id = new Integer(15);
+        User u = uh.findById(id);
+//        User u = new User();
+//        u.setFullName("Lubna");
+//        u.setEmail("lubnahelaly@gmail.com");
+//        u.setAddress("dandy");
+        request.setAttribute("user", u);
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp");
+        rd.forward(request, response);
+
     }
 
     /**
