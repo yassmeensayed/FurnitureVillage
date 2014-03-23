@@ -47,16 +47,16 @@
             </div>
             <div class="menu-bg">
                 <ul class="menu">
-                    <li><a href="DiningRooms.jsp">Dining Rooms</a></li>
-                    <li><a href="LivingRooms.jsp">Living Rooms</a>
+                    <li><a href="LoadCategoryItems?category=DiningRooms">Dining Rooms</a></li>
+                    <li><a href="LoadCategoryItems?category=LivingRooms">Living Rooms</a>
                         <!--<ul>
                             <li><a href="Chairs.jsp" >Chairs</a></li>
                             <li><a href="Sofas.jsp">Sofas</a></li>
                             <li><a href="FirePlaces.jsp">Fire Places</a></li>
                         </ul>-->
                     </li>
-                    <li><a href="BedRooms.jsp">Bed Rooms</a></li>
-                    <li><a href="Kitchens.jsp" >Kitchens</a></li>
+                    <li><a href="LoadCategoryItems?category=BedRooms">Bed Rooms</a></li>
+                    <li><a href="LoadCategoryItems?category=Kitchens" >Kitchens</a></li>
                 </ul> 
                 <div class="search">
                     Search By:<select id="sortBy">
@@ -77,49 +77,44 @@
                     <div class="col span_2_of_3">
                         <div class="contact-form">
                             <h2>Edit Profile</h2>
-                            <form action="" method="post">
                                 <div>
                                     <span><label>NAME</label></span>
-                                    <span><input type="text" name="fname" value="Lubna Helaly"/></span>
+                                    <span><input type="text" name="fname"  id="fname" value="${user.fullName}"></span>
                                 </div>
                                 <div>
                                     <span><label>E-MAIL</label></span>
-                                    <span><input type="text" name="email" value="lubna.m.helaly@gmail.com" /></span>
+                                    <span><input type="text" name="email" id="email" value="${user.email}"></span>
                                 </div>
                                 <div>
                                     <span><label>ADDRESS</label></span>
-                                    <span><input type="text" name="address" value="Heliopolis"/></span>
+                                    <span><input type="text" name="address" id="address" value="${user.address}"></span>
                                 </div>
                                 <div>
                                     <span><label>BIRTHDAY</label></span>
-                                    <span><input type="text" name="bday" value="18/4/1990"/></span>
-                                </div>
-                                <div>
-                                    <span><label>USERNAME</label></span>
-                                    <span><input type="text" name="username" value="Lubna"/></span>
+                                    <span><input type="text" name="bday" id="bday" value="${user.birthdate}"></span>
                                 </div>
                                 <div>
                                     <span><label>OLD PASSWORD</label></span>
-                                    <span><input type="password" name="password"/></span>
+                                    <span><input type="password" name="password" id="password"/></span>
                                 </div>
                                 <div>
                                     <span><label>NEW PASSWORD</label></span>
-                                    <span><input type="password" name="confpassword"/></span>
+                                    <span><input type="password" name="newpassword" id="newpassword"/></span>
                                 </div>
                                 <div>
                                     <span><label>CONFIRM PASSWORD</label></span>
-                                    <span><input type="password" name="confpassword"/></span>
+                                    <span><input type="password" name="confpassword" id="confpassword"/></span>
                                 </div>
                                 <div>
                                     <span><label>BALANCE</label></span>
-                                    <span><input type="text" name="balance" value="100 EGP" /></span>
+                                    <span><input type="text" name="balance" id="balance" value="${user.interests}"></span>
                                 </div>
                                 <div>
                                     <span><label>INTERESTS</label></span>
-                                    <span><textarea name="interests"> Chrochet</textarea></span>
+                                    <span><textarea name="interests" id="interests" >${user.interests}</textarea></span>
                                 </div>
                                 <div>
-                                    <span><input type="submit" value="Submit"></span>
+                                    <span><input type="submit" name="btn_submit" value="Submit"></span>
                                 </div>
                             </form>
                         </div>
