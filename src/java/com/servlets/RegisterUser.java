@@ -4,8 +4,15 @@
  */
 package com.servlets;
 
+import com.dal.pojo.User;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Yassmeen
  */
 public class RegisterUser extends HttpServlet {
+    private Date date;
 
     /**
      * Processes requests for both HTTP
@@ -31,19 +39,34 @@ public class RegisterUser extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String fullName = request.getParameter("name");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String balance = request.getParameter("balance");
+        String interests = request.getParameter("interests");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String bday = request.getParameter("bday");
         try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterUser</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterUser at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+             date = formatter.parse(bday);
+        } catch (ParseException ex) {
+            Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(fullName + email + address + username + password + balance + interests + date);
+        User user = new User();
+        user.setAddress(address);
+        user.setBalance(Integer.parseInt(balance));
+        user.setPassword(password);
+        user.setFullName(fullName);
+        user.setEmail(email);
+        user.setInterests(interests);
+        user.setBirthdate(date);
+        
+        
+        
+        
+		
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
