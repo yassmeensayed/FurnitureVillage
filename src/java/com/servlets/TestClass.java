@@ -6,10 +6,14 @@
 
 package com.servlets;
 
+import com.dal.dao.ItemHome;
 import com.dal.dao.UserHome;
+import com.dal.pojo.Categories;
+import com.dal.pojo.Item;
 import com.dal.pojo.User;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.hibernate.Session;
 
 /**
@@ -32,10 +36,17 @@ public class TestClass {
         UserHome uh = new UserHome();
         //uh.persist(user);
         
-        User user2 = uh.findById(15);
-        user2.setBalance(new Integer(1000));
-        uh.merge(user2);
-        System.out.println(user2.getId() + " " + user2.getFullName());
+        ArrayList<User> user2 = (ArrayList<User>)uh.findByEmail("yassmeen@gmail.com");
+        
+
+        System.out.println(user2.get(0).getId() + " " + user2.get(0).getFullName());
+        
+        ItemHome ih = new ItemHome();
+        Categories cat = new Categories();
+        cat.setId(1);
+        ArrayList<Item> item = (ArrayList<Item>)ih.findByCategory(cat);
+        System.out.println(item.get(0).getPrice() + " " + item.get(0).getName());
+
         System.out.println("Done!");
     }
 }

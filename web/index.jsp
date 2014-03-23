@@ -42,7 +42,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </a>
                 <div class="nav-right">
                     <ul class="nav">
-                        <li><a href="Admin.html">Admin Panel</a></li>
+                        <li><a href="Admin.jsp">Admin Panel</a></li>
                         <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Registration.jsp">Register</a></li>
                         <li><a href="contact.html">Contact</a></li>
