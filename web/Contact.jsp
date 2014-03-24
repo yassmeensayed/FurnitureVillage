@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -35,12 +39,21 @@
                     </ul>
                 </div>
                 <div class="login">
-                    E-mail: <input type="text"  name="email" id="email"/>
-                    Password: <input type="password"  name="password" id ="password"/>
-                    <input type="submit" value="Login" id="loginButton"/>
-                    <span class="error required">Empty fields</span>
+                    <c:if test="${empty sessionScope.currentCustomer}">
 
+                        E-mail: <input type="text"  name="email" id="email"/>
+                        Password: <input type="password"  name="password" id ="password"/>
+                        <input type="submit" value="Login" id="loginButton"/>
+                        <span class="error required">Empty fields</span>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.currentCustomer}">
+                        <div id="loggedIn">
+                            <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
+                            <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
+                        </div>>
+                    </c:if>
                 </div>
+
                 <div class="clear"></div>
             </div>
             <div class="menu-bg">

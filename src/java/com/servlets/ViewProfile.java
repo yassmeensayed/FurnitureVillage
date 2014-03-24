@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,7 +34,16 @@ public class ViewProfile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+        
+        HttpSession currentSession = request.getSession(false);
+        if (currentSession != null) {
+            request.setAttribute("user", ((User)currentSession.getAttribute("currentCustomer")));
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date=" + new Date().getTime());
+            rd.forward(request, response);
+        }
+        else{
+            response.sendRedirect("/index.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,13 +60,6 @@ public class ViewProfile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
-        UserHome uh = new UserHome();
-        Integer id = new Integer(15);
-        User u = uh.findById(id);
-        request.setAttribute("user", u);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date="+new Date().getTime());
-        rd.forward(request, response);
 
     }
 

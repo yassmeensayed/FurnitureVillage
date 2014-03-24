@@ -42,9 +42,9 @@ public class Login extends HttpServlet {
             ArrayList<User> user = (ArrayList<User>) uh.findByEmail(logEmail);
             if (user.size() > 0) {
                 if (user.get(0).getEmail().equals(logEmail)) {
-                    System.out.println("Email Found");
+                    //System.out.println("Email Found");
                     if (user.get(0).getPassword().equals(logPass)) {
-                        out.print(user.get(0).getFullName());
+                        out.print("logged in successfully");
                         HttpSession session = request.getSession(true);
                         session.setAttribute("currentCustomer", user.get(0));
                     } else {

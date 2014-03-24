@@ -5,7 +5,6 @@
 package com.servlets;
 
 import com.dal.pojo.User;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;

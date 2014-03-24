@@ -23,7 +23,7 @@
         <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
         <!-- FlexSlider -->
         <script defer src="js/jquery.flexslider.js"></script>
-       <script src="js/searchbarScript.js"></script>
+        <script src="js/searchbarScript.js"></script>
     </head>
     <body>
         <div class="wrap"> 
@@ -39,11 +39,19 @@
                     </ul>
                 </div>
                 <div class="login">
-                    E-mail: <input type="text"  name="email" id="email"/>
-                    Password: <input type="password"  name="password" id ="password"/>
-                    <input type="submit" value="Login" id="loginButton"/>
-                    <span class="error required">Empty fields</span>
+                    <c:if test="${empty sessionScope.currentCustomer}">
 
+                        E-mail: <input type="text"  name="email" id="email"/>
+                        Password: <input type="password"  name="password" id ="password"/>
+                        <input type="submit" value="Login" id="loginButton"/>
+                        <span class="error required">Empty fields</span>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.currentCustomer}">
+                        <div id="loggedIn">
+                            <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
+                            <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
+                        </div>>
+                    </c:if>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -66,8 +74,8 @@
                         <option>Price</option>
                     </select>
                     <span id="priceSearch" style="display: none;"><input type="text" id="startPrice"value="" style="width:50px"/>
-                    -
-                    <input type="text" id="endPrice" value="" style="width:50px"/>
+                        -
+                        <input type="text" id="endPrice" value="" style="width:50px"/>
                     </span>
                     <span id="categorySearch"><input type="text" id="categoryName" value=""></span>
                     <input type="submit" id="searchButton" value="">
@@ -78,25 +86,27 @@
             <div class="text-h">
                 <h2><c:out value="${requestScope.pageName}"/></h2>
             </div>
-         <!--   <div class="single">
-                <div class="PagePath">
-                    <p class="left"><a href="index.jsp">Home&nbsp;></a></p>
-                    <p class="pageInfo">There are 56 Products.</p>
-                    <div class="clear"></div>
-                </div>
-            </div>-->
-              <div class="section group">
-                  <c:forEach items="${requestScope.categoryItems}" var="imagepath">
-                  
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="grid-img">
-                        <a href="ViewItem?itemId=${imagepath.getItemId()}"><img src=<c:out value="images/${requestScope.category}/${imagepath.getImage()}"/> alt="" width="168px" height="164px"/></a> 
-                    </div>
+            <!--   <div class="single">
+                   <div class="PagePath">
+                       <p class="left"><a href="index.jsp">Home&nbsp;></a></p>
+                       <p class="pageInfo">There are 56 Products.</p>
+                       <div class="clear"></div>
+                   </div>
+               </div>-->
+            <div class="section group">
+                <c:forEach items="${requestScope.categoryItems}" var="imagepath">
+
+                    <div class="col_1_of_5 span_1_of_5">
+                        <div class="grid-img">
+                            <a href="ViewItem?itemId=${imagepath.getItemId()}"><img src=<c:out value="images/${requestScope.category}/${imagepath.getImage()}"/> alt="" width="168px" height="164px"/></a> 
+                        </div>
                         <p class="categoryItemName"><c:out value="${imagepath.getName()}"/></p>
-                    <button class="left"><c:out value="$${imagepath.getPrice()}"/></button>
-                    <div class="btn right"><a href="ViewItem?itemId=${imagepath.getItemId()}">view</a></div>
-                </div>
-              </c:forEach>
+                        <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                        <button class="left"><c:out value="$${imagepath.getPrice()}"/></button>
+                        <div class="btn right"><a href="ViewItem?itemId=${imagepath.getItemId()}">view</a></div>
+
+                    </div>
+                </c:forEach>
             </div>
             <div class="footer">
                 <div class="section group">
