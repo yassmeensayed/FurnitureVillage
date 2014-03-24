@@ -8,7 +8,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>The Free Extro-Electronics Website Template | Home :: w3layouts</title>
+<title>Admin Panel</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -20,8 +20,53 @@
 <!-- FlexSlider -->
 <script defer src="js/jquery.flexslider.js"></script>
 <script src="js/searchbarScript.js"></script>
+
+       
+<script type="text/javascript">
+           var xmlHttp = "";
+
+            function startRequest(){
+                createXMLHttpRequest();
+                xmlHttp.onreadystatechange = handelReq3;
+                xmlHttp.open("get", "LoadAdminPage",true);
+                xmlHttp.send(null);
+            }
+            
+            function createXMLHttpRequest(){
+                if(window.ActiveXObject)
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                else if (window.XMLHttpRequest) xmlHttp = new XMLHttpRequest();
+            }
+            function handelReq3(){
+                if(xmlHttp.readyState === 4){
+
+                   
+                    var xmlDoc = xmlHttp.responseXML;
+                    var names = xmlDoc.getElementsByTagName("name");
+                    var messages = xmlDoc.getElementsByTagName("email");
+
+                    var out ="";
+                    for(var i = 0 ; i < names.length ; i++){
+                        currentName = names[i];
+
+                        out = out+"<tr><td width =15% align=\"center\">"+currentName.childNodes[0].nodeValue +"</td>"
+                            + "<td width =10% align=\"center\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></td>"
+                        +"<td align=\"center\"><input type=\"button\" value=\"Activate\" class=\"userActive\" size=25 name=\"Frist Name\">&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" size=25 name=\"Frist Name\"></td>"
+                        +"</tr>";
+
+                        //out = currentMsg.length;
+
+                    }
+            document.getElementById('tableusers').innerHTML = out;	    
+            }
+                    
+                }
+          
+    
+</script>
+
 </head>
-<body>
+<body onload="setInterval('startRequest()',3000);">
 <div class="wrap"> 
    <div class="header">
                 <a href="index.jsp">
@@ -146,27 +191,6 @@
 			<tr height=50>
 				<td width =10%  ><h1 style="font-size: 28px;">Users</h1></td>
 				
-			</tr>
-			<tr>
-				<td width =10% align="center">User</td>
-				<td width =10% align="center"><input type="button" value="View Profile" size=25 name="Frist Name"></td>
-				<td align="center"><input type="button" value="Activate" size=25 name="Frist Name"><input type="button" value="Deactivate" size=25 name="Frist Name"></td>
-				
-			</tr>
-			<tr>
-				<td width =10% align="center">User1</td>
-				<td width =10% align="center"><input type="button" value="View Profile" size=25 name="Last Name"></td>
-				<td align="center"><input type="button" value="Activate" size=25 name="Last Name"> <input type="button" value="Deactivate" size=25 name="Frist Name"></td>
-			</tr>
-			<tr>
-				<td width =10% align="center">User2</td>
-				<td width =10% align="center"><input type="button" value="View Profile" size=25 name="User Name"></td>
-				<td  align="center"><input type="button" value="Activate" size=25 name="User Name"> <input type="button"  value="Deactivate" size=25 name="Frist Name"></td>
-			</tr>
-			<tr>
-				<td width =10% align="center">User3</td>
-				<td width =10% align="center"><input type="button" value="View Profile" name="Password" size=25></td>
-				<td align="center"><input type="button" value="Activate" size=25 name="User Name"> <input type="button"  value="Deactivate" size=25 name="Frist Name"></td>
 			</tr>
 			
 	
