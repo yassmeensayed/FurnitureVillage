@@ -32,141 +32,139 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             function updateSignUpArea(responseTxt, statusTxt, xhr) {
                 if (statusTxt == "success") {
                     $(".error.required:eq(0)").css("display", "block");
-                    $(".error.required:eq(0)").html(responseTxt)();
+                    $(".error.required:eq(0)").html(responseTxt);
                     $("#Email").val(responseTxt);
+                    location.href="index.jsp"
                     
                 }
             }
             $(document).ready(
-                    function() {
+            function() {
 
-                        fname = document.getElementById("fullname");
-                        email = document.getElementById("Email");
-                        address = document.getElementById("address");
-                        bday = document.getElementById("bday");
-                        username = document.getElementById("username");
-                        password = document.getElementById("password");
-                        confirmpassword = document.getElementById("confirmpassword");
-                        balance = document.getElementById("balance");
-                        interestsy = document.getElementById("interests");
-                        $("#signup").click(function() {
-                            if (validateName() && validateEmail() && validateAddress() && validateBirthday() && validatePassword() && confirmPassword() && validateinterests()) {
-
-                            }
-                        });
-                        $("#fullname").focusout(function() {
-                            validateName()
-                        });
-                        $("#Email").focusout(function() {
-                            validateEmail()
-                        });
-                        $("#address").focusout(function() {
-                            validateAddress()
-                        });
-                        $("#bday").focusout(function() {
-                            validateBirthday()
-                        });
-                        $("#password").focusout(function() {
-                            validatePassword()
-                        });
-                        $("#confirmpassword").focusout(function() {
-                            confirmPassword()
-                        });
-                        $("#interests").focusout(function() {
-                            validateinterests()
-                        });
-                        function validateName() {
-                            var namePattern = /^[a-zA-Z]/;
-                            if (fname.value == null || fname.value.trim() == "" || !namePattern.test(fname.value)) {
-                                $(".error.required:eq(0)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(0)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function validateEmail() {
-                            atpos = email.value.indexOf("@");
-                            dotpos = email.value.lastIndexOf(".");
-                            if (atpos < 1 || (dotpos - atpos < 2) || email.value.trim() == "")
-                            {
-                                $(".error.required:eq(1)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(1)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function validateAddress() {
-                            var namePattern = /^[a-zA-Z]/;
-                            if (address.value == null || address.value.trim() == "" || !namePattern.test(address.value)) {
-                                $(".error.required:eq(2)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(2)").css("display", "none");
-                                return true;
-                            }
-                        }
-
-                        function validatePassword() {
-                            var passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%]).{6,20}$/;
-                            if (password.value == null || password.value.trim() == "" || !passwordPattern.test(password.value)) {
-                                $(".error.required:eq(5)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(5)").css("display", "none");
-                                return true;
-                            }
-                        }
-
-                        function validateBirthday()
+                fname = document.getElementById("fullname");
+                email = document.getElementById("Email");
+                address = document.getElementById("address");
+                bday = document.getElementById("bday");
+                username = document.getElementById("username");
+                password = document.getElementById("password");
+                confirmpassword = document.getElementById("confirmpassword");
+                balance = document.getElementById("balance");
+                interestsy = document.getElementById("interests");
+                $("#signup").click(function() {
+                    if (validateName() && validateEmail() && validateAddress() && validateBirthday() && validatePassword() && confirmPassword() && validateinterests()) {
+                        $.post("RegisterUser?data="+new Date().getTime()+ new Date().getTime(),
                         {
-                            //yyyy-mm-dd 
-                            var bdayPattern = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/;
-                            if (bday.value == null || bday.value.trim() == "" || !bdayPattern.test(bday.value)) {
-                                $(".error.required:eq(3)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(3)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function confirmPassword()
-                        {
-                            if (confirmpassword.value == null || confirmpassword.value.trim() == "" || !(confirmpassword.value === password.value)) {
-                                $(".error.required:eq(6)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(6)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function validateinterests()
-                        {
-                            var namePattern = /^[a-zA-Z]/;
-                            if (interestsy.value == null || interestsy.value.trim() == "" || !namePattern.test(interestsy.value)) {
-                                $(".error.required:eq(8)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(8)").css("display", "none");
-                                return true;
-                            }
-                        }
+                            name : $("#fullname").val(),
+                            email: $("#Email").val(),
+                            password: $("#password").val(),
+                            username: $("#username").val(),
+                            address: $("#address").val(),
+                            interests: $("#interests").val(),
+                            balance: $("#balance").val(),
+                            bday: $("#bday").val()}, updateSignUpArea);
+                    }});
+                
+                $("#fullname").focusout(function() {
+                    validateName()
+                });
+                $("#Email").focusout(function() {
+                    validateEmail()
+                });
+                $("#address").focusout(function() {
+                    validateAddress()
+                });
+                $("#bday").focusout(function() {
+                    validateBirthday()
+                });
+                $("#password").focusout(function() {
+                    validatePassword()
+                });
+                $("#confirmpassword").focusout(function() {
+                    confirmPassword()
+                });
+                $("#interests").focusout(function() {
+                    validateinterests()
+                });
+                function validateName() {
+                    var namePattern = /^[a-zA-Z]/;
+                    if (fname.value == null || fname.value.trim() == "" || !namePattern.test(fname.value)) {
+                        $(".error.required:eq(0)").css("display", "inline");
+                        return false;
+                    } else {
+                        $(".error.required:eq(0)").css("display", "none");
+                        return true;
+                    }
+                }
+                function validateEmail() {
+                    atpos = email.value.indexOf("@");
+                    dotpos = email.value.lastIndexOf(".");
+                    if (atpos < 1 || (dotpos - atpos < 2) || email.value.trim() == "")
+                    {
+                        $(".error.required:eq(1)").css("display", "inline");
+                        return false;
+                    } else {
+                        $(".error.required:eq(1)").css("display", "none");
+                        return true;
+                    }
+                }
+                function validateAddress() {
+                    var namePattern = /^[a-zA-Z]/;
+                    if (address.value == null || address.value.trim() == "" || !namePattern.test(address.value)) {
+                        $(".error.required:eq(2)").css("display", "inline");
+                        return false;
+                    } else {
+                        $(".error.required:eq(2)").css("display", "none");
+                        return true;
+                    }
+                }
+
+                function validatePassword() {
+                    var passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%]).{6,20}$/;
+                    if (password.value == null || password.value.trim() == "" || !passwordPattern.test(password.value)) {
+                        $(".error.required:eq(5)").css("display", "inline");
+                        return false;
+                    } else {
+                        $(".error.required:eq(5)").css("display", "none");
+                        return true;
+                    }
+                }
+
+                function validateBirthday()
+                {
+                    //yyyy-mm-dd 
+                    var bdayPattern = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/;
+                    if (bday.value == null || bday.value.trim() == "" || !bdayPattern.test(bday.value)) {
+                        $(".error.required:eq(3)").css("display", "inline");
+                        return false;
+                    } else {
+                        $(".error.required:eq(3)").css("display", "none");
+                        return true;
+                    }
+                }
+                function confirmPassword()
+                {
+                    if (confirmpassword.value == null || confirmpassword.value.trim() == "" || !(confirmpassword.value === password.value)) {
+                        $(".error.required:eq(6)").css("display", "inline");
+                        return false;
+                    } else {
+                        $(".error.required:eq(6)").css("display", "none");
+                        return true;
+                    }
+                }
+                function validateinterests()
+                {
+                    var namePattern = /^[a-zA-Z]/;
+                    if (interestsy.value == null || interestsy.value.trim() == "" || !namePattern.test(interestsy.value)) {
+                        $(".error.required:eq(8)").css("display", "inline");
+                        return false;
+                    } else {
+                        $(".error.required:eq(8)").css("display", "none");
+                        return true;
+                    }
+                }
 
 
-                        $("#signup").click(function() {
-                            $.post("RegisterUser?data="+new Date().getTime()+ new Date().getTime(),
-                                    {
-                                        name : $("#name").val(),
-                                        email: $("#email").val(),
-                                        password: $("#password").val(),
-                                        username: $("#username").val(),
-                                        address: $("#address").val(),
-                                        interests: $("#interests").val(),
-                                        balance: $("#balance").val(),
-                                        bday: $("#bday").val()}, updateSignUpArea);
-                        });
-                    });
+            });
 
 
         </script>
@@ -185,21 +183,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="login">
-                    <c:if test="${empty sessionScope.currentCustomer}">
+                <!--                <div class="login">
+                <c:if test="${empty sessionScope.currentCustomer}">
 
-                        E-mail: <input type="text"  name="email" id="email"/>
-                        Password: <input type="password"  name="password" id ="password"/>
-                        <input type="submit" value="Login" id="loginButton"/>
-                        <span class="error required">Empty fields</span>
-                    </c:if>
-                    <c:if test="${not empty sessionScope.currentCustomer}">
-                        <div id="loggedIn">
-                            <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
-                            <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
-                        </div>>
-                    </c:if>
-                </div>
+                    E-mail: <input type="text"  name="email" id="email"/>
+                    Password: <input type="password"  name="password" id ="password"/>
+                    <input type="submit" value="Login" id="loginButton"/>
+                    <span class="error required">Empty fields</span>
+                </c:if>
+                <c:if test="${not empty sessionScope.currentCustomer}">
+                    <div id="loggedIn">
+                        <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
+                        <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
+                    </div>>
+                </c:if>
+            </div>-->
 
                 <div class="clear"></div>
             </div>

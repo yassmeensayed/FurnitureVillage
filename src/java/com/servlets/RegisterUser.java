@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Yassmeen
  */
 public class RegisterUser extends HttpServlet {
-   // private Date date;
+    // private Date date;
 
     /**
      * Processes requests for both HTTP
@@ -37,37 +37,45 @@ public class RegisterUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String fullName,email,address,username,password,balance,interests = "";
-        fullName = request.getParameter("name");
-        email = request.getParameter("email");
-        address = request.getParameter("address");
-        username = request.getParameter("username");
-        password = request.getParameter("password");
-       // balance = request.getParameter("balance");
-        interests = request.getParameter("interests");
-        String bday = request.getParameter("bday");
-        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        String bday = request.getParameter("bday");
-//        try {
-//             date = formatter.parse(bday);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        System.out.println(fullName + email + address + username + password /*+ balance */+ interests /*+ date*/);
-        User user = new User();
-        user.setAddress(address);
-        //user.setBalance(Integer.parseInt(balance));
-        user.setPassword(password);
-        user.setFullName(fullName);
-        user.setEmail(email);
-        user.setInterests(interests);
-        //user.setBirthdate();
-        UserHome uh = new UserHome();
-        uh.persist(user);
-        out.println("User found");
-		
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            String fullName, email, address, username, password, balance, interests = "";
+            fullName = request.getParameter("name");
+            email = request.getParameter("email");
+            address = request.getParameter("address");
+            username = request.getParameter("username");
+            password = request.getParameter("password");
+            balance = request.getParameter("balance");
+            interests = request.getParameter("interests");
+            String bday = request.getParameter("bday");
+            //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    //        String bday = request.getParameter("bday");
+    //        try {
+    //             date = formatter.parse(bday);
+    //        } catch (ParseException ex) {
+    //            Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
+    //        }
+            System.out.println(fullName + email + address + username + password + balance + interests /*+ date*/);
+            User user = new User();
+            user.setAddress(address);
+            user.setBalance(Integer.parseInt(balance));
+            user.setPassword(password);
+            user.setFullName(fullName);
+            user.setEmail(email);
+            user.setInterests(interests);
+            user.setActiveStatus(Boolean.TRUE);
+            user.setLoginStatus(Boolean.FALSE);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = formatter.parse(bday);
+            user.setBirthdate(date);
+            UserHome uh = new UserHome();
+            uh.persist(user);
+        } catch (ParseException ex) {
+            Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
