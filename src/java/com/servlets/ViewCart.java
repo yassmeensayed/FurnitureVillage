@@ -4,12 +4,16 @@
  */
 package com.servlets;
 
+import com.dal.pojo.ShoppingCart;
+import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,8 +34,18 @@ public class ViewCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+        HttpSession currentSession = request.getSession(false);
+        if (currentSession != null) {
+            if (currentSession.getAttributeNames().hasMoreElements()) {
+                User currentCustomer = (User) currentSession.getAttribute("currentCustomer");
+                ArrayList<ShoppingCart> sessionCart = (ArrayList<ShoppingCart>) currentSession.getAttribute("shoppingCart");
+                
+            } else {
+                response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+            }
+        } else {
+            response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -59,11 +59,15 @@ public class SaveProfileChanges extends HttpServlet {
 
         HttpSession currentSession = request.getSession(false);
         if (currentSession != null) {
-            request.setAttribute("user", ((User) currentSession.getAttribute("currentCustomer")));
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EditProfile.jsp");
-            rd.forward(request, response);
+            if (currentSession.getAttributeNames().hasMoreElements()) {
+                request.setAttribute("user", ((User) currentSession.getAttribute("currentCustomer")));
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/EditProfile.jsp");
+                rd.forward(request, response);
+            } else {
+                response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+            }
         } else {
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
         }
 
 
@@ -81,11 +85,12 @@ public class SaveProfileChanges extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
 
-            HttpSession currentSession = request.getSession(false);
-            if (currentSession != null) {
-                try {
+
+        HttpSession currentSession = request.getSession(false);
+        if (currentSession != null) {
+            try {
+                if (currentSession.getAttributeNames().hasMoreElements()) {
                     User u = ((User) currentSession.getAttribute("currentCustomer"));
                     String bdate = request.getParameter("bday");
                     System.out.println("DATE " + bdate);
@@ -98,26 +103,30 @@ public class SaveProfileChanges extends HttpServlet {
                     u.setBirthdate(date);
                     u.setPassword(request.getParameter("newpassword"));
                     u.setInterests(request.getParameter("interests"));
-                    new UserHome().persist(u);
+                    UserHome uh = new UserHome();
+                    uh.merge(u);
                     request.getParameter("oldpassword");
                     System.out.println("POST REACHED " + request.getParameter("uName"));
-                } catch (ParseException ex) {
-                    Logger.getLogger(SaveProfileChanges.class.getName()).log(Level.SEVERE, null, ex);
+                } else {
+                    response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
                 }
 
-            } else {
-                response.sendRedirect("/index.jsp");
+            } catch (ParseException ex) {
+                Logger.getLogger(SaveProfileChanges.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+        } else {
+            response.sendRedirect("/index.jsp");
         }
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
-        return "Short description";
-        }// </editor-fold>
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}

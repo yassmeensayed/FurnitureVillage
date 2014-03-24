@@ -100,7 +100,11 @@
                             <a href="ViewItem?itemId=${imagepath.getItemId()}"><img src=<c:out value="images/${requestScope.category}/${imagepath.getImage()}"/> alt="" width="168px" height="164px"/></a> 
                         </div>
                         <p class="categoryItemName"><c:out value="${imagepath.getName()}"/></p>
-                        <div class="button add"><a href="AddToCart?date=<%new java.util.Date().getTime();%>&itemId=${imagepath.getItemId()}"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                        <c:if test="${not empty sessionScope.currentCustomer}">
+                            <c:if test="${imagepath.getAvailableQuantity()>0}">
+                            <div class="button add"><a href="AddToCart?date=<%new java.util.Date().getTime();%>&itemId=${imagepath.getItemId()}&category=${requestScope.category}"><img src="images/LivingRooms/add.png" alt=""/></a></div>    
+                            </c:if>
+                        </c:if>
                         <button class="left"><c:out value="$${imagepath.getPrice()}"/></button>
                         <div class="btn right"><a href="ViewItem?itemId=${imagepath.getItemId()}">view</a></div>
 

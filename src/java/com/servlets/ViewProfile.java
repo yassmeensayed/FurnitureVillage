@@ -34,14 +34,17 @@ public class ViewProfile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession currentSession = request.getSession(false);
         if (currentSession != null) {
-            request.setAttribute("user", ((User)currentSession.getAttribute("currentCustomer")));
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date=" + new Date().getTime());
-            rd.forward(request, response);
-        }
-        else{
+            if (currentSession.getAttributeNames().hasMoreElements()) {
+                request.setAttribute("user", ((User) currentSession.getAttribute("currentCustomer")));
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date=" + new Date().getTime());
+                rd.forward(request, response);
+            } else {
+                response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+            }
+        } else {
             response.sendRedirect("/index.jsp");
         }
     }

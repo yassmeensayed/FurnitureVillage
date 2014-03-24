@@ -40,7 +40,7 @@
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="login">
                     <c:if test="${empty sessionScope.currentCustomer}">
 
@@ -71,7 +71,7 @@
                     <li><a href="LoadCategoryItems?category=BedRooms">Bed Rooms</a></li>
                     <li><a href="LoadCategoryItems?category=Kitchens" >Kitchens</a></li>
                 </ul> 
-                
+
                 <div class="clear"></div>
             </div>
             <div class="content">
@@ -86,27 +86,35 @@
                                 <h4><c:out value="${item.getName()}"/></h4>
                                 <div class="cart-b">
                                     <button class="left rs">$<c:out value="${item.getPrice()}"/></button>
-                                    <div class="btn right"><a href="">Add to Cart</a></div>
+                                    <c:if test="${not empty sessionScope.currentCustomer}">
+                                        <c:if test="${item.getAvailableQuantity()>0}">
+                                        <div class="btn right"><a href="AddToCart?date=<%new java.util.Date().getTime();%>&itemId=${item.getItemId()}">Add to Cart</a></div>
+                                        </c:if>
+                                    </c:if>
+                                    <c:if test="${empty sessionScope.currentCustomer}">
+                                        <div class="btn right"><a href="index.jsp">Login to purchase</a></div>
+                                    </c:if>
+
                                     <div class="clear"></div>
                                 </div>
-                                    <h5><c:out value="${item.getAvailableQuantity()}"/> items in stock</h5>
-                                    <p><c:out value="${item.getDescription()}"/></p>
+                                <h5><c:out value="${item.getAvailableQuantity()}"/> items in stock</h5>
+                                <p><c:out value="${item.getDescription()}"/></p>
                             </div>
                             <div class="clear"></div>	
                         </div>
-<!--                        <div class="text-h1 top">
-                            <h2>20 other products in the same category</h2>
-                        </div>
-                        <div class="div2">
-                            <div id="mcts1">
-                                <img src="images/pic4.jpg" />
-                                <img src="images/pic5.jpg" />
-                                <img src="images/pic6.jpg" />
-                                <img src="images/pic7.jpg" />
-                                <img src="images/pic8.jpg" />
-                                <img src="images/pic5.jpg" />
-                            </div>
-                        </div>-->
+                        <!--                        <div class="text-h1 top">
+                                                    <h2>20 other products in the same category</h2>
+                                                </div>
+                                                <div class="div2">
+                                                    <div id="mcts1">
+                                                        <img src="images/pic4.jpg" />
+                                                        <img src="images/pic5.jpg" />
+                                                        <img src="images/pic6.jpg" />
+                                                        <img src="images/pic7.jpg" />
+                                                        <img src="images/pic8.jpg" />
+                                                        <img src="images/pic5.jpg" />
+                                                    </div>
+                                                </div>-->
                     </div>
                     <div class="rsidebar span_1_of_3">
                         <div class="sidebar">
@@ -126,11 +134,19 @@
                             <p class="left">Total</p>
                             <button class="right">$100.420</button>
                             <div class="clear"></div>
-                            <div class="btn top"><a href="Addtocat">Add to Cart</a></div>
+                            <c:if test="${not empty sessionScope.currentCustomer}">
+                                <c:if test="${item.getAvailableQuantity()>0}">
+                                <div class="btn top"><a href="AddToCart?date=<%new java.util.Date().getTime();%>&itemId=${item.getItemId()}">Add to Cart</a></div>            
+                                </c:if>                                
+                            </c:if>
+                            <c:if test="${empty sessionScope.currentCustomer}">
+                                <div class="btn top"><a href="index.jsp">Login to purchase</a></div>
+                            </c:if>
+
                         </div>
                         <div class="clear"></div>
                         <div class="sidebar">
-                            <h2>Catogories</h2>
+                            <h2>Categories</h2>
                             <ul class="nav1">
                                 <li><a href="LoadCategoryItems?category=DiningRooms">Dining Rooms</a></li>
                                 <li><a href="LoadCategoryItems?category=LivingRooms">Living Rooms</a></li>
@@ -139,33 +155,33 @@
                             </ul>
                         </div>
                         <div class="clear"></div>
-<!--                        <div class="sidebar">
-                            <h2>Top Sellers</h2>
-                            <div class="listview_1_of_2 images_1_of_2">
-                                <div class="listimg listimg_2_of_1">
-                                    <img src="images/pic4.jpg" alt=""/>
-                                </div>
-                                <div class="text list_2_of_1">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore</p>
-                                </div>
-                            </div>
-                            <div class="listview_1_of_2 images_1_of_2">
-                                <div class="listimg listimg_2_of_1">
-                                    <img src="images/pic5.jpg" alt=""/>
-                                </div>
-                                <div class="text list_2_of_1">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore</p>
-                                </div>
-                            </div>
-                            <div class="listview_1_of_2 images_1_of_2">
-                                <div class="listimg listimg_2_of_1">
-                                    <img src="images/pic6.jpg" alt=""/>
-                                </div>
-                                <div class="text list_2_of_1">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore</p>
-                                </div>
-                            </div>
-                        </div>-->
+                        <!--                        <div class="sidebar">
+                                                    <h2>Top Sellers</h2>
+                                                    <div class="listview_1_of_2 images_1_of_2">
+                                                        <div class="listimg listimg_2_of_1">
+                                                            <img src="images/pic4.jpg" alt=""/>
+                                                        </div>
+                                                        <div class="text list_2_of_1">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listview_1_of_2 images_1_of_2">
+                                                        <div class="listimg listimg_2_of_1">
+                                                            <img src="images/pic5.jpg" alt=""/>
+                                                        </div>
+                                                        <div class="text list_2_of_1">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="listview_1_of_2 images_1_of_2">
+                                                        <div class="listimg listimg_2_of_1">
+                                                            <img src="images/pic6.jpg" alt=""/>
+                                                        </div>
+                                                        <div class="text list_2_of_1">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore</p>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                     </div>
                 </div>	
             </div>

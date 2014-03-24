@@ -6,10 +6,12 @@ package com.servlets;
 
 import com.dal.dao.ItemHome;
 import com.dal.dao.ShoppingCartHome;
+import com.dal.pojo.Item;
 import com.dal.pojo.ShoppingCart;
 import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,13 +42,42 @@ public class AddToCart extends HttpServlet {
 
         HttpSession currentSession = request.getSession(false);
         if (currentSession != null) {
-            currentSession.getAttribute("currentCustomer");
-            ShoppingCartHome cartHome = new ShoppingCartHome();
-            
-            
-            
+            if (currentSession.getAttributeNames().hasMoreElements()) {
+                User currentCustomer = (User) currentSession.getAttribute("currentCustomer");
+                Integer virtualBalance = (Integer) currentSession.getAttribute("virtualBalance");
+                String itemId = request.getParameter("itemId");
+                String category = request.getParameter("category");
+                if (itemId != null) {
+                    ArrayList<ShoppingCart> sessionCart = (ArrayList<ShoppingCart>) currentSession.getAttribute("shoppingCart");
+                    ShoppingCart newShoppingCart = new ShoppingCart();
+                    ItemHome itemHome = new ItemHome();
+                    Item itemToadd = itemHome.findById(Integer.parseInt(itemId));
+                    if (itemToadd != null) {
+                        if ((virtualBalance - itemToadd.getPrice()) >= 0) {//checking if his balance is enough
+                            boolean found = false;
+                            for (int i = 0; i < sessionCart.size(); i++) {
+                                if (sessionCart.get(i).getItem().getItemId() == Integer.parseInt(itemId)) {
+                                    found = true;
+                                    sessionCart.get(i).setQuantity(sessionCart.get(i).getQuantity() + 1);
+                                    virtualBalance -= itemToadd.getPrice().intValue();
+                                }
+                            }
+                            if (!found) {
+                                newShoppingCart.setItem(itemToadd);
+                                newShoppingCart.setQuantity(1);
+                                newShoppingCart.setUser(currentCustomer);
+                                sessionCart.add(newShoppingCart);
+                                virtualBalance -= itemToadd.getPrice().intValue();
+                            }
+                        }
+                    }
+                }
+                response.sendRedirect("/FurnitureCrazeV1-1/LoadCategoryItems?category=" + category);
+            } else {
+                response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+            }
         } else {
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
         }
     }
 

@@ -5,6 +5,7 @@
 package com.servlets;
 
 import com.dal.dao.UserHome;
+import com.dal.pojo.ShoppingCart;
 import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,6 +48,8 @@ public class Login extends HttpServlet {
                         out.print("logged in successfully");
                         HttpSession session = request.getSession(true);
                         session.setAttribute("currentCustomer", user.get(0));
+                        session.setAttribute("shoppingCart", new ArrayList<ShoppingCart>());
+                        session.setAttribute("virtualBalance",user.get(0).getBalance() );
                     } else {
                         out.print("Wrong Password");
                     }
