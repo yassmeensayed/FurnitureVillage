@@ -4,12 +4,18 @@
  */
 package com.servlets;
 
+import com.dal.dao.ItemHome;
+import com.dal.dao.ShoppingCartHome;
+import com.dal.pojo.ShoppingCart;
+import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,18 +37,16 @@ public class AddToCart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddToCart</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddToCart at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+
+        HttpSession currentSession = request.getSession(false);
+        if (currentSession != null) {
+            currentSession.getAttribute("currentCustomer");
+            ShoppingCartHome cartHome = new ShoppingCartHome();
+            
+            
+            
+        } else {
+            response.sendRedirect("/index.jsp");
         }
     }
 

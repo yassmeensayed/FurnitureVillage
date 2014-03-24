@@ -37,6 +37,11 @@ public class LoadCategoryItems extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("category");
+        if (category == null) {
+            if (category.trim().equals("")) {
+                category = "LivingRooms";
+            }
+        }
         ItemHome itemHome = new ItemHome();
         Item sampleItem = new Item();
         ArrayList<Item> allItems = (ArrayList<Item>) itemHome.findByExample(sampleItem);
@@ -44,7 +49,7 @@ public class LoadCategoryItems extends HttpServlet {
         ArrayList<Item> categoryItems = new ArrayList<Item>();
         for (int i = 0; i < allItems.size(); i++) {
             if (allItems.get(i).getCategories().getName().equals(category)) {
-                imagePaths.add("images/"+category+"/"+allItems.get(i).getImage());
+                imagePaths.add("images/" + category + "/" + allItems.get(i).getImage());
                 categoryItems.add(allItems.get(i));
             }
         }
@@ -60,7 +65,7 @@ public class LoadCategoryItems extends HttpServlet {
         } else if (category.equals("Kitchens")) {
             request.setAttribute("pageName", "Kitchens");
         }
-        
+
         ServletContext context = getServletContext();
         RequestDispatcher dispatcher = context.getRequestDispatcher("/CategoryGallery.jsp");
         dispatcher.forward(request, response);

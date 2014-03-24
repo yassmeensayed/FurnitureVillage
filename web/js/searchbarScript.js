@@ -16,7 +16,7 @@ $(window).load(function(){
         if(statusTxt=="success"){
             $(".error.required:eq(0)").css("display","block");
             $(".error.required:eq(0)").html(responseTxt)();
-            alert(responseTxt);
+            location.href="ViewProfile?date="+new Date().getTime();
             //$("#loginLabel").val(responseTxt);
         }
     }

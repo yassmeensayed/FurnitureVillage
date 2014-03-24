@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -56,12 +57,16 @@ public class SaveProfileChanges extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        UserHome uh = new UserHome();
-        Integer id = new Integer(15);
-        User u = uh.findById(id);
-        request.setAttribute("user", u);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/EditProfile.jsp");
-        rd.forward(request, response);
+        HttpSession currentSession = request.getSession(false);
+        if (currentSession != null) {
+            request.setAttribute("user", ((User) currentSession.getAttribute("currentCustomer")));
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/EditProfile.jsp");
+            rd.forward(request, response);
+        } else {
+            response.sendRedirect("/index.jsp");
+        }
+
+
     }
 
     /**
@@ -76,39 +81,43 @@ public class SaveProfileChanges extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            UserHome uh = new UserHome();
-            Integer id = new Integer(15);
-            User u = uh.findById(id);
+        
 
-            String bdate = request.getParameter("bday");
-            System.out.println("DATE " + bdate);
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = formatter.parse(bdate);
-            u.setAddress(request.getParameter("address"));
-            u.setBalance(Integer.parseInt(request.getParameter("balance")));
-            u.setFullName(request.getParameter("uName"));
-            u.setEmail(request.getParameter("mail"));
-            u.setBirthdate(date);
-            u.setPassword(request.getParameter("newpassword"));
-            u.setInterests(request.getParameter("interests"));
-            uh.persist(u);
-            request.getParameter("oldpassword");
-            System.out.println("POST REACHED " + request.getParameter("uName"));
-        } catch (ParseException ex) {
-            Logger.getLogger(SaveProfileChanges.class.getName()).log(Level.SEVERE, null, ex);
+            HttpSession currentSession = request.getSession(false);
+            if (currentSession != null) {
+                try {
+                    User u = ((User) currentSession.getAttribute("currentCustomer"));
+                    String bdate = request.getParameter("bday");
+                    System.out.println("DATE " + bdate);
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = formatter.parse(bdate);
+                    u.setAddress(request.getParameter("address"));
+                    u.setBalance(Integer.parseInt(request.getParameter("balance")));
+                    u.setFullName(request.getParameter("uName"));
+                    u.setEmail(request.getParameter("mail"));
+                    u.setBirthdate(date);
+                    u.setPassword(request.getParameter("newpassword"));
+                    u.setInterests(request.getParameter("interests"));
+                    new UserHome().persist(u);
+                    request.getParameter("oldpassword");
+                    System.out.println("POST REACHED " + request.getParameter("uName"));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SaveProfileChanges.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+                response.sendRedirect("/index.jsp");
+            }
         }
-
-
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
-}
+        }// </editor-fold>
+    }

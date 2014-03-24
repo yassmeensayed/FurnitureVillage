@@ -58,13 +58,7 @@
             <div class="menu-bg">
                 <ul class="menu">
                     <li><a href="LoadCategoryItems?category=DiningRooms">Dining Rooms</a></li>
-                    <li><a href="LoadCategoryItems?category=LivingRooms">Living Rooms</a>
-                        <!--<ul>
-                            <li><a href="Chairs.jsp" >Chairs</a></li>
-                            <li><a href="Sofas.jsp">Sofas</a></li>
-                            <li><a href="FirePlaces.jsp">Fire Places</a></li>
-                        </ul>-->
-                    </li>
+                    <li><a href="LoadCategoryItems?category=LivingRooms">Living Rooms</a></li>
                     <li><a href="LoadCategoryItems?category=BedRooms">Bed Rooms</a></li>
                     <li><a href="LoadCategoryItems?category=Kitchens" >Kitchens</a></li>
                 </ul> 
@@ -83,6 +77,11 @@
                 </div>
                 <div class="clear"></div>
             </div>
+            <c:if test="${empty requestScope.pageName}">
+                <script>
+                    alert("Please choose one of the categories in the shown menu");
+                </script>>
+            </c:if>
             <div class="text-h">
                 <h2><c:out value="${requestScope.pageName}"/></h2>
             </div>
@@ -101,7 +100,7 @@
                             <a href="ViewItem?itemId=${imagepath.getItemId()}"><img src=<c:out value="images/${requestScope.category}/${imagepath.getImage()}"/> alt="" width="168px" height="164px"/></a> 
                         </div>
                         <p class="categoryItemName"><c:out value="${imagepath.getName()}"/></p>
-                        <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>
+                        <div class="button add"><a href="AddToCart?date=<%new java.util.Date().getTime();%>&itemId=${imagepath.getItemId()}"><img src="images/LivingRooms/add.png" alt=""/></a></div>
                         <button class="left"><c:out value="$${imagepath.getPrice()}"/></button>
                         <div class="btn right"><a href="ViewItem?itemId=${imagepath.getItemId()}">view</a></div>
 
