@@ -1174,3 +1174,45 @@ p.sort{
 #cart{
     width:3em;
 }
+
+
+.adminbutton{
+        font-size: 0.9em;
+    outline: none;
+    font-weight: normal;
+    padding: 3px 11px;
+    background: #555;
+    color: #fff;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 12px;
+    -o-border-radius: 3px;
+    font-family: verdana;
+    text-transform: capitalize;
+    
+}
+.userActive{
+    font-size: 0.9em;
+    outline: none;
+    font-weight: normal;
+    padding: 3px 11px;
+    background: #66FF33;
+    color: #555;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 12px;
+    -o-border-radius: 3px;
+    font-family: verdana;
+    text-transform: capitalize;
+}
+.userDeActive{
+    font-size: 0.9em;
+    outline: none;
+    font-weight: normal;
+    padding: 3px 11px;
+    background: #FF0000;
+    color: #555;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 12px;
+    -o-border-radius: 3px;
+    font-family: verdana;
+    text-transform: capitalize;
+}
