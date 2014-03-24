@@ -4,6 +4,7 @@
  */
 package com.servlets;
 
+import com.dal.dao.UserHome;
 import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Yassmeen
  */
 public class RegisterUser extends HttpServlet {
-    private Date date;
+   // private Date date;
 
     /**
      * Processes requests for both HTTP
@@ -38,33 +39,34 @@ public class RegisterUser extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String fullName = request.getParameter("name");
-        String email = request.getParameter("email");
-        String address = request.getParameter("address");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String balance = request.getParameter("balance");
-        String interests = request.getParameter("interests");
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String fullName,email,address,username,password,balance,interests = "";
+        fullName = request.getParameter("name");
+        email = request.getParameter("email");
+        address = request.getParameter("address");
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+       // balance = request.getParameter("balance");
+        interests = request.getParameter("interests");
         String bday = request.getParameter("bday");
-        try {
-             date = formatter.parse(bday);
-        } catch (ParseException ex) {
-            Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println(fullName + email + address + username + password + balance + interests + date);
+        //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        String bday = request.getParameter("bday");
+//        try {
+//             date = formatter.parse(bday);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        System.out.println(fullName + email + address + username + password /*+ balance */+ interests /*+ date*/);
         User user = new User();
         user.setAddress(address);
-        user.setBalance(Integer.parseInt(balance));
+        //user.setBalance(Integer.parseInt(balance));
         user.setPassword(password);
         user.setFullName(fullName);
         user.setEmail(email);
         user.setInterests(interests);
-        user.setBirthdate(date);
-        
-        
-        
-        
+        //user.setBirthdate();
+        UserHome uh = new UserHome();
+        uh.persist(user);
+        out.println("User found");
 		
     }
 

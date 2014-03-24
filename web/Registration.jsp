@@ -29,7 +29,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $(function() {
                 $('.grid-img a').lightBox();
             });
- 
+            function updateSignUpArea(responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success") {
+                    $(".error.required:eq(0)").css("display", "block");
+                    $(".error.required:eq(0)").html(responseTxt)();
+                    $("#Email").val(responseTxt);
+                    
+                }
+            }
             $(document).ready(
                     function() {
 
@@ -42,41 +49,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         confirmpassword = document.getElementById("confirmpassword");
                         balance = document.getElementById("balance");
                         interestsy = document.getElementById("interests");
-
                         $("#signup").click(function() {
                             if (validateName() && validateEmail() && validateAddress() && validateBirthday() && validatePassword() && confirmPassword() && validateinterests()) {
 
                             }
                         });
-
                         $("#fullname").focusout(function() {
                             validateName()
                         });
-
                         $("#Email").focusout(function() {
                             validateEmail()
                         });
-
                         $("#address").focusout(function() {
                             validateAddress()
                         });
-
                         $("#bday").focusout(function() {
                             validateBirthday()
                         });
-
                         $("#password").focusout(function() {
                             validatePassword()
                         });
-
                         $("#confirmpassword").focusout(function() {
                             confirmPassword()
                         });
-
                         $("#interests").focusout(function() {
                             validateinterests()
                         });
-                        
                         function validateName() {
                             var namePattern = /^[a-zA-Z]/;
                             if (fname.value == null || fname.value.trim() == "" || !namePattern.test(fname.value)) {
@@ -154,13 +152,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 return true;
                             }
                         }
-                    }
-            );
 
+
+                        $("#signup").click(function() {
+                            $.post("RegisterUser?data="+new Date().getTime()+ new Date().getTime(),
+                                    {
+                                        name : $("#name").val(),
+                                        email: $("#email").val(),
+                                        password: $("#password").val(),
+                                        username: $("#username").val(),
+                                        address: $("#address").val(),
+                                        interests: $("#interests").val(),
+                                        balance: $("#balance").val(),
+                                        bday: $("#bday").val()}, updateSignUpArea);
+                        });
+                    });
 
 
         </script>
-        
+
     </head>
     <body>
         <div class="wrap"> 
