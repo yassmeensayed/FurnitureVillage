@@ -25,18 +25,20 @@ public class UserHome {
 
     //private static final Log log = LogFactory.getLog(UserHome.class);
     private static final Log log = LogFactory.getLog(UserHome.class);
-    private Session session;
        
+    static SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        private  Session session = getSession();
+
     public Session getSession() {
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        
         session = sf.openSession();
-        session.getTransaction();
+       // session.beginTransaction();
         log.debug("Getting Session successful!");
         return session;
     }
 
     public UserHome() {
-        this.session =  this.getSession();
+        //this.session =  this.getSession();
     }
     
     
@@ -134,9 +136,10 @@ public class UserHome {
 	public List findByExample(User instance) {
 		log.debug("finding User instance by example");
 		try {
-                    
+                        session.beginTransaction();
 			List results = session.createCriteria(User.class).add(Example.create(instance))
 					.list();
+                        //session.close();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		}
