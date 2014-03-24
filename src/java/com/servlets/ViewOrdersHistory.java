@@ -4,6 +4,7 @@
  */
 package com.servlets;
 
+import com.dal.dao.UserHome;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -38,6 +39,7 @@ public class ViewOrdersHistory extends HttpServlet {
             out.println("<title>Servlet ViewOrdersHistory</title>");            
             out.println("</head>");
             out.println("<body>");
+            UserHome uh = new UserHome();
             out.println("<h1>Servlet ViewOrdersHistory at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
