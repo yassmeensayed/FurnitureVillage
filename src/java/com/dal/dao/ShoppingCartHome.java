@@ -23,19 +23,18 @@ import org.hibernate.criterion.Example;
 public class ShoppingCartHome {
 
 	private static final Log log = LogFactory.getLog(ShoppingCartHome.class);
+    static SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        private  Session session = getSession();
 
-	private Session session;
-       
     public Session getSession() {
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        
         session = sf.openSession();
-        session.getTransaction();
+       // session.beginTransaction();
         log.debug("Getting Session successful!");
         return session;
     }
-
     public ShoppingCartHome() {
-        this.session =  this.getSession();
+       // this.session =  this.getSession();
     }
     
     

@@ -24,19 +24,19 @@ import org.hibernate.criterion.Example;
 public class OrderHistoryHome {
 
 	private static final Log log = LogFactory.getLog(OrderHistoryHome.class);
+    static SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        private  Session session = getSession();
 
-        private Session session;
-       
     public Session getSession() {
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        
         session = sf.openSession();
-        session.getTransaction();
+       // session.beginTransaction();
         log.debug("Getting Session successful!");
         return session;
     }
 
     public OrderHistoryHome() {
-        this.session =  this.getSession();
+        //this.session =  this.getSession();
     }
     
     

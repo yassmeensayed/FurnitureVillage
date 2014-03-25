@@ -25,18 +25,19 @@ import org.hibernate.criterion.Restrictions;
 public class AdminUserHome {
 
 	private static final Log log = LogFactory.getLog(AdminUserHome.class);
-	private Session session;
-       
+    static SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        private  Session session = getSession();
+
     public Session getSession() {
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        
         session = sf.openSession();
-        session.getTransaction();
+       // session.beginTransaction();
         log.debug("Getting Session successful!");
         return session;
     }
 
     public AdminUserHome() {
-        this.session =  this.getSession();
+        //this.session =  this.getSession();
     }
     
     

@@ -28,19 +28,18 @@ import org.hibernate.criterion.Restrictions;
 public class ItemHome {
 
 	private static final Log log = LogFactory.getLog(ItemHome.class);
+    static SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        private  Session session = getSession();
 
-	private Session session;
-       
     public Session getSession() {
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
+        
         session = sf.openSession();
-        session.getTransaction();
+       // session.beginTransaction();
         log.debug("Getting Session successful!");
         return session;
     }
-
     public ItemHome() {
-        this.session =  this.getSession();
+        //this.session =  this.getSession();
     }
     
     
@@ -154,6 +153,21 @@ public class ItemHome {
 		try {
                     
 			 Criteria reItem = session.createCriteria(Item.class).add(Restrictions.eq("categories",cat ));
+			List i = reItem.list();	
+			log.debug("find by example successful");
+			return i;
+		}
+		catch (RuntimeException re) {
+			log.error("find by example failed", re);
+			throw re;
+		}
+	}
+        public List findByPriceCategory(Categories cat, Double startPrice, Double endPrice) {
+		log.debug("finding Items instance by example");
+		try {
+                    
+			 Criteria reItem = session.createCriteria(Item.class).add(Restrictions.eq("categories",cat )
+                                 ).add(Restrictions.between("price", startPrice, endPrice));
 			List i = reItem.list();	
 			log.debug("find by example successful");
 			return i;
