@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -73,7 +74,8 @@ public class LoadAdminPage extends HttpServlet {
 
          response.setContentType("text/xml;charset=UTF-8");
         StringBuffer textOut = new StringBuffer();
-                    
+             // HttpSession session = request.getSession(true);
+           //   session.setAttribute("Admin", user.get(0));        
             ArrayList<User> users= (ArrayList<User>)uh.findByExample(new User());
             System.out.println("Users : " + users.size());
         textOut.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");

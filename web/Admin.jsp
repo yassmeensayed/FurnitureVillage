@@ -38,9 +38,9 @@
                 else if (window.XMLHttpRequest) xmlHttp = new XMLHttpRequest();
             }
             function handelReq3(){
+                var xmlDoc = "";
                 if(xmlHttp.readyState === 4){
 
-                   
                     var xmlDoc = xmlHttp.responseXML;
                     var names = xmlDoc.getElementsByTagName("name");
                     var messages = xmlDoc.getElementsByTagName("email");

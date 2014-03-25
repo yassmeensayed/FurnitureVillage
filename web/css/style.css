@@ -350,7 +350,7 @@ h2 {
     letter-spacing: -1px;
     text-transform: capitalize;
 }
-p  {
+p {
     font-size: 0.9em;
     padding: 0.5em 0;
     line-height: 1.8em;
@@ -1169,6 +1169,10 @@ p.sort{
 /*yassmeen*/
 #loggedIn{
     margin-left: 22em;
+    margin-top: -1em;
+}
+#loggedInAdmin{
+    margin-left: 16em;
     margin-top: -1em;
 }
 #cart{
