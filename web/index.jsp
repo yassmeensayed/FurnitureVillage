@@ -65,7 +65,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div id="loggedIn">
                             <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
                             <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
-                        </div>>
+                        </div>
                     </c:if>
                 </div>
 
@@ -145,7 +145,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <p>We have a variety of kitchen designs.</p>
                     </div>
                 </div>
-                <div class="text-h">
+<!--                <div class="text-h">
                     <h2>feature products</h2>
                 </div>
                 <div class="section group">
@@ -189,7 +189,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <button class="left">$23.58</button>
                         <div class="btn right"><a href="Details.jsp">view</a></div>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="footer">
                 <div class="section group">

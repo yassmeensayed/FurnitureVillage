@@ -37,7 +37,7 @@ public class ViewCart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession currentSession = request.getSession(false);
         if (currentSession != null) {
             if (currentSession.getAttributeNames().hasMoreElements()) {

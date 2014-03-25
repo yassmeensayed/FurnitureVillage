@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
 
 /**
  *
@@ -99,6 +100,11 @@ public class SaveProfileChanges extends HttpServlet {
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                     Date date = formatter.parse(bdate);
                     u.setAddress(request.getParameter("address"));
+                    //added by yassmeen
+                    Integer virtualBalance = (Integer) currentSession.getAttribute("virtualBalance");
+                    virtualBalance+=Integer.parseInt(request.getParameter("balance"))- u.getBalance();
+                    currentSession.setAttribute("virtualBalance", virtualBalance);
+                    //=========================
                     u.setBalance(Integer.parseInt(request.getParameter("balance")));
                     u.setFullName(request.getParameter("uName"));
                     u.setEmail(request.getParameter("mail"));

@@ -39,8 +39,7 @@ public class ViewItem extends HttpServlet {
         Item currentItem = itemhome.findById(itemId);
         request.setAttribute("item", currentItem);
         request.setAttribute("category", currentItem.getCategories().getName());
-        ServletContext context = getServletContext();
-        RequestDispatcher dispatcher = context.getRequestDispatcher("/Details.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Details.jsp");
         dispatcher.forward(request, response);
     }
 
