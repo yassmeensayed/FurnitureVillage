@@ -9,6 +9,7 @@ import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +81,9 @@ public class LoadAdminPage extends HttpServlet {
             System.out.println("Users : " + users.size());
         textOut.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         textOut.append("<users>");
+        HttpSession session = request.getSession(false);
+        if( (User)session.getAttribute("currentAdmin") != null){
+        
         for (int i = 0; i < users.size(); i++) {
             User user = users.get(i);
             textOut.append("<user>");
@@ -94,6 +98,7 @@ public class LoadAdminPage extends HttpServlet {
         textOut.append("</users>");
         
         out.print(textOut);
+        }
         System.out.println("");
         System.out.println(textOut);
     }
