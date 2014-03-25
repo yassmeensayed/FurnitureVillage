@@ -8,6 +8,7 @@ import com.dal.dao.UserHome;
 import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,15 +33,26 @@ public class ViewProfile extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    UserHome uh = new UserHome();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession currentSession = request.getSession(false);
+        
         if (currentSession != null) {
             if (currentSession.getAttributeNames().hasMoreElements()) {
+                String email = request.getParameter("email");
+                if(email != null){
+                    ArrayList<User> test = (ArrayList<User>)uh.findByEmail(email);
+                request.setAttribute("user", test.get(0));
+                    System.out.println("here" + test.get(0).getFullName());
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date=" + new Date().getTime());
+                rd.forward(request, response);    
+                }else{
                 request.setAttribute("user", ((User) currentSession.getAttribute("currentCustomer")));
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date=" + new Date().getTime());
                 rd.forward(request, response);
+                }
             } else {
                 response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
             }
