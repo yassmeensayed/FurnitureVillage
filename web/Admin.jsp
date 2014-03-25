@@ -25,6 +25,9 @@
 <script type="text/javascript">
            var xmlHttp = "";
 
+           function goProfile(test){
+               $.post("ViewProfile", {email:test});
+           }
             function startRequest(){
                 createXMLHttpRequest();
                 xmlHttp.onreadystatechange = handelReq3;
@@ -48,9 +51,9 @@
                     var out ="";
                     for(var i = 0 ; i < names.length ; i++){
                         currentName = names[i];
-
+                        currentEmail = messages[i];
                         out = out+"<tr><td width =15% align=\"center\">"+currentName.childNodes[0].nodeValue +"</td>"
-                            + "<td width =10% align=\"center\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></td>"
+                            + "<td width =10% align=\"center\"><a href=\"ViewProfile?date="+new Date()+"&email="+currentEmail.childNodes[0].nodeValue+"\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></a></td>"
                         +"<td align=\"center\"><input type=\"button\" value=\"Activate\" class=\"userActive\" size=25 name=\"Frist Name\">&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" size=25 name=\"Frist Name\"></td>"
                         +"</tr>";
 
