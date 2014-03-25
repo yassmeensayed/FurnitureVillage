@@ -1168,12 +1168,12 @@ p.sort{
 }
 /*yassmeen*/
 #loggedIn{
-    margin-left: 22em;
-    margin-top: -1em;
+ margin-left: -57px;
+    margin-top: -60px;
 }
 #loggedInAdmin{
-    margin-left: 16em;
-    margin-top: -1em;
+ margin-left: -57px;
+    margin-top: -60px;
 }
 #cart{
     width:3em;
