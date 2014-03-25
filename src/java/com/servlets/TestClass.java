@@ -25,10 +25,16 @@ import org.hibernate.Session;
 public class TestClass {
 
     public static void main(String[] args) {
-        ShoppingCartHome sh = new ShoppingCartHome();
-        List<ShoppingCart> findByExample = sh.findByExample(new ShoppingCart());
-        for (int i = 0; i < findByExample.size(); i++) {
-            System.out.println(findByExample.get(i).getItem().getName() +" : "+ findByExample.get(i).getUser().getFullName());
-        }
+//        ShoppingCartHome sh = new ShoppingCartHome();
+//        List<ShoppingCart> findByExample = sh.findByExample(new ShoppingCart());
+//        for (int i = 0; i < findByExample.size(); i++) {
+//            System.out.println(findByExample.get(i).getItem().getName() +" : "+ findByExample.get(i).getUser().getFullName());
+//        }
+        Categories cat = new Categories();
+        cat.setId(3);
+        ItemHome ih = new ItemHome();
+        
+        ArrayList<Item> items = (ArrayList<Item>)ih.findByPriceCategory(cat, new Double(2000), new Double(4000));
+        System.out.println(items.size());
     }
 }
