@@ -46,7 +46,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </a>
                 <div class="nav-right">
                     <ul class="nav">
-                        <li><a href="Admin.jsp">Admin Panel</a></li>
+                     
                         <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="Registration.jsp">Register</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -54,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </ul>
                 </div>
                <div class="login">
-                    <c:if test="${empty sessionScope.currentCustomer}">
+                   <c:if test="${empty sessionScope.currentCustomer && empty sessionScope.currentAdmin}">
 
                         E-mail: <input type="text"  name="email" id="email"/>
                         Password: <input type="password"  name="password" id ="password"/>
@@ -66,6 +66,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
                             <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
                         </div>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.currentAdmin}">
+                        <div id="loggedInAdmin">
+                            <a href="Admin.jsp?date=<%= new java.util.Date().getTime()%>"><font color="RED">Admin Panel</font></a>
+                            <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentAdmin.getFullName()}"/>'s Profile</a>
+                            <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
+                         </div>>
                     </c:if>
                 </div>
 
