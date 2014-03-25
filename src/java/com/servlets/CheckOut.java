@@ -4,12 +4,24 @@
  */
 package com.servlets;
 
+import com.dal.dao.ItemHome;
+import com.dal.dao.OrderHistoryHome;
+import com.dal.dao.ShoppingCartHome;
+import com.dal.dao.UserHome;
+import com.dal.pojo.Item;
+import com.dal.pojo.OrderHistory;
+import com.dal.pojo.OrderHistoryId;
+import com.dal.pojo.ShoppingCart;
+import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,19 +42,41 @@ public class CheckOut extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CheckOut</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CheckOut at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+        HttpSession currentSession = request.getSession(false);
+        if (currentSession != null) {
+            if (currentSession.getAttributeNames().hasMoreElements()) {
+                ArrayList<ShoppingCart> sessionCart = (ArrayList<ShoppingCart>) currentSession.getAttribute("shoppingCart");
+                Integer virtualBalance = (Integer)currentSession.getAttribute("virtualBalance");
+                User currentCustomer = (User) currentSession.getAttribute("currentCustomer");
+                StringBuilder orderHistory = new StringBuilder();
+                UserHome userHome = new UserHome();
+                if(sessionCart.size()>0){
+                currentCustomer.setBalance(virtualBalance);
+                userHome.merge(currentCustomer);
+                ShoppingCartHome cartHome = new ShoppingCartHome();
+                OrderHistoryHome historyHome = new OrderHistoryHome();
+                ItemHome itemHome = new ItemHome();
+                for(int i=0;i< sessionCart.size();i++){
+                    Item item= itemHome.findById(sessionCart.get(i).getId().getItemId());
+                    orderHistory.append("item name: "+item.getName());
+                    orderHistory.append(", item quantity: "+sessionCart.get(i).getQuantity()+"\n");
+                    ShoppingCart shoppingCartToDelete = sessionCart.get(i);
+                    cartHome.delete(shoppingCartToDelete);
+                }
+                sessionCart.removeAll(sessionCart);
+//                OrderHistory currentOrder = new OrderHistory();
+//                currentOrder.setId(new OrderHistoryId(currentCustomer.getId(),new Date()));
+//                currentOrder.setDescription(orderHistory.toString());
+//                currentOrder.setUser(currentCustomer);
+//                historyHome.persist(currentOrder);
+                
+                response.getWriter().print("succesfully bought"+"\n"+orderHistory);
+                }
+            } else {
+                response.getWriter().print("invalidSession");
+            }
+        } else {
+            response.getWriter().print("invalidSession");
         }
     }
 

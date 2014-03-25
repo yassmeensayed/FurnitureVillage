@@ -24,6 +24,9 @@
         <!-- FlexSlider -->
         <script defer src="js/jquery.flexslider.js"></script>
         <script src="js/searchbarScript.js"></script>
+        <script>
+            
+        </script>
     </head>
     <body>
         <div class="wrap"> 
@@ -74,8 +77,8 @@
                         <option>Price</option>
                     </select>
                     <span id="priceSearch" style="display: none;"><input type="text" id="startPrice"value="" style="width:50px"/>
-                    -
-                    <input type="text" id="endPrice" value="" style="width:50px"/>
+                        -
+                        <input type="text" id="endPrice" value="" style="width:50px"/>
                     </span>
                     <span id="categorySearch"><input type="text" id="categoryName" value=""></span>
                     <input type="submit" id="searchButton" value="">
@@ -88,23 +91,25 @@
             </div>
             <div class="section group">
                 <c:forEach items="${requestScope.cartItems}" var="cartItem">
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="ViewItem?itemId=${cartItem.getItemId()}"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
-                    <div class="grid-img">
-                        <a href="ViewItem?itemId=${cartItem.getItemId()}"><img src="images/${cartItem.getCategories().getName()}/${cartItem.getImage()}" alt=""/></a> 
+                    <div class="col_1_of_5 span_1_of_5">
+                        <div class="button add"><a href="ViewItem?itemId=${cartItem.getItemId()}"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
+                        <div class="grid-img">
+                            <a href="ViewItem?itemId=${cartItem.getItemId()}"><img src="images/${cartItem.getCategories().getName()}/${cartItem.getImage()}" alt=""/></a> 
+                        </div>
+                        <p class="categoryItemName"><c:out value="${cartItem.getName()}"/></p>
+                        <button class="left"><c:out value="${cartItem.getPrice()}"/></button>
+                        <!--                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>-->
+                        <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>&itemId=${cartItem.getItemId()}"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
                     </div>
-                    <p class="categoryItemName"><c:out value="${cartItem.getName()}"/></p>
-                    <button class="left"><c:out value="${cartItem.getPrice()}"/></button>
-<!--                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>-->
-                    <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>&itemId=${cartItem.getItemId()}"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
-                </div>
                 </c:forEach>
             </div>
             <center>
+                <c:if test="${requestScope.cartItems.size()>0}">
                 <div class="contact-button">
-                    <span class="btn"><a href="CheckOut?date=<%new java.util.Date().getTime();%>">Buy</a></span>
-                    </form>
+                    <span class="btn"><a id="checkOutButton">Buy</a></span>
+                    <p id="checkOutResult" style="display: none"></p>
                 </div>
+                </c:if>
             </center>
 
             <div class="footer">
