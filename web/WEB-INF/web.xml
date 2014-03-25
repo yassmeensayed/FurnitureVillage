@@ -76,6 +76,14 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>LoadAdminPage</servlet-name>
+        <servlet-class>com.servlets.LoadAdminPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadAdminPage</servlet-name>
+        <url-pattern>/LoadAdminPage</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadCategoryItems</servlet-name>
         <url-pattern>/LoadCategoryItems</url-pattern>
