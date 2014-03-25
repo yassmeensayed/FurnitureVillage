@@ -4,6 +4,7 @@
  */
 package com.servlets;
 
+import com.dal.dao.AdminUserHome;
 import com.dal.dao.ItemHome;
 import com.dal.dao.ShoppingCartHome;
 import com.dal.dao.UserHome;
@@ -43,7 +44,8 @@ public class Login extends HttpServlet {
         String logEmail = request.getParameter("email");
         String logPass = request.getParameter("pass");
         UserHome uh = new UserHome();
-
+        AdminUserHome adminUserHome = new AdminUserHome();
+        
         ArrayList<User> user = (ArrayList<User>) uh.findByEmail(logEmail);
         if (user.size() > 0) {
             if (user.get(0).getEmail().equals(logEmail)) {
@@ -60,7 +62,13 @@ public class Login extends HttpServlet {
                             virtualBalance-=(oldCart.get(i).getQuantity()*getItemPrice(oldCart.get(i).getId().getItemId()));
                         }
                     }
-                    session.setAttribute("currentCustomer", user.get(0));
+                    if(adminUserHome.isAdminUser(user.get(0))){
+                        session.setAttribute("currentAdmin", user.get(0));
+                        
+                    }
+                    else{
+                        session.setAttribute("currentCustomer", user.get(0));
+                    }
                     session.setAttribute("shoppingCart", savedShoppingCart);
                     session.setAttribute("virtualBalance", virtualBalance);
                 } else {
