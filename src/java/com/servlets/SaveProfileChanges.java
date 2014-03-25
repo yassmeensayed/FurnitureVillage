@@ -64,10 +64,12 @@ public class SaveProfileChanges extends HttpServlet {
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/EditProfile.jsp");
                 rd.forward(request, response);
             } else {
-                response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
             }
         } else {
-            response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
         }
 
 
@@ -108,7 +110,8 @@ public class SaveProfileChanges extends HttpServlet {
                     request.getParameter("oldpassword");
                     System.out.println("POST REACHED " + request.getParameter("uName"));
                 } else {
-                    response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                    dispatcher.forward(request, response);
                 }
 
             } catch (ParseException ex) {
@@ -116,7 +119,8 @@ public class SaveProfileChanges extends HttpServlet {
             }
 
         } else {
-            response.sendRedirect("/index.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

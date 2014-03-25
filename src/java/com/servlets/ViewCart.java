@@ -4,11 +4,15 @@
  */
 package com.servlets;
 
+import com.dal.dao.ItemHome;
+import com.dal.pojo.Item;
 import com.dal.pojo.ShoppingCart;
 import com.dal.pojo.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,14 +41,28 @@ public class ViewCart extends HttpServlet {
         HttpSession currentSession = request.getSession(false);
         if (currentSession != null) {
             if (currentSession.getAttributeNames().hasMoreElements()) {
-                User currentCustomer = (User) currentSession.getAttribute("currentCustomer");
                 ArrayList<ShoppingCart> sessionCart = (ArrayList<ShoppingCart>) currentSession.getAttribute("shoppingCart");
+                ArrayList<Item> sessionCartPieces = new ArrayList<Item>();
+                for(int i=0;i<sessionCart.size();i++){
+                    for(int j=0;j<sessionCart.get(i).getQuantity();j++){
+                        ItemHome itemH = new ItemHome();
+                        Item item = itemH.findById(sessionCart.get(i).getItem().getItemId());
+                        sessionCartPieces.add(item); 
+                    }
+                }
+                request.setAttribute("cartItems", sessionCartPieces);
                 
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ShoppingCart.jsp");
+                dispatcher.forward(request, response);
+
             } else {
-                response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
             }
         } else {
-            response.sendRedirect("/FurnitureCrazeV1-1/index.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

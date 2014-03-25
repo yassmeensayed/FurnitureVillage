@@ -87,55 +87,22 @@
                 <h2><font color="gray"><center>Shopping Cart</center></font></h2>
             </div>
             <div class="section group">
+                <c:forEach items="${requestScope.cartItems}" var="cartItem">
                 <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
+                    <div class="button add"><a href="ViewItem?itemId=${cartItem.getItemId()}"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
                     <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
+                        <a href="ViewItem?itemId=${cartItem.getItemId()}"><img src="images/${cartItem.getCategories().getName()}/${cartItem.getImage()}" alt=""/></a> 
                     </div>
-                    <button class="left">$23.58</button>
+                    <p class="categoryItemName"><c:out value="${cartItem.getName()}"/></p>
+                    <button class="left"><c:out value="${cartItem.getPrice()}"/></button>
 <!--                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>-->
-                    <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
+                    <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>&itemId=${cartItem.getItemId()}"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
                 </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
-                    </div>
-                    <button class="left">$23.58</button>
-<!--                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>-->
-                    <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
-                    </div>
-                    <button class="left">$23.58</button>
-<!--                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>-->
-                    <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
-                    </div>
-                    <button class="left">$23.58</button>
-<!--                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>-->
-                    <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
-                </div>
-                <div class="col_1_of_5 span_1_of_5">
-                    <div class="button add"><a href="view.html"><img src="images/LivingRooms/view.png" alt=""/></a></div><br>
-                    <div class="grid-img">
-                        <a href="details.html"><img src="images/Chairs and sofa/chair.jpg" alt=""/></a> 
-                    </div>
-                    <button class="left">$23.58</button>
-<!--                    <div class="button add"><a href="details.html"><img src="images/LivingRooms/add.png" alt=""/></a></div>-->
-                    <div class="button remove"><a href="RemoveFromCart?date=<%new java.util.Date().getTime();%>"><img src="images/LivingRooms/remove.png" alt=""/></a></div>
-                </div>
+                </c:forEach>
             </div>
             <center>
                 <div class="contact-button">
-                    <span class="btn"><a href="details.html">Buy</a></span>
+                    <span class="btn"><a href="CheckOut?date=<%new java.util.Date().getTime();%>">Buy</a></span>
                     </form>
                 </div>
             </center>
