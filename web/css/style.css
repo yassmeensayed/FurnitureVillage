@@ -1199,8 +1199,8 @@ p.sort{
     outline: none;
     font-weight: normal;
     padding: 3px 11px;
-    background: #66FF33;
-    color: #555;
+    background: #555;
+    color: #66FF33;
     -moz-border-radius: 3px;
     -webkit-border-radius: 12px;
     -o-border-radius: 3px;
@@ -1212,11 +1212,15 @@ p.sort{
     outline: none;
     font-weight: normal;
     padding: 3px 11px;
-    background: #FF0000;
-    color: #555;
+    background: #555;
+    color: #FF0000;
     -moz-border-radius: 3px;
     -webkit-border-radius: 12px;
     -o-border-radius: 3px;
     font-family: verdana;
     text-transform: capitalize;
+}
+
+#update input{
+     margin: 30px 0px;
 }
