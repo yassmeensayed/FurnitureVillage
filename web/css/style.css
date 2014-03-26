@@ -475,11 +475,13 @@ p {
     }
 }
 .left{
-    float: left;
+     float: left;
+    margin-top: -17px;
 }
 .right{
-    margin-top: 2.4%;
-    float: right;
+      float: right;
+    margin-left: 40px;
+    margin-top: 20px;
 }
 .add{
     margin-top: 2.6%;
