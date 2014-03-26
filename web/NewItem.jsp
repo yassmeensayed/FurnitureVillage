@@ -109,7 +109,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="section group">				
                     <div class="col span_2_of_3">
                         <div class="contact-form">
-                            <form action="AddNewProduct" methd="post">
+                            <form action="AddNewProduct" method="POST" enctype="multipart/form-data">
                             <h2>Add new Item</h2>
                             <div>
                                 <span><label>NAME</label></span>
@@ -134,14 +134,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         
                                     </select></span>
                             </div>
-                            <div>
-                                <span><label>Image</label></span>
-                                <span><input type="file" id="username" name="username"/></span><span class="error required" >*required</span>
-                            </div>
+
                            
                             <div>
                                 <span><label>Descriptions</label></span>
                                 <span><textarea id="interests" name="interests"> </textarea></span><span class="error required" >*required</span>
+                            </div>
+                                                        <div>
+                                <span><label>Image</label></span>
+                                <span><input type="file" id="file" name="file"/></span><span class="error required" >*required</span>
                             </div>
                             <div>
                                 <input type="submit" id="signup" value="Submit" >
