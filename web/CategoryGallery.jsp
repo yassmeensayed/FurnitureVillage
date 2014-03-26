@@ -39,7 +39,7 @@
                     </ul>
                 </div>
                 <div class="login">
-                    <c:if test="${empty sessionScope.currentCustomer}">
+                    <c:if test="${empty sessionScope.currentCustomer && empty sessionScope.currentAdmin}">
 
                         E-mail: <input type="text"  name="email" id="email"/>
                         Password: <input type="password"  name="password" id ="password"/>
@@ -51,6 +51,13 @@
                             <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
                             <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
                         </div>>
+                    </c:if>
+                     <c:if test="${not empty sessionScope.currentAdmin}">
+                        <div id="loggedInAdmin">
+                            <a href="Admin.jsp?date=<%= new java.util.Date().getTime()%>"><font color="RED">Admin Panel</font></a>
+                            <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentAdmin.getFullName()}"/>'s Profile</a>
+                            <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
+                         </div>
                     </c:if>
                 </div>
                 <div class="clear"></div>
@@ -105,9 +112,15 @@
                             <div class="button add"><a href="AddToCart?date=<%new java.util.Date().getTime();%>&itemId=${imagepath.getItemId()}&category=${requestScope.category}"><img src="images/LivingRooms/add.png" alt=""/></a></div>    
                             </c:if>
                         </c:if>
+                        <c:if test="${not empty sessionScope.currentAdmin}">
+                            <c:if test="${imagepath.getAvailableQuantity()>0}">
+                            <div class="button add"><a href="AddToCart?date=<%new java.util.Date().getTime();%>&itemId=${imagepath.getItemId()}&category=${requestScope.category}"><img src="images/LivingRooms/add.png" alt=""/></a></div>    
+                            </c:if>
+                        </c:if>
+                         
                         <button class="left"><c:out value="$${imagepath.getPrice()}"/></button>
                         <div class="btn right"><a href="ViewItem?itemId=${imagepath.getItemId()}">view</a></div>
-
+                        <div class="btn left"><a href="RemoveItem?itemId=${imagepath.getItemId()}">Remove</a></div>
                     </div>
                 </c:forEach>
             </div>
