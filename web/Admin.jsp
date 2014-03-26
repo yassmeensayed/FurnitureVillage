@@ -29,6 +29,7 @@
                $.post("ViewProfile", {email:test});
            }
             function startRequest(){
+                
                 createXMLHttpRequest();
                 xmlHttp.onreadystatechange = handelReq3;
                 xmlHttp.open("get", "LoadAdminPage",true);
@@ -47,16 +48,36 @@
                     var xmlDoc = xmlHttp.responseXML;
                     var names = xmlDoc.getElementsByTagName("name");
                     var messages = xmlDoc.getElementsByTagName("email");
+                    var actives = xmlDoc.getElementsByTagName("active");
 
-                    var out ="";
+                    var out ="<tr><td width =10%  ><h1 style=\"font-size: 28px;\">Users</h1></td></tr>";
                     for(var i = 0 ; i < names.length ; i++){
+                        
                         currentName = names[i];
                         currentEmail = messages[i];
+                        currentActive = actives[i];
+                       // alert(currentActive.childNodes[0].nodeValue );
+                        if(currentActive.childNodes[0].nodeValue == 'true'){
+                            
+                        
                         out = out+"<tr><td width =15% align=\"center\">"+currentName.childNodes[0].nodeValue +"</td>"
-                            + "<td width =10% align=\"center\"><a href=\"ViewProfile?date="+new Date()+"&email="+currentEmail.childNodes[0].nodeValue+"\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></a></td>"
-                        +"<td align=\"center\"><input type=\"button\" value=\"Activate\" class=\"userActive\" size=25 name=\"Frist Name\">&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" size=25 name=\"Frist Name\"></td>"
+                            + "<td width =10% align=\"center\"><a href=\"ViewProfile?date="+new Date()+"&email="+currentEmail.childNodes[0].nodeValue
+                            +"\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></a></td>"
+                        +"<td align=\"center\"><input type=\"button\" value=\"Activate\"  disabled class=\"userActive\" size=25 name=\"Frist Name\">&nbsp;&nbsp;&nbsp;<a href=\"UserActivation?date="
+                        +new Date()+"&active="+currentActive.childNodes[0].nodeValue+"&email="+currentEmail.childNodes[0].nodeValue
+                            +"\"><input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" enabled size=25 name=\"Frist Name\"></a></td>"
                         +"</tr>";
-
+                    }
+                    if (currentActive.childNodes[0].nodeValue == 'false'){
+                        
+                    out = out+"<tr><td width =15% align=\"center\">"+currentName.childNodes[0].nodeValue +"</td>"
+                            + "<td width =10% align=\"center\"><a href=\"ViewProfile?date="+new Date()+"&email="+currentEmail.childNodes[0].nodeValue
+                            +"\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></a></td>"
+                        +"<td align=\"center\"><a href=\"UserActivation?date="
+                        +new Date()+"&active="+currentActive.childNodes[0].nodeValue+"&email="+currentEmail.childNodes[0].nodeValue
+                            +"\"><input type=\"button\" value=\"Activate\" enabled class=\"userActive\" size=25 name=\"Frist Name\"></a>&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" disabled size=25 name=\"Frist Name\"></td>"
+                        +"</tr>";
+                    }
                         //out = currentMsg.length;
 
                     }
@@ -69,7 +90,7 @@
 </script>
 
 </head>
-<body onload="setInterval('startRequest()',3000);">
+<body onload="startRequest();">
 <div class="wrap"> 
    <div class="header">
                 <a href="index.jsp">
@@ -78,16 +99,18 @@
                 <div class="nav-right">
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
-                        <li><a href="Registration.jsp">Register</a></li>
+
                         <li><a href="Contact.jsp">Contact</a></li>
                     </ul>
                 </div>
                 <div class="login">
-                    
-                    E-mail: <input type="text"  name="email" id="email"/>
-                    Password: <input type="password"  name="password" id ="password"/>
-                    <input type="submit" value="Login" id="loginButton"/>
-                    <span class="error required">Empty fields</span>
+                    <c:if test="${not empty sessionScope.currentAdmin}">
+                        <div id="loggedInAdmin">
+                            <a href="Admin.jsp?date=<%= new java.util.Date().getTime()%>"><font color="RED">Admin Panel</font></a>
+                            <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentAdmin.getFullName()}"/>'s Profile</a>
+                            <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
+                         </div>
+                    </c:if>
                     
                 </div>
                 <div class="clear"></div>
@@ -201,6 +224,7 @@
 		</table>
 		</form>
 </div>
+<div id="update"><input class="adminbutton" type="button" value="Update Status" size=25 name="Frist Name" onclick="startRequest()"></div>
 </div>
 <div class="footer">
 	<div class="section group">
