@@ -194,4 +194,10 @@
         <description/>
         <role-name>adminlogin</role-name>
     </security-role>
+       <context-param>
+    <description>The location of uploaded files</description>
+    <param-name>file-upload</param-name>
+    <param-value>C:\Users\KimOoO\Documents\NetBeansProjects\FurnitureVillage\web\images</param-value>
+  </context-param>
+    
 </web-app>
