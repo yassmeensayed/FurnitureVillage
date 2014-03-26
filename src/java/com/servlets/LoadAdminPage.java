@@ -76,7 +76,8 @@ public class LoadAdminPage extends HttpServlet {
          response.setContentType("text/xml;charset=UTF-8");
         StringBuffer textOut = new StringBuffer();
              // HttpSession session = request.getSession(true);
-           //   session.setAttribute("Admin", user.get(0));        
+           //   session.setAttribute("Admin", user.get(0));     
+        UserHome  uh = new UserHome();
             ArrayList<User> users= (ArrayList<User>)uh.findByExample(new User());
             System.out.println("Users : " + users.size());
         textOut.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -93,6 +94,9 @@ public class LoadAdminPage extends HttpServlet {
             textOut.append("<email>");
             textOut.append(user.getEmail());
             textOut.append("</email>");
+            textOut.append("<active>");
+            textOut.append(user.getActiveStatus());
+            textOut.append("</active>");
             textOut.append("</user>");   
         }
         textOut.append("</users>");
