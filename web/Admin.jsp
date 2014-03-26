@@ -85,7 +85,9 @@
             }
                     
                 }
-          
+          function goNew(){
+              window.location ="NewItem.jsp?name="+new Date();
+          }
     
 </script>
 
@@ -224,7 +226,10 @@
 		</table>
 		</form>
 </div>
-<div id="update"><input class="adminbutton" type="button" value="Update Status" size=25 name="Frist Name" onclick="startRequest()"></div>
+<div id="update"><input class="adminbutton" type="button" value="Update Status" size=25 name="Frist Name" onclick="startRequest()">
+<br /><br />
+<input class="adminbutton" type="button" value="Add New Item" size=25 name="Frist Name" onclick="goNew()">
+</div>
 </div>
 <div class="footer">
 	<div class="section group">
