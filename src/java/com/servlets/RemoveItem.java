@@ -39,7 +39,7 @@ public class RemoveItem extends HttpServlet {
         ItemHome itemhome = new ItemHome();
         Item currentItem = itemhome.findById(itemId);
         itemhome.delete(currentItem);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/FurnitureCrazeV1-1/LoadCategoryItems?category=BedRooms");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoadCategoryItems?category=BedRooms");
         dispatcher.forward(request, response);
         } finally {            
             out.close();
