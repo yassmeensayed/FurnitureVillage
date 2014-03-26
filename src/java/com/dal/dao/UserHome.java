@@ -104,6 +104,7 @@ public class UserHome {
                         session.getTransaction().commit();                   
 			//User result = (User) session.getSessionFactory().getCurrentSession().merge(detachedInstance);
 			log.debug("merge successful");
+                        session.close();
 			return result;
 		}
 		catch (RuntimeException re) {
@@ -139,7 +140,7 @@ public class UserHome {
                         session.beginTransaction();
 			List results = session.createCriteria(User.class).add(Example.create(instance))
 					.list();
-                        //session.close();
+                        
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
 		}
@@ -147,6 +148,9 @@ public class UserHome {
 			log.error("find by example failed", re);
 			throw re;
 		}
+                finally{
+                    //session.close();
+                }
 	}
 	public List findByEmail(String email) {
 		log.debug("finding User instance by example");
