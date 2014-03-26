@@ -72,7 +72,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <a href="Admin.jsp?date=<%= new java.util.Date().getTime()%>"><font color="RED">Admin Panel</font></a>
                             <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentAdmin.getFullName()}"/>'s Profile</a>
                             <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
-                         </div>>
+                         </div>
                     </c:if>
                 </div>
 
