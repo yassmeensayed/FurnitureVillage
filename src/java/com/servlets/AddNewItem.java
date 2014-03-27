@@ -129,8 +129,10 @@ public class AddNewItem extends HttpServlet {
                                         		    		                    System.out.println("I'm in else"+ file.getPath());
 
 		    		}
+                               item.setImage(fileName);
+
 		    		fi.write(file);
-		    		out.println("Uploded FileName : " +  fileName +"<br />");
+		    		
 		    	}else{
                             if(fi.getFieldName().equals("name")){
                                 name=fi.getString();
@@ -185,7 +187,7 @@ public class AddNewItem extends HttpServlet {
             
           ///////////////////
             ih.merge(item);
-            uploadFile(request, response, cat);
+          
             response.sendRedirect("/FurnitureCrazeV1-1/Admin.jsp?date=" + new Date().getTime());
             
             System.out.println(name + " " + AvQuant + " " + price + " " + cat );
@@ -235,40 +237,6 @@ public class AddNewItem extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void uploadFile(HttpServletRequest request, HttpServletResponse response, String name1) throws IOException, ServletException{
-          String UPLOAD_DIRECTORY = "C:/Users/KimOoO/Documents/NetBeansProjects/FurnitureVillage/web/images/"+name1;
-          System.out.println("I'm in Uplaod");
-          if(ServletFileUpload.isMultipartContent(request)){
-          System.out.println("I'm in Multi");
-
-              try {
-                List<FileItem> multiparts = new ServletFileUpload(
-                                         new DiskFileItemFactory()).parseRequest(request);
-              
-                for(FileItem item : multiparts){
-                    if(!item.isFormField()){
-                        String name = new File(item.getName()).getName();
-                         System.out.println("File Name: " + name);
-                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
-                    }
-                }
-           
-               //File uploaded successfully
-               //request.setAttribute("message", "File Uploaded Successfully");
-                System.out.println("File Uploaded Successfully!");
-            } catch (Exception ex) {
-               //request.setAttribute("message", "File Upload Failed due to " + ex);
-                  System.out.println("Uplaod Error");
-            }          
-         
-        }else{
-            request.setAttribute("message",
-                                 "Sorry this Servlet only handles file upload request");
-              System.out.println("Not Multi :(");
-        }
-    
-       // request.getRequestDispatcher("/result.jsp").forward(request, response);
-     
-    }
+  
     
 }

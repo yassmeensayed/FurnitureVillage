@@ -49,7 +49,10 @@ public class ViewProfile extends HttpServlet {
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date=" + new Date().getTime());
                 rd.forward(request, response);    
                 }else{
-                request.setAttribute("user", ((User) currentSession.getAttribute("currentCustomer")));
+                    if((User) currentSession.getAttribute("currentCustomer") != null)
+                        request.setAttribute("user", ((User) currentSession.getAttribute("currentCustomer")));
+                    else
+                        request.setAttribute("user", ((User) currentSession.getAttribute("currentAdmin")));
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/Profile.jsp?date=" + new Date().getTime());
                 rd.forward(request, response);
                 }

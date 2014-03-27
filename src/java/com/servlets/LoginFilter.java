@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author KimOoO
  */
-public class AdminFilter implements Filter {
+public class LoginFilter implements Filter {
     
     private static final boolean debug = true;
     // The filter configuration object we are associated with.  If
@@ -30,13 +30,13 @@ public class AdminFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public AdminFilter() {
+    public LoginFilter() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AdminFilter:DoBeforeProcessing");
+            log("LoginFilter:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -65,7 +65,7 @@ public class AdminFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AdminFilter:DoAfterProcessing");
+            log("LoginFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -102,21 +102,15 @@ public class AdminFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         
-        HttpServletRequest req = (HttpServletRequest) request;
+       HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         
         HttpSession session = req.getSession(false);
         
-        if(session.getAttribute("currentAdmin") == null)
+        if(session.getAttribute("currentAdmin") != null || session.getAttribute("currentCustomer") != null)
             res.sendRedirect("index.jsp");
         else
             chain.doFilter(request, response);
-        
-        
-
-        // If there was a problem, we want to rethrow it if it is
-        // a known type, otherwise log it.
-   
     }
 
     /**
@@ -148,7 +142,7 @@ public class AdminFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("AdminFilter:Initializing filter");
+                log("LoginFilter:Initializing filter");
             }
         }
     }
@@ -159,9 +153,9 @@ public class AdminFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("AdminFilter()");
+            return ("LoginFilter()");
         }
-        StringBuffer sb = new StringBuffer("AdminFilter(");
+        StringBuffer sb = new StringBuffer("LoginFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
