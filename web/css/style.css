@@ -537,6 +537,7 @@ button {
 
 .btn a:hover{
     background: #00bbff;
+    cursor:pointer; cursor:hand;
 }
 /*end content*/
 /*footer*/
@@ -738,6 +739,9 @@ h3 span a:hover{
     border: 1px solid rgba(6, 234, 253, 0.18);
     float: left;
     margin-right:4%;
+}
+#checkOutButton{
+    cursor:pointer; cursor:hand;
 }
 .top{
     margin-top: 5px;
