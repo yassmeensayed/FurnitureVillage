@@ -12,7 +12,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>The Free Extro-Electronics Website Template | Contact :: w3layouts</title>
+        <title>Edit Profile</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -20,141 +20,7 @@
         <link rel="stylesheet" type="text/css" href="css/lightbox.css" media="screen" />	
         <script type="text/javascript" src="js/jquery.lightbox.js"></script>
         <script src="js/AjaxEditProfile.js"></script>
-<!--        <script type="text/javascript">
-            $(function() {
-                $('.grid-img a').lightBox();
-            });
 
-            $(document).ready(
-                    function() {
-                        fname = document.getElementById("fname");
-                        email = document.getElementById("email");
-                        address = document.getElementById("address");
-                        bday = document.getElementById("bday");
-                        password = document.getElementById("newpassword");
-                        confirmpassword = document.getElementById("confpassword");
-                        balance = document.getElementById("balance");
-                        interestsy = document.getElementById("interests");
-
-                        $("#fname").focusout(function() {
-                            validateName()
-                        });
-
-                        $("#email").focusout(function() {
-                            validateEmail()
-                        });
-
-                        $("#address").focusout(function() {
-                            validateAddress()
-                        });
-
-                        $("#bday").focusout(function() {
-                            validateBirthday()
-                        });
-
-                        $("#newpassword").focusout(function() {
-                            validatePassword()
-                        });
-
-                        $("#confpassword").focusout(function() {
-                            confirmPassword()
-                        });
-
-                        $("#interests").focusout(function() {
-                            validateinterests()
-                        });
-
-                        function validateName() {
-                            var namePattern = /^[a-zA-Z]/;
-                            if (fname.value == null || fname.value.trim() == "" || !namePattern.test(fname.value)) {
-                                $(".error.required:eq(0)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(0)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function validateEmail() {
-                            atpos = email.value.indexOf("@");
-                            dotpos = email.value.lastIndexOf(".");
-                            if (atpos < 1 || (dotpos - atpos < 2) || email.value.trim() == "")
-                            {
-                                $(".error.required:eq(1)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(1)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function validateAddress() {
-                            var namePattern = /^[a-zA-Z]/;
-                            if (address.value == null || address.value.trim() == "" || !namePattern.test(address.value)) {
-                                $(".error.required:eq(2)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(2)").css("display", "none");
-                                return true;
-                            }
-                        }
-
-                        function validatePassword() {
-                            var passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%]).{6,20}$/;
-                            if (password.value == null || password.value.trim() == "" || !passwordPattern.test(password.value)) {
-                                $(".error.required:eq(5)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(5)").css("display", "none");
-                                return true;
-                            }
-                        }
-
-                        function validateBirthday()
-                        {
-                            //yyyy-mm-dd 
-                            var bdayPattern = /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$/;
-                            if (bday.value == null || bday.value.trim() == "" || !bdayPattern.test(bday.value)) {
-                                $(".error.required:eq(3)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(3)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function confirmPassword()
-                        {
-                            if (confirmpassword.value == null || confirmpassword.value.trim() == "" || !(confirmpassword.value === password.value)) {
-                                $(".error.required:eq(6)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(6)").css("display", "none");
-                                return true;
-                            }
-                        }
-                        function validateinterests()
-                        {
-                            var namePattern = /^[a-zA-Z]/;
-                            if (interestsy.value == null || interestsy.value.trim() == "" || !namePattern.test(interestsy.value)) {
-                                $(".error.required:eq(8)").css("display", "inline");
-                                return false;
-                            } else {
-                                $(".error.required:eq(8)").css("display", "none");
-                                return true;
-                            }
-                        }
-
-                        if (validateName() && validateEmail() && validateAddress() && validateBirthday() && validatePassword() && confirmPassword() && validateinterests()) {
-                            // $("btn_submit").removeAttr("disabled");
-                            //  document.getElementById("btn_submit").removeAttribute("disabled");
-                            //document.getElementById("btn_submit").removeAttribute("disabled"); 
-                            //document.getElementById("btn_submit").disabled = false;
-                        } else {
-                          //   document.getElementById("btn_submit").setAttribute("disabled","disabled");
-                          //document.getElementById("btn_submit").disabled = true;
-                        }
-                    }
-            );
-
-        </script>-->
     </head>
     <body>
         <div class="wrap"> 
@@ -165,7 +31,16 @@
                 <div class="nav-right">
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
-                        <li><a href="Registration.jsp">Register</a></li>
+                    <c:if test="${not empty sessionScope.currentCustomer || not empty sessionScope.currentAdmin}">
+                        
+                           <li><a href="Logout">Log Out</a></li>
+                       
+                    </c:if>
+                    <c:if test="${ empty sessionScope.currentCustomer && empty sessionScope.currentAdmin}">
+                        
+                          <li><a href="Registration.jsp">Register</a></li>
+                        
+                    </c:if>   
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -277,9 +152,9 @@
                     <div class="col_1_of_4 span_1_of_4">
                         <h2>Contact Us</h2>
                         <ul class="nav">
-                            <li><a href=""> 500 Lorem Ipsum Dolor Sit,</a></li>
-                            <li><a href="">22-56-2-9 Sit Amet, Lorem,</a></li>
-                            <li><a href="">USA </a></li>
+                            <li><a href=""> 500 Maadi St,</a></li>
+                            <li><a href="">22-56-2-9  Cairo, Cairo,</a></li>
+                            <li><a href="">Egypt </a></li>
                             <li><a href="">Phone:(00) 222 666 444 </a></li>
                             <li><a href=""> Email: <span>info@mycompany.com</span></a></li>
                         </ul>

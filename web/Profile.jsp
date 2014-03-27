@@ -12,7 +12,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>The Free Extro-Electronics Website Template | Contact :: w3layouts</title>
+        <title>Profile</title>
         
         
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -37,7 +37,16 @@
                 <div class="nav-right">
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
-                        <li><a href="Registration.jsp">Register</a></li>
+                    <c:if test="${not empty sessionScope.currentCustomer || not empty sessionScope.currentAdmin}">
+                        
+                           <li><a href="Logout.jsp">Log Out</a></li>
+                       
+                    </c:if>
+                    <c:if test="${ empty sessionScope.currentCustomer && empty sessionScope.currentAdmin}">
+                        
+                          <li><a href="Registration.jsp">Register</a></li>
+                        
+                    </c:if>   
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -53,7 +62,14 @@
                         <div id="loggedIn">
                             <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentCustomer.getFullName()}"/>'s Profile</a>
                             <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
-                        </div>>
+                        </div>
+                    </c:if>
+                         <c:if test="${not empty sessionScope.currentAdmin}">
+                        <div id="loggedInAdmin">
+                            <a href="Admin.jsp?date=<%= new java.util.Date().getTime()%>"><font color="RED">Admin Panel</font></a>
+                            <a href="ViewProfile?date=<%= new java.util.Date().getTime()%>"><c:out value="${sessionScope.currentAdmin.getFullName()}"/>'s Profile</a>
+                            <a href="ViewCart?date=<%= new java.util.Date().getTime()%>"><img src="images/cart3.png" style="width: 3em;"/></a>
+                         </div>
                     </c:if>
                 </div>
 
@@ -216,9 +232,9 @@
                     <div class="col_1_of_4 span_1_of_4">
                         <h2>Contact Us</h2>
                         <ul class="nav">
-                            <li><a href=""> 500 Lorem Ipsum Dolor Sit,</a></li>
-                            <li><a href="">22-56-2-9 Sit Amet, Lorem,</a></li>
-                            <li><a href="">USA </a></li>
+                            <li><a href=""> 500 Maadi St,</a></li>
+                            <li><a href="">22-56-2-9  Cairo, Cairo,</a></li>
+                            <li><a href="">Egypt </a></li>
                             <li><a href="">Phone:(00) 222 666 444 </a></li>
                             <li><a href=""> Email: <span>info@mycompany.com</span></a></li>
                         </ul>

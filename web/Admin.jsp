@@ -65,7 +65,7 @@
                             +"\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></a></td>"
                         +"<td align=\"center\"><input type=\"button\" value=\"Activate\"  disabled class=\"userActive\" size=25 name=\"Frist Name\">&nbsp;&nbsp;&nbsp;<a href=\"UserActivation?date="
                         +new Date()+"&active="+currentActive.childNodes[0].nodeValue+"&email="+currentEmail.childNodes[0].nodeValue
-                            +"\"><input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" enabled size=25 name=\"Frist Name\"></a></td>"
+                            +"\"><input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" enabled style=\"cursor:pointer; cursor:hand\" size=25 name=\"Frist Name\"></a></td>"
                         +"</tr>";
                     }
                     if (currentActive.childNodes[0].nodeValue == 'false'){
@@ -75,7 +75,7 @@
                             +"\"><input class=\"adminbutton\" type=\"button\" value=\"View Profile\" size=25 name=\"Frist Name\"></a></td>"
                         +"<td align=\"center\"><a href=\"UserActivation?date="
                         +new Date()+"&active="+currentActive.childNodes[0].nodeValue+"&email="+currentEmail.childNodes[0].nodeValue
-                            +"\"><input type=\"button\" value=\"Activate\" enabled class=\"userActive\" size=25 name=\"Frist Name\"></a>&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" disabled size=25 name=\"Frist Name\"></td>"
+                            +"\"><input type=\"button\" value=\"Activate\" enabled style=\"cursor:pointer; cursor:hand\" class=\"userActive\" size=25 name=\"Frist Name\"></a>&nbsp;&nbsp;&nbsp;<input type=\"button\" class=\"userDeActive\" value=\"Deactivate\" disabled size=25 name=\"Frist Name\"></td>"
                         +"</tr>";
                     }
                         //out = currentMsg.length;
@@ -101,7 +101,16 @@
                 <div class="nav-right">
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
-
+                    <c:if test="${not empty sessionScope.currentCustomer || not empty sessionScope.currentAdmin}">
+                        
+                           <li><a href="Logout">Log Out</a></li>
+                       
+                    </c:if>
+                    <c:if test="${ empty sessionScope.currentCustomer && empty sessionScope.currentAdmin}">
+                        
+                          <li><a href="Registration.jsp">Register</a></li>
+                        
+                    </c:if>   
                         <li><a href="Contact.jsp">Contact</a></li>
                     </ul>
                 </div>
@@ -231,46 +240,46 @@
 <input class="adminbutton" type="button" value="Add New Item" size=25 name="Frist Name" onclick="goNew()">
 </div>
 </div>
-<div class="footer">
-	<div class="section group">
-		<div class="col_1_of_4 span_1_of_4">
-			<h2>My Account</h2>
-			<ul class="nav1">
-				<li><a href="">Always free from repetition</a></li>
-				<li><a href="">Morbi blandit turpis ewuhre</a></li>
-				<li><a href="">Integer id ante nec elit mo</a></li>
-				<li><a href="">Maecenas accumsan lorem sed</a></li>
-			</ul>
-		</div>
-		<div class="col_1_of_4 span_1_of_4">
-			<h2>Information</h2>
-			<ul class="nav1">
-				<li><a href="">Always free from repetition</a></li>
-				<li><a href="">Morbi blandit turpis ewuhre</a></li>
-				<li><a href="">Integer id ante nec elit mo</a></li>
-				<li><a href="">Maecenas accumsan lorem sed</a></li>
-			</ul>
-		</div>
-		<div class="col_1_of_4 span_1_of_4">
-			<h2>Follow Us</h2>
-			<ul class="nav">
-				<li><a href=""><img src="images/facebook.png" title="facebook" alt=""/></a></li>
-				<li><a href=""><img src="images/twitter.png" title="twitter" alt=""/></a></li>
-				<li><a href=""><img src="images/rss.png" title="rss" alt=""/></a></li>
-			</ul>
-		</div>
-		<div class="col_1_of_4 span_1_of_4">
-			<h2>Contact Us</h2>
-			<ul class="nav">
-				<li><a href=""> 500 Lorem Ipsum Dolor Sit,</a></li>
-				<li><a href="">22-56-2-9 Sit Amet, Lorem,</a></li>
-				<li><a href="">USA </a></li>
-				<li><a href="">Phone:(00) 222 666 444 </a></li>
-				<li><a href=""> Email: <span>info@mycompany.com</span></a></li>
-			</ul>
-		</div>
-	</div>
-</div>
+            <div class="footer">
+                <div class="section group">
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>My Account</h2>
+                        <ul class="nav1">
+                            <li><a href="">Always free from repetition</a></li>
+                            <li><a href="">Morbi blandit turpis ewuhre</a></li>
+                            <li><a href="">Integer id ante nec elit mo</a></li>
+                            <li><a href="">Maecenas accumsan lorem sed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>Information</h2>
+                        <ul class="nav1">
+                            <li><a href="">Always free from repetition</a></li>
+                            <li><a href="">Morbi blandit turpis ewuhre</a></li>
+                            <li><a href="">Integer id ante nec elit mo</a></li>
+                            <li><a href="">Maecenas accumsan lorem sed</a></li>
+                        </ul>
+                    </div>
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>Follow Us</h2>
+                        <ul class="nav">
+                            <li><a href=""><img src="images/facebook.png" title="facebook" alt=""/></a></li>
+                            <li><a href=""><img src="images/twitter.png" title="twitter" alt=""/></a></li>
+                            <li><a href=""><img src="images/rss.png" title="rss" alt=""/></a></li>
+                        </ul>
+                    </div>
+                    <div class="col_1_of_4 span_1_of_4">
+                        <h2>Contact Us</h2>
+                        <ul class="nav">
+                            <li><a href=""> 500 Maadi St,</a></li>
+                            <li><a href="">22-56-2-9  Cairo, Cairo,</a></li>
+                            <li><a href="">Egypt </a></li>
+                            <li><a href="">Phone:(00) 222 666 444 </a></li>
+                            <li><a href=""> Email: <span>info@mycompany.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
 </body>
 </html>
