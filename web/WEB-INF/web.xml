@@ -4,10 +4,57 @@
         <filter-name>AdminFilter</filter-name>
         <filter-class>com.servlets.AdminFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.servlets.LoginFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>com.servlets.UserFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/ShoppingCart.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/Profile.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/EditProfile.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/Details.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>Login</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AddNewProduct</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>LoadAdminPage</servlet-name>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <url-pattern>/Admin.jsp</url-pattern>
-        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/RemoveItem</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/NewItem.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/UserActivation</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -194,10 +241,9 @@
         <description/>
         <role-name>adminlogin</role-name>
     </security-role>
-       <context-param>
-    <description>The location of uploaded files</description>
-    <param-name>file-upload</param-name>
-    <param-value>C:\Users\KimOoO\Documents\NetBeansProjects\FurnitureVillage\web\images</param-value>
-  </context-param>
-    
+    <context-param>
+        <description>The location of uploaded files</description>
+        <param-name>file-upload</param-name>
+        <param-value>C:\Users\KimOoO\Documents\NetBeansProjects\FurnitureVillage\web\images</param-value>
+    </context-param>
 </web-app>
