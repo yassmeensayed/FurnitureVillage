@@ -45,32 +45,35 @@ public class Login extends HttpServlet {
         String logPass = request.getParameter("pass");
         UserHome uh = new UserHome();
         AdminUserHome adminUserHome = new AdminUserHome();
-        
+
         ArrayList<User> user = (ArrayList<User>) uh.findByEmail(logEmail);
         if (user.size() > 0) {
             if (user.get(0).getEmail().equals(logEmail)) {
                 if (user.get(0).getPassword().equals(logPass)) {
-                    out.print("logged in successfully");
-                    HttpSession session = request.getSession(true);
-                    ArrayList<ShoppingCart> savedShoppingCart = new ArrayList<ShoppingCart>();
-                    ShoppingCartHome sh = new ShoppingCartHome();
-                    List<ShoppingCart> oldCart = sh.findByExample(new ShoppingCart());
-                    Integer virtualBalance = user.get(0).getBalance();
-                    for (int i = 0; i < oldCart.size(); i++) {
-                        if(oldCart.get(i).getId().getUserId()==user.get(0).getId()){
-                            savedShoppingCart.add(oldCart.get(i));
-                            virtualBalance-=(oldCart.get(i).getQuantity()*getItemPrice(oldCart.get(i).getId().getItemId()));
+                    if (user.get(0).getActiveStatus()) {
+                        out.print("logged in successfully");
+                        HttpSession session = request.getSession(true);
+                        ArrayList<ShoppingCart> savedShoppingCart = new ArrayList<ShoppingCart>();
+                        ShoppingCartHome sh = new ShoppingCartHome();
+                        List<ShoppingCart> oldCart = sh.findByExample(new ShoppingCart());
+                        Integer virtualBalance = user.get(0).getBalance();
+                        for (int i = 0; i < oldCart.size(); i++) {
+                            if (oldCart.get(i).getId().getUserId() == user.get(0).getId()) {
+                                savedShoppingCart.add(oldCart.get(i));
+                                virtualBalance -= (oldCart.get(i).getQuantity() * getItemPrice(oldCart.get(i).getId().getItemId()));
+                            }
                         }
+                        if (adminUserHome.isAdminUser(user.get(0))) {
+                            session.setAttribute("currentAdmin", user.get(0));
+
+                        } else {
+                            session.setAttribute("currentCustomer", user.get(0));
+                        }
+                        session.setAttribute("shoppingCart", savedShoppingCart);
+                        session.setAttribute("virtualBalance", virtualBalance);
+                    } else {
+                        out.print("Your account has been disabled by the admin.");
                     }
-                    if(adminUserHome.isAdminUser(user.get(0))){
-                        session.setAttribute("currentAdmin", user.get(0));
-                        
-                    }
-                    else{
-                        session.setAttribute("currentCustomer", user.get(0));
-                    }
-                    session.setAttribute("shoppingCart", savedShoppingCart);
-                    session.setAttribute("virtualBalance", virtualBalance);
                 } else {
                     out.print("Wrong Password");
                 }
@@ -80,9 +83,10 @@ public class Login extends HttpServlet {
         }
 
     }
-    private int getItemPrice(int id){
-        ItemHome itemHome= new ItemHome();
-        Item item =itemHome.findById(id);
+
+    private int getItemPrice(int id) {
+        ItemHome itemHome = new ItemHome();
+        Item item = itemHome.findById(id);
         return item.getPrice().intValue();
     }
 
